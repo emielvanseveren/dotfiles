@@ -11,7 +11,7 @@ A job will run on login to check if any of the dotfiles were updated.
 Execute the script `util/qmk_install.sh`. This can be found inside the **qmk_firmware** repository.
 1. If you did not yet clone the qmk_firmware repository: `git clone https://github.com/qmk/qmk_firmware`.
 
-2. Copy your wanted keyboard layout into this folder: `qmk_firmware/keyboards/`**`PCBNAME`**`/keymaps/`**LAYOUTNAME**`</br>
+2. Copy your wanted keyboard layout into this folder: `qmk_firmware/keyboards/[PCBNAME]/keymaps/[LAYOUTNAME]` </br>
 e.g. `qmk_firmware/keyboards/dz60/keymaps/azerty`.
 
 3. Update the layout to your own needs and requirements.
