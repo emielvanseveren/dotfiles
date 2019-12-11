@@ -1,0 +1,7 @@
+# This is Git's per user configuration file
+[user]
+      name = Emiel Van Severen
+      email = emielvanseveren@outlook.com
+[core]
+      editor = /usr/bin/vim
+
