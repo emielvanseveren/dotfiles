@@ -1,25 +1,15 @@
 #!/bin/bash
 
-restart_now() {
-  read -r -p "${USER^}, Some changes require a restart - restart now [Y/n] " input
+source ./yesno.sh
 
-  case $input in 
-    [yY][eE][sS]|[yY])
+restart_now() {
+  if yesno "Some installation require a restart to work, restart now?" Y; then
       if [[ "$1" == "osx" ]]; then
         sudo shutdown -r now
       elif [[ "$1" == "ubuntu" || "$1" == "debian" ]]; then
         sudo shutdown -r -h +0
       fi
-    ;;
-    [nN][oO]|[nN])
-      echo "No"
-      ;;
-    *)
-    echo "Invalid input.."
-    exit 1
-  ;;
-  esac
+  else
+    echo "Do not forget to restart later"
+  fi
 }
-
-restart_now ubuntu
-
