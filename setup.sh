@@ -8,7 +8,6 @@ for file in ./tools/*; do
 done
 
 #Get operating system
-
 os=$(get_os)
 echo "The Operating system identified as: $os"
 
@@ -29,13 +28,37 @@ if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
   else 
     echo "'snap' is installed.."
   fi
+
   # check if zsh is installed
+  echo "checking shell.."
+  if [[ "$SHELL" != "/bin/zsh" ]]; then
+    if yesno "The current shell is '$Shell', change to zsh?" Y; then 
+      echo "Installing zsh.."
+      sudo apt install update -y
+      sudo apt install -y zsh
+      chsh -s "$(which zsh)"
+
+      # Create a smymlink to our zshrc.
+      echo " setting ~/.zshrc link.."
+      ensure_symlink "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
+    fi
+  else
+    echo "The zsh shell is already in use"
+  fi
+fi
+
+# restart computer
+if yesno "Some installation require a restart to work, restart now?" Y; then
+    echo "Restarting.."
+    if [[ "$os" == "osx" ]]; then
+      sudo shutdown -r now
+    elif [[ "$os" == "ubuntu" || "$os" == "debian" ]]; then
+      sudo shutdown -r -h +0
+    fi
+else
+  echo "Do not forget to restart later"
 fi
 
 
-
-# Ubuntu
-
-
-# OSX support  should be added whenever I buy a a macbook xd.
+# OSX support, I will add OSX support  whenever I buy a a macbook XD.
 

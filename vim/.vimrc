@@ -47,7 +47,7 @@ set ignorecase      " ignore case when searching
 set incsearch       " search as characters are entered
 set hlsearch        " highlight all matches
 
-"Disable arrow keys and break the bad habbit
+"Disable arrow keys and break the bad habbit :'(
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -84,10 +84,10 @@ Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status for Nerdtree
 Plug 'tpope/vim-fugitive'               " Best git wrapper in the world
 Plug 'sjl/vitality.vim'                 " Nicer cursor, tmux interactions
 Plug 'wakatime/vim-wakatime'            " Track vim activity
-Plug 'valloric/youcompleteme'           " Code completion
+Plug 'valloric/youcompleteme'           " Code completion TODO: setup
 Plug 'docker/docker'                    " Dockerfile code completion
 Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
-Plug '907th/vim-auto-save'              " Automatically save cahnges to disk without having to use :w
+Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
 
 "Search
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
@@ -166,7 +166,7 @@ let g:auto_save=1 " Enable AutoSave on startup
 
 
 "Language specific indentation.
-au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabsa
+au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2 et
 
 
