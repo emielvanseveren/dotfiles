@@ -87,6 +87,7 @@ Plug 'wakatime/vim-wakatime'            " Track vim activity
 Plug 'valloric/youcompleteme'           " Code completion
 Plug 'docker/docker'                    " Dockerfile code completion
 Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
+Plug '907th/vim-auto-save'              " Automatically save cahnges to disk without having to use :w
 
 "Search
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
@@ -158,6 +159,10 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif     
 " NERDTree shortcuts
 nmap <leader>t :NERDTreeFind<CR>
 nmap <silent> <leader>v :NERDTreeToggle<CR>
+
+"Vim-auto-save
+let g:auto_save=1 " Enable AutoSave on startup
+
 
 
 "Language specific indentation.

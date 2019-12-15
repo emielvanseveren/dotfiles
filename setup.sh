@@ -10,12 +10,27 @@ done
 #Get operating system
 
 os=$(get_os)
-echo "os identified as: $os"
+echo "The Operating system identified as: $os"
 
-# Debian
+########################
+#   Debian / Ubuntu
+########################
+
 if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
-	if [ ! -x "$(command -v snap)" ]; then # check if snap is installed
-		if ask echo "$os: 'snap' is reqsuried for $os, install now?" Y; then
+  # check if snap is installed
+	if [ ! -x "$(command -v snap)" ]; then 
+		if ask echo "'snap' is required for $os to work, install now?" Y; then
+      echo "$os: Installing snap.."
+      sudo apt install -y snapd
+    else 
+      echo "Exiting setup as 'snap' is required.";
+      exit 1;
+    fi 
+  else 
+    echo "'snap' is installed.."
+  fi
+  # check if zsh is installed
+fi
 
 
 
