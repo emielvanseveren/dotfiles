@@ -10,7 +10,7 @@ get_os() {
 		echo "osx"
 	elif [[ "$un" =~ [Uu]buntu ]]; then
 		echo "ubuntu"
-	elif [[ "$un" =~ [Dd]ebian]]; then
+	elif [[ "$un" =~ [Dd]ebian ]]; then
 		echo "Debian"
 	else
 		logger -s "Unable to identify operating system from uname '$un'"
