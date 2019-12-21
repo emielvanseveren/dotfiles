@@ -1,5 +1,8 @@
 #!/bin/bash
 
+NVM_VERSION = 0.33.0
+
+
 # Load helper functions (tools directory
 for file in ./tools/*; do
 	[ -e "$file" ] || continue 
@@ -18,7 +21,7 @@ echo "The Operating system identified as: $os"
 if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
   # check if snap is installed
 	if [ ! -x "$(command -v snap)" ]; then 
-		if ask echo "'snap' is required for $os to work, install now?" Y; then
+		if yesno echo "'snap' is required for $os to work, install now?" Y; then
       echo "$os: Installing snap.."
       sudo apt install -y snapd
     else 
@@ -31,14 +34,14 @@ if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
 
   # check if zsh is installed
   echo "checking shell.."
-  if [[ "$SHELL" != "/bin/zsh" ]]; then
-    if yesno "The current shell is '$Shell', change to zsh?" Y; then 
+  if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
+    if yesno "The current shell is '$SHELL', change to zsh?" Y; then 
       echo "Installing zsh.."
       sudo apt install update -y
       sudo apt install -y zsh
       chsh -s "$(which zsh)"
 
-      # Create a smymlink to our zshrc.
+      # Make sure the symlink exists
       echo " setting ~/.zshrc link.."
       ensure_symlink "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
     fi
@@ -57,6 +60,19 @@ if yesno "Some installation require a restart to work, restart now?" Y; then
     fi
 else
   echo "Do not forget to restart later"
+fi
+
+# Check if nvm is installed
+nvm_installed=$(command -v nvm)
+echo "Checking if NVM is installed.."
+if [[ ${nvm_installed} != 0 ]] ; then
+  if yesno "NVM is not installed. Install it?" Y; then
+    echo "Installing NVM.."
+    touch ~/.bash_profile
+    curl -o- https://raw.githubuserocntent.com/creationix/nvm/v$"NVM_VERSION"/install.sh | bash
+  fi
+else
+  echo "NVM is already installed."
 fi
 
 
