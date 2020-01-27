@@ -11,17 +11,18 @@ let mapleader = ","   " Sets leader key to ','
 
 "General setting
 syntax enable
+set term=screen-256color  "Adds colorsupport inside tmux
 set termguicolors
-set clipboard=unnamed " use the same clipboard as system clipboard
-set mouse=a           " Enable the mouse in vim. 
-set wildmenu          " Much niver tab completion for commands
-set scrolloff=5       " Keep 5 lines below and above the cursor 
-set autoread          " Reload files changed outside vim
-set visualbell        " No sounds
-set gcr=a:blinkon0    " Disable cursor blink
-set noswapfile        " No swap files
-set nobackup          " No swap files
-set nowb              " No swap files
+set clipboard=unnamed     "Use the same clipboard as system clipboard
+set mouse=a               " Enable the mouse in vim. 
+set wildmenu              " Much niver tab completion for commands
+set scrolloff=5           " Keep 5 lines below and above the cursor 
+set autoread              " Reload files changed outside vim
+set visualbell            " No sounds
+set gcr=a:blinkon0        " Disable cursor blink
+set noswapfile            " No swap files
+set nobackup              " No swap files
+set nowb                  " No swap files
 
 "Spaces and tabs
 set tabstop=2         " 2 space tab
@@ -83,8 +84,6 @@ Plug 'scrooloose/nerdtree'              " Tree viewer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status for Nerdtree
 Plug 'tpope/vim-fugitive'               " Best git wrapper in the world
 Plug 'sjl/vitality.vim'                 " Nicer cursor, tmux interactions
-Plug 'wakatime/vim-wakatime'            " Track vim activity
-Plug 'valloric/youcompleteme'           " Code completion TODO: setup
 Plug 'docker/docker'                    " Dockerfile code completion
 Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
 Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
@@ -110,7 +109,7 @@ Plug 'plasticboy/vim-markdown'          " Markdown support
 "Theme
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim', {'as': 'dracula'}
+Plug 'sickill/vim-monokai'
 
 "Plugins for other less used languages
 Plug 'jparise/vim-graphql'      " GraphQL
@@ -164,10 +163,9 @@ nmap <silent> <leader>v :NERDTreeToggle<CR>
 let g:auto_save=1 " Enable AutoSave on startup
 
 
+colorscheme monokai
 
 "Language specific indentation.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
-au FileType yaml      setl  sw=2 sts=2 et
+au FileType yaml      setl  sw=2 sts=2
 
-
-colorscheme dracula
