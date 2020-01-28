@@ -43,19 +43,19 @@ if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
     # Make sure the symlink exists
     echo " setting ~/.zshrc link.."
     ensure_symlink "$(pwd)/zsh/zshrc" "$HOME/.zshrc"
-  fi
+ fi
   else
     echo "The zsh shell is already in use."
  fi
 fi
 
-  echo "creating symlinks.."
-  make -f ./makefile
+echo "creating symlinks.."
+make -f ./makefile
 
 #nvm
 echo "Checking if NVM is installed.."
 if [[ !"$(command -v nvm)" ]] ; then
-  if yesno "NVM is not installed. Install it?" Y; then
+ if yesno "NVM is not installed. Install it?" Y; then
     echo "Installing NVM.."
     touch ~/.bash_profile
     curl -o- https://raw.githubuserocntent.com/creationix/nvm/v$"NVM_VERSION"/install.sh | bash

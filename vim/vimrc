@@ -15,6 +15,7 @@ syntax enable
 set background=dark
 set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
+set term=screen-256color  "Adds colorsupport inside tmux
 set mouse=a               " Enable the mouse in vim. 
 set wildmenu              " Much niver tab completion for commands
 set scrolloff=5           " Keep 5 lines below and above the cursor 
@@ -176,7 +177,6 @@ nmap <silent> <leader>v :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
-
 
 colorscheme dracula
 
