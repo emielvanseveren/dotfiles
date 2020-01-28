@@ -76,7 +76,7 @@ if [[ ! "$(command -v vim)" ]]; then
     exit 1;
  fi
 else
-  echo "<OUTPUT>: VIM is already installed."
+  echo "<OUTPUT>: Vim is already installed."
 fi
 
 
@@ -85,7 +85,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall
 vim -c "source ~/.vimrc"
-
 
 
 echo "checking if TMUX is installed.."
@@ -99,7 +98,7 @@ if [[ ! "$(command -v tmux)" ]]; then
     exit 1;
   fi
 else
-  echo "Tmux is already installed."
+  echo "<OUTPUT>: Tmux is already installed."
 fi
 
 # restart computer
@@ -111,5 +110,3 @@ if yesno "Some installation require a restart to work, restart now?" Y; then
       sudo shutdown -r -h +0
     fi
 fi
-
-echo "setup complete!"
