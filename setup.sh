@@ -4,7 +4,7 @@ NVM_VERSION=0.33.0
 
 for file in ./tools/*; do
 	[ -e "$file" ] || continue 
-	echo "Loading tool '$file'..."
+	echo "Loading tool '$file'.."
 	source "$file"
 done
 
@@ -19,11 +19,11 @@ if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
       sudo apt update
       sudo apt install -y snapd
     else 
-      echo "<OUTPUT>: Exiting setup as 'snap' is required.";
+      echo "Exiting setup as snap is required.";
       exit 1;
     fi 
   else 
-    echo "'snap' is installed.."
+    echo "Snap is already installed."
   fi
 
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
@@ -68,24 +68,22 @@ fi
 echo "checking if VIM is installed.."
 if [[ ! "$(command -v vim)" ]]; then
   if yesno "VIM is not installed. install it?" Y; then
-    echo "<OUTPUT>: Installing vim.."
+    echo "Installing vim.."
     sudo apt update 
     sudo apt install vim
   else
-    echo "<OUTPUT>: Vim is required to complete the setup. Exiting setup.."
+    echo "Vim is required to complete the setup. Exiting setup.."
     exit 1;
  fi
 else
-  echo "<OUTPUT>: Vim is already installed."
+  echo "Vim is already installed."
 fi
 
-
-echo "<OUTPUT>: Installing Vim Plug.."
+echo "Installing Vim Plug.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim -c PlugInstall
 vim -c "source ~/.vimrc"
-
 
 echo "checking if TMUX is installed.."
 if [[ ! "$(command -v tmux)" ]]; then
@@ -94,11 +92,11 @@ if [[ ! "$(command -v tmux)" ]]; then
     sudo apt update 
     sudo apt install tmux
   else 
-    echo "<OUTPUT>: Tmux is required to complete the setup. Exiting setup.."
+    echo "Tmux is required to complete the setup. Exiting setup.."
     exit 1;
   fi
 else
-  echo "<OUTPUT>: Tmux is already installed."
+  echo "Tmux is already installed."
 fi
 
 # restart computer

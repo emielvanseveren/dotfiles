@@ -1,9 +1,9 @@
 " source ~/.dotfiles/vim/splits.vim
+"
+" filetype plugin on
 
 "Use Vim settings, rather then Vi settings (much better!)
 set nocompatible " This must be first, because it changes other options as a side effect.
-
-
 
 set ignorecase
 set smartcase
@@ -11,7 +11,6 @@ let mapleader = ","   " Sets leader key to ','
 
 "General setting
 syntax enable
-" set termguicolors
 set background=dark
 set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
