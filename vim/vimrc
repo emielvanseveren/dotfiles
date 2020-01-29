@@ -2,6 +2,7 @@
 "
 " filetype plugin on
 
+
 "Use Vim settings, rather then Vi settings (much better!)
 set nocompatible " This must be first, because it changes other options as a side effect.
 
@@ -66,12 +67,12 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
 "Move normally between wrapped lines
 nmap j gj
 nmap k gk
 
 "Vim spell
-
 set spellfile=$HOME/.vim-spell-en.utf-8.add " This will be a symlink to the dotfiles version of the spellfile
 autocmd FileType markdown setlocal spell    " Spell check markdown
 autocmd FileType gitcommit setlocal spell   " Spell check git commit messages
@@ -89,6 +90,7 @@ au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@N
 call plug#begin('~/.vim/plugged')
 
 "General
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
 Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file
@@ -101,8 +103,6 @@ Plug 'docker/docker'                    " Dockerfile code completion
 Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
 Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
 Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
-
-"Search
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
 
 "Go
@@ -139,7 +139,8 @@ call plug#end()
 let g:jsx_ext_required = 0                          " Support JSX syntax highlighting in *.js, not just *.jsx.
 let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing for json files.
 
-"Golang
+"Vim-go
+let g:go_def_mapping_enabled = 0                    " Disable vim-go :GoDef short cut (gd). This is handled by LanguageClient (LC)
 let g:go_highlight_build_constraints = 0            " Syntax highlighting
 let g:go_highlight_extra_types = 1                  " Syntax highlighting
 let g:go_highlight_fields = 1                       " Syntax highlighting
@@ -148,7 +149,6 @@ let g:go_highlight_methods = 1                      " Syntax highlighting
 let g:go_highlight_operators = 1                    " Syntax highlighting
 let g:go_highlight_structs = 1                      " Syntax highlighting
 let g:go_highlight_types = 1                        " Syntax highlighting
-
 
 "Vim-arline theme
 let g:airline_theme = 'deus'
@@ -159,7 +159,7 @@ let g:airline_right_sep = ''
 
 "Vim-indent-guides
 let g:indent_guides_guide_size = 1
-let g:indent_guides_color_change_percent = 3
+let g:indent_guides_color_change_percent = 10
 let g:indent_guides_enable_on_vim_startup = 1
 
 "NERDTree
@@ -170,16 +170,45 @@ let NERDTreeDirArrows = 1                                                       
 let g:NerdTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.nyc_output$[[dir]]']  " Ignore node_modules and .git files
 autocmd StdinReadPre * let s:std_in=1                                                   " Open NERDTree on startup
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif             " Open NERDTree on startup
-" NERDTree shortcuts
+
+"NERDTree keybindings
 nmap <leader>t :NERDTreeFind<CR>
 nmap <silent> <leader>v :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
 
-colorscheme dracula
+"Coc.nvim default settings
+set hidden                                                    " If hidden is not set, TextEdit might fail
+set cmdheight=2                                               " Better display for messages
+set updatetime=300                                            " Smaller updatetime for CursorHold & CursorHoldI
+set shortmess+=c                                              " Don't give ins-completion-menu messages.
+set signcolumn=yes                                            " Always show signcolumns
+autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight symbol under cursor on CursorHold
+
+"use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+    let col = col('.') - 1
+      return !col || getline('.')[col - 1]  =~ '\s'
+    endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 
 "Language specific indentation.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2
 
+
+colorscheme dracula
