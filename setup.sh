@@ -18,6 +18,7 @@ if [[ "$os" == "debian" || "$os" == "ubuntu" ]]; then
       echo "$os: Installing snap.."
       sudo apt update
       sudo apt install -y snapd
+      sudo apt install -y xsel
     else 
       echo "Exiting setup as snap is required.";
       exit 1;
@@ -82,21 +83,34 @@ fi
 echo "Installing Vim Plug.."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim -c PlugInstall
+vim +PlugInstall
 vim -c "source ~/.vimrc"
 
-echo "checking if TMUX is installed.."
+echo "checking if Tmux is installed.."
 if [[ ! "$(command -v tmux)" ]]; then
-  if yesno "TMUX is not installed. install it?" Y; then
-    echo "installing TMUX.."
+  if yesno "Tmux is not installed. install it?" Y; then
+    echo "installing Tmux.."
     sudo apt update 
     sudo apt install tmux
+    sudo apt install urlview
+
+    git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
   else 
     echo "Tmux is required to complete the setup. Exiting setup.."
     exit 1;
   fi
 else
   echo "Tmux is already installed."
+fi
+
+echo "checking yarn is installed.."
+if [[ ! "$(command -v yarn)" ]]; then
+  if yesno "Yarn is not installed, install it?" Y; then
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list 
+    sudo apt update && sudo apt install yarn 
+  fi
 fi
 
 # restart computer
