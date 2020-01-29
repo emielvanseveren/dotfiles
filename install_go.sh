@@ -17,6 +17,11 @@ echo "export GOBIN=$HOME/go/bin" >> $HOME/.profile                    #
 echo "export PATH=$PATH:$GOBIN" >> $HOME/.profile                      #
 
 
+
+ln -s "$(pwd)/vim/coc-settings.json" "$HOME/.vim/coc-settings.json"   # symbolic link for code completion languageserver settings.
+
+
+
 source $HOME/.profile                                                 # Source the file
 go env                                                                # Check if everything is set correctly
 go version                                                            # Show go version
