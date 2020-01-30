@@ -209,6 +209,7 @@ nmap <silent> gr <Plug>(coc-references)
 "Language specific indentation.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2
+au FileType json      syntax match Comment +\/\/.\+$+
 
 
 colorscheme dracula
