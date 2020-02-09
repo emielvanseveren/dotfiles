@@ -19,19 +19,29 @@ if [[ ! "$(command -v vim)" ]]; then
 
   sudo apt update
   sudo apt install vim -y
-  ensure_symlink "$(pwd)/vimrc" "$HOME/.vimrc"
+  ensure_symlink '$(pwd)/vimrc' '$HOME/.vimrc'
 
   curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   vim +PlugInstall
-  vim -c "source $HOME/.vimrc"
+  vim -c 'source $HOME/.vimrc|q'
 
 
   # TODO: coc symlink
+
+
 
 else
   echo "Vim is already installed.."
   exit 1;
 fi
 
-echo "Installation complete."
+
+# MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions 
+echo 'Installing Coc extensions'
+vim -c 'CocInstall -sync coc-json coc-css coc-html |q'
+vim -c 'CocInstall coc-tsserver' # Typescript language features
+vim -c 'CocInstall coc-eslint'
+vim -c 'CocUpdateSync|q'
+
+echo 'Installation complete.'
