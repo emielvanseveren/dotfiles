@@ -32,3 +32,7 @@ If there are no errors in your config files. It will create a .build folder in t
 
 ## .tmux 🧬
 
+## EXAMPLE Remote mounted filesystem over ssh
+`mkdir remoteDir`
+`sshfs emiel@dev:/home/emiel ~/remoteDir`
+

@@ -19,6 +19,13 @@ if [[ ! "$(command -v yarn)" ]]; then
   sudo apt install yarn -y
 fi
 
+echo "installing latexmk mupdf pdfviewer"
+if [[ ! "$(command -v yarn)" ]]; then
+  sudo apt update
+  sudo apt install mupdf zathura -y 
+  sudo apt install latexmk -y
+fi
+
 # Restart computer
 if yesno "Some installations require a restart to work, restart now?" Y; then
   echo "Restarting.."
