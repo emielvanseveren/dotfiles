@@ -5,6 +5,32 @@
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
     }
-  }
+  },
+  "tsserver.enable": true,
+  "tsserver.formatOnType": true,
+  "tsserver.enableJavascript": true,
+ 
+  // Typescript formatting
+  "typescript.updateImportsOnFileMove.enable": true,
+  "typescript.implementationsCodeLens.enable": false,                   // disable codeLens implentations
+  "typescript.referencesCodeLens.enable": false,                        // disable codeLens for references
+  "typescript.preferences.quoteStyle": "single",                        // prefer single quoteStyle
+  "typescript.format.enabled": true,                                    // Enable Typescript formatting
+  "typescript.format.insertSpaceAfterCommaDelimiter": true,             // Space after comma delimiter
+  "typescript.format.insertSpaceAfterSemicolonInForStatements": false,  // Space after ; in for statement
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": false,      // No Space before function paranthesis function functioname ()
+
+  // Javascript formatting
+  "javascript.format.enabled": true,
+  "javascript.showUnused": true,
+  "javascript.updateImportsOnFileMove.enable": true,
+  "javascript.referencesCodeLens.enable": false,
+  "javascript.preferences.quoteStyle": "single",
+  "javascript.validate.enable": true,
+  "javascript.preferences.importModuleSpecifier": "non-relative",
   
+  // Eslint config
+  "eslint.enable": true, // enable eslint
+  "eslint.codeAction.showDocumentation":{ "enable": true },
+  "eslint.autoFixOnSave": true
 }
