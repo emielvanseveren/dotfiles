@@ -1,13 +1,10 @@
 " source ~/.dotfiles/vim/splits.vim
 "
 " filetype plugin on
+" filetype indent on
 
-
-"Use Vim settings, rather then Vi settings (much better!)
 set nocompatible " This must be first, because it changes other options as a side effect.
 
-set ignorecase
-set smartcase
 let mapleader = ","   " Sets leader key to ','
 
 "General setting
@@ -17,10 +14,10 @@ set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
 set term=screen-256color  "Adds colorsupport inside tmux
 set mouse=a               " Enable the mouse in vim. 
-set wildmenu              " Much niver tab completion for commands
+set wildmenu              " Much nicer tab completion for commands
 set scrolloff=5           " Keep 5 lines below and above the cursor 
 set autoread              " Reload files changed outside vim
-set visualbell            " No sounds
+set novisualbell            " No sounds
 set gcr=a:blinkon0        " Disable cursor blink
 set noswapfile            " No swap files
 set nobackup              " No swap files
@@ -49,18 +46,16 @@ set smarttab          " insert tabstop number of spaces when the tab key is pres
 set number          " show line numbers
 set showcmd         " show command in bottom bar
 set nocursorline    " highlight current line
-set showmatch       " highlight matching parenthesis
 set lazyredraw      " Don't update screen during macro and script execution.
 
 "Folding
-set foldmethod=indent   " Fold based on indention levels
-set foldnestmax=3       " Only fold up to three nested levels
 set nofoldenable        " Disable folding by default
 
 "Searching
 set ignorecase      " ignore case when searching
 set incsearch       " search as characters are entered
 set hlsearch        " highlight all matches
+set ignorecase        " Searching is not case sensitive
 
 "Disable arrow keys and break the bad habbit :'(
 noremap <Up> <NOP>
@@ -87,14 +82,17 @@ au BufNewFile,BufRead syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains
 au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 
 "Vim Plug (pluginmanager)
+
+" Install plugins :PlugInstall
+" Remove plugins  :PlugClean
 call plug#begin('~/.vim/plugged')
 
 "General
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
-Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file
-Plug 'scrooloose/syntastic'             " Syntax highlighting
+Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file)
 Plug 'scrooloose/nerdtree'              " Tree viewer
 Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status for Nerdtree
 Plug 'tpope/vim-fugitive'               " Best git wrapper in the world
@@ -106,15 +104,16 @@ Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
 
 "Go
-Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim'}               " Go syntax highlight
 Plug 'fatih/vim-go'                                                   " Go support
 
 "Javascript
-Plug 'pangloss/vim-javascript'                                        " Javascript syntax highlighting
 Plug 'hail2u/vim-css3-syntax'                                         " CSS syntax
 Plug 'ap/vim-css-color'                                               " Shows colors
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }  " Styled-components support
 Plug 'joegesualdo/jsdoc.vim'                                          " JSDoc support
+Plug 'yuezk/vim-js'                                                   " Syntax highlighting Javascript
+Plug 'maxmellon/vim-jsx-pretty'                                       " React Syntax Highlighting
+
 
 "Plugins for Markdown
 Plug 'godlygeek/tabular'                " Line up text! Needed by Vim markdown.
@@ -123,18 +122,14 @@ Plug 'plasticboy/vim-markdown'          " Markdown support
 "Theme
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'sickill/vim-monokai'
 Plug 'dracula/vim',{'as':'dracula'}
-
-"Plugins for other less used languages
-Plug 'jparise/vim-graphql'      " GraphQL
-Plug 'othree/html5.vim'         " html5 + SVG
-Plug 'mzlogin/vim-markdown-toc' " Build a Table Of Content for markdown
 
 call plug#end()
 
-"Syntax Highlighting
 
+
+"Syntax Highlighting
+let g:loaded_matchparen=1
 "Javascript
 let g:jsx_ext_required = 0                          " Support JSX syntax highlighting in *.js, not just *.jsx.
 let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing for json files.
@@ -142,25 +137,25 @@ let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing 
 "Vim-go
 let g:go_def_mapping_enabled = 0                    " Disable vim-go :GoDef short cut (gd). This is handled by LanguageClient (LC)
 let g:go_highlight_build_constraints = 0            " Syntax highlighting
-let g:go_highlight_extra_types = 1                  " Syntax highlighting
-let g:go_highlight_fields = 1                       " Syntax highlighting
-let g:go_highlight_functions = 1                    " Syntax highlighting
-let g:go_highlight_methods = 1                      " Syntax highlighting
-let g:go_highlight_operators = 1                    " Syntax highlighting
-let g:go_highlight_structs = 1                      " Syntax highlighting
-let g:go_highlight_types = 1                        " Syntax highlighting
+let g:go_highlight_extra_types = 0                  " Syntax highlighting
+let g:go_highlight_fields = 0                       " Syntax highlighting
+let g:go_highlight_functions = 0                    " Syntax highlighting
+let g:go_highlight_methods = 0                      " Syntax highlighting
+let g:go_highlight_operators = 0                    " Syntax highlighting
+let g:go_highlight_structs = 0                      " Syntax highlighting
+let g:go_highlight_types = 0                        " Syntax highlighting
 
 "Vim-arline theme
-let g:airline_theme = 'deus'
+let g:airline_theme = 'minimalist'
 let g:airline_left_sep = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_sep = ''
 
 "Vim-indent-guides
-let g:indent_guides_guide_size = 1
-let g:indent_guides_color_change_percent = 10
-let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_guide_size = 1                  " Size of indent
+let g:indent_guides_start_level = 2                 " Starts showing from second level
+let g:indent_guides_enable_on_vim_startup = 1       " Enable indent guides on startup
 
 "NERDTree
 let NerdTreeShowHidden=1                                                                " Show hidden files by default
@@ -172,8 +167,8 @@ autocmd StdinReadPre * let s:std_in=1                                           
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif             " Open NERDTree on startup
 
 "NERDTree keybindings
-nmap <leader>t :NERDTreeFind<CR>
-nmap <silent> <leader>v :NERDTreeToggle<CR>
+nmap <leader>v :NERDTreeFind<CR>
+nmap <silent> <leader>t :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
