@@ -28,3 +28,6 @@ alias master='git checkout master'
 alias gpull='git pull origin master'
 alias gpush='git push origin master'
 
+# Vim
+alias vi='vim'
+alias vimtex='vim --servername vim'
