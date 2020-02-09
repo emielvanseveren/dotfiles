@@ -1,6 +1,6 @@
 # /bin/bash
 
-for file in ../helper-functions/*; do
+for file in '$(pwd)/../helper-functions/*'; do
   [ -e "$file" ] || continue
   echo "Loading tool '$file'.."
   source "$file"
@@ -25,9 +25,16 @@ if [[ ! "$(command -v vim)" ]]; then
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   vim +PlugInstall
   vim -c 'source $HOME/.vimrc|q'
+  
+  # coc settings and must have extensions.
+  # MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions 
+  echo 'Installing Coc extensions'
 
+  vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-vimtex|q' # general
+  vim -c 'CocInstall coc-styled-components|q'                                              # react related coc settings 
+  vim -c 'CocUpdateSync|q'
+  ensure-symlink '$(pwd)/coc-settings.json' '$HOME/.vim/coc-settings.json'
 
-  # TODO: coc symlink
 
 
 
@@ -37,10 +44,7 @@ else
 fi
 
 
-# MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions 
-echo 'Installing Coc extensions'
-vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-vimtex|q' # general
-vim -c 'CocInstall coc-styled-components' # react related coc settings 
-vim -c 'CocUpdateSync|q'
+
+
 
 echo 'Installation complete.'
