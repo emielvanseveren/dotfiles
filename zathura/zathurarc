@@ -7,10 +7,9 @@ set guioptions s
 set show-scrollbars true
 set window-title-basename true
 set statusbar-basename true
-set statusbar-v-padidng 10
+set statusbar-v-padding 10
 set statusbar-h-padding 5
 set page-padding 10
-set page-per-row 1
 set scroll-page-aware true
 set scroll-wrap true
 set zoom-min 5
@@ -26,10 +25,6 @@ set inputbar-bg \#000000
 set inputbar-fg \#a488d7
 set statusbar-bg \#191919
 set statusbar-fg \#9f8bab
-set tabbar-bg \#191919
-set tabbar-fg \#98a7b6
-set tabbar-focus-bg \#232323
-set tabbar-focus-fg \#a488d9
 set completion-bg \#232323
 set completion-fg \#bbbbbb
 set completion-group-bg \#101010
@@ -47,7 +42,3 @@ set recolor true
 set recolor-keephue true
 set recolor-darkcolor \#cccccc
 set recolor-lightcolor \#121212
-
-# Keybindings
-map <C-q> quit
-map w adjust_window width

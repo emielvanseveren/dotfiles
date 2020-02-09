@@ -11,6 +11,8 @@ if [[ ! "$(command -v zathura)" ]]; then
 
   sudo apt update -y
   sudo apt install latexmk -y
+  sudo apt install libsynctex-dev -y
+  sudo apt install libgtk-3-dev -y
   sudo apt install zathura -y
   ensure_symlink '$(pwd)/zathurarc' '$HOME/.config/zathura/zathurarc'
 else 
