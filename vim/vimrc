@@ -89,7 +89,7 @@ call plug#begin('~/.vim/plugged')
 
 "General
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-
+Plug 'lervag/vimtex'                    " Latex support vim
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
 Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file)
@@ -125,8 +125,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'dracula/vim',{'as':'dracula'}
 
 call plug#end()
-
-
 
 "Syntax Highlighting
 let g:loaded_matchparen=1
@@ -201,7 +199,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 
-"Language specific indentation.
+"Language specific configuration.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2
 au FileType json      syntax match Comment +\/\/.\+$+

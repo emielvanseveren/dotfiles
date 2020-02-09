@@ -6,15 +6,21 @@
       "filetypes": ["go"]
     }
   },
+
+  // Latex options
+  "coc.source.vimtex.enable": true,                                     // Enable latex autocompletion vimtex
+  "coc.source.vimtex.priority": 99,                                     // Priority of source
+
+  // typescript language server
   "tsserver.enable": true,
   "tsserver.formatOnType": true,
   "tsserver.enableJavascript": true,
  
   // Typescript formatting
   "typescript.updateImportsOnFileMove.enable": true,
-  "typescript.implementationsCodeLens.enable": false,                   // disable codeLens implentations
-  "typescript.referencesCodeLens.enable": false,                        // disable codeLens for references
-  "typescript.preferences.quoteStyle": "single",                        // prefer single quoteStyle
+  "typescript.implementationsCodeLens.enable": false,                   // Disable codeLens implentations
+  "typescript.referencesCodeLens.enable": false,                        // Disable codeLens for references
+  "typescript.preferences.quoteStyle": "single",                        // Prefer single quoteStyle
   "typescript.format.enabled": true,                                    // Enable Typescript formatting
   "typescript.format.insertSpaceAfterCommaDelimiter": true,             // Space after comma delimiter
   "typescript.format.insertSpaceAfterSemicolonInForStatements": false,  // Space after ; in for statement
@@ -33,4 +39,5 @@
   "eslint.enable": true, // enable eslint
   "eslint.codeAction.showDocumentation":{ "enable": true },
   "eslint.autoFixOnSave": true
+
 }

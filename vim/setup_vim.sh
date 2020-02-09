@@ -39,9 +39,8 @@ fi
 
 # MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions 
 echo 'Installing Coc extensions'
-vim -c 'CocInstall -sync coc-json coc-css coc-html |q'
-vim -c 'CocInstall coc-tsserver' # Typescript language features
-vim -c 'CocInstall coc-eslint'
+vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-vimtex|q' # general
+vim -c 'CocInstall coc-styled-components' # react related coc settings 
 vim -c 'CocUpdateSync|q'
 
 echo 'Installation complete.'

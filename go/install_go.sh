@@ -26,4 +26,6 @@ source $HOME/.profile                                                 # Source t
 go env                                                                # Check if everything is set correctly
 go version                                                            # Show go version
 
+
+go get golang.org/x/tools/cmd/godoc
 vim +GoInstallBinaries
