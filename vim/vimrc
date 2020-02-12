@@ -12,6 +12,7 @@ syntax enable
 set background=dark
 set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
+set linebreak
 set term=screen-256color  "Adds colorsupport inside tmux
 set mouse=a               " Enable the mouse in vim. 
 set wildmenu              " Much nicer tab completion for commands
