@@ -38,7 +38,7 @@ nnoremap <C-H> <C-W><C-H>
 
 "Spaces and tabs
 set tabstop=2         " 2 space tab
-set shiftwidth=2    
+set shiftwidth=2
 set softtabstop=2     " 2 space tab
 set expandtab         " use spaces for tabs
 set smarttab          " insert tabstop number of spaces when the tab key is pressed
@@ -103,6 +103,8 @@ Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
 Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
 Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
+Plug 'ntpeters/vim-better-whitespace'   " Highlight whitespaces
+
 
 "Go
 Plug 'fatih/vim-go'                                                   " Go support
@@ -127,7 +129,7 @@ Plug 'dracula/vim',{'as':'dracula'}
 
 call plug#end()
 
-" Vimtex 
+" Vimtex
 let g:vimtex_complete_img_use_tail = 1
 let g:vimtex_fold_enabled = 0
 let g:vimtex_format_enabled = 1
@@ -158,6 +160,13 @@ let g:airline_left_sep = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_sep = ''
+
+"Vim-better-whitespace
+let g:better_whitespace_enabled=1
+let g:better_whitespace_ctermcolor='lightmagenta'
+let g:better_whitespace_guicolor='lightmagenta'
+let g:show_spaces_that_precede_tabs=1               " Highlight spaces that appear before or in-between tabs
+
 
 "Vim-indent-guides
 let g:indent_guides_guide_size = 1                  " Size of indent
