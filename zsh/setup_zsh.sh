@@ -1,6 +1,6 @@
 
 # load helper tools
-for file in ./helper-functions/*; do
+for file in ../helper-functions/*; do
   [ -e "$file" ] || continue
   echo "Loading tool '$file'.."
   source "$file"
