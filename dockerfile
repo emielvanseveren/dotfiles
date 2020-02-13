@@ -1,6 +1,5 @@
 FROM debian
-COPY . /opt/dots/
-RUN make
+COPY . /opt/dots
 WORKDIR  /opt/dots
 
 # test setup2
