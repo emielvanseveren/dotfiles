@@ -6,10 +6,10 @@ for file in ./helper-functions/*; do
   source "$file"
 done
 
-
-
 os=$(get_os)
 echo "The operating system is identified as: $os"
+
+
 
 echo "checking if Yarn is installed.."
 if [[ ! "$(command -v yarn)" ]]; then
@@ -22,7 +22,7 @@ fi
 echo "installing latexmk mupdf pdfviewer"
 if [[ ! "$(command -v yarn)" ]]; then
   sudo apt update
-  sudo apt install mupdf zathura -y 
+  sudo apt install zathura -y 
   sudo apt install latexmk -y
 fi
 
