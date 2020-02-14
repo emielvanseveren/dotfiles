@@ -20,7 +20,7 @@ echo "The operating system is identified as: $os"
 
 
 # Make sure general packages are installed
-sudo apt update && sudo apt install zathura latexmk git curl -y
+sudo apt update && sudo apt install zathura latexmk git curl node npm -y
 
 # Install yarn
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
