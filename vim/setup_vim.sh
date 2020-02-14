@@ -6,45 +6,26 @@ for file in '$(pwd)/../helper-functions/*'; do
   source "$file"
 done
 
-echo "Checking if Vim is installed.."
-if [[ ! "$(command -v vim)" ]]; then
-  if [[ ! "$(command -v yarn)" ]]; then
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - 
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-    sudo apt update
-    sudo apt install yarn 
-  else 
-    echo "Yarn is already installed.."
-  fi    
+sudo apt install vim -y
+ensure_symlink '$(pwd)/vimrc' '$HOME/.vimrc'
 
-  sudo apt update
-  sudo apt install vim -y
-  ensure_symlink '$(pwd)/vimrc' '$HOME/.vimrc'
+# Install vim plug repository
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall
+vim -c 'source $HOME/.vimrc|q'
 
-  curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  vim +PlugInstall
-  vim -c 'source $HOME/.vimrc|q'
-  
-  # coc settings and must have extensions.
-  # MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions 
-  echo 'Installing Coc extensions'
+####################################################################################
+###                                COC SETTINGS                                  ###
+###                                                                              ###
+###   MORE INFORMATION: github.com/neoclide/coc.nvim/wiki/Using-coc-extensions   ###
+####################################################################################
+echo 'Installing Conquer Of Completion extensions'
+vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-vimtex|q'
+vim -c 'CocInstall coc-styled-components|q'
+vim -c 'CocUpdateSync|q'
+ensure-symlink '$(pwd)/coc-settings.json' '$HOME/.vim/coc-settings.json'
 
-  vim -c 'CocInstall -sync coc-json coc-css coc-html coc-tsserver coc-eslint coc-vimtex|q' # general
-  vim -c 'CocInstall coc-styled-components|q'                                              # react related coc settings 
-  vim -c 'CocUpdateSync|q'
-  ensure-symlink '$(pwd)/coc-settings.json' '$HOME/.vim/coc-settings.json'
+# TODO: create symlink package.json
 
-
-
-
-else
-  echo "Vim is already installed.."
-  exit 1;
-fi
-
-
-
-
-
-echo 'Installation complete.'
+echo 'Vim installation complete.'

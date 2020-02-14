@@ -7,20 +7,22 @@ for file in ../helper-functions/*; do
 done
 
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
-  
-  sudo apt update
-  sudo apt install zsh -y
+
+  sudo apt install zsh fonts-firacode -y
   sudo chsh -s "$(which zsh)"
 
-  wget https://github.com/robbyrussel/oh-my-zsh/raw/master/tools/install.sh -O - | zsh                    # oh-my-zsh
-  git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions  # custom plugin
+  # oh my zsh
+  wget https://github.com/robbyrussel/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+  # get custom plugin zsh-completions
+  git clone https://github.com/zsh-users/zsh-completions $HOME/.oh-my-zsh/custom/plugins/zsh-completions
 
-  sudo apt install fonts-firacode -y                                                                      # firacode font (unicode support)
+  echo "Ensure symlinks exist.."
   ensure_symlink "$(pwd)/themes/theunraveler.zsh-theme" "$HOME/.oh-my-zsh/themes/theunraveler.zsh-theme"
-
-  echo "Ensure zshrc symlink exists.."
   ensure_symlink "$(pwd)/zshrc" "$HOME/.zshrc"
 
   else
     echo "The Z shell is already installed"
+    exit 1;
 fi
+
+echo "Zsh installation complete."

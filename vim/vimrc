@@ -14,7 +14,7 @@ set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
 set linebreak
 set term=screen-256color  "Adds colorsupport inside tmux
-set mouse=a               " Enable the mouse in vim. 
+set mouse=a               " Enable the mouse in vim.
 set wildmenu              " Much nicer tab completion for commands
 set scrolloff=5           " Keep 5 lines below and above the cursor 
 set autoread              " Reload files changed outside vim
@@ -23,6 +23,7 @@ set gcr=a:blinkon0        " Disable cursor blink
 set noswapfile            " No swap files
 set nobackup              " No swap files
 set nowb                  " No swap files
+set nowrap                " No line wrapping
 
 "Tmux
 if exists('+termguicolors') " if no tmux set termguicolors
@@ -154,7 +155,7 @@ let g:go_highlight_operators = 0                    " Syntax highlighting
 let g:go_highlight_structs = 0                      " Syntax highlighting
 let g:go_highlight_types = 0                        " Syntax highlighting
 
-"Vim-arline theme
+"Vim-airline theme
 let g:airline_theme = 'minimalist'
 let g:airline_left_sep = ''
 let g:airline_left_sep = ''

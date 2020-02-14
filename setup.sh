@@ -51,7 +51,6 @@ if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
 fi
 
 echo "creating symlinks.."
-make -f ./makefile
 
 #nvm
 echo "Checking if NVM is installed.."
