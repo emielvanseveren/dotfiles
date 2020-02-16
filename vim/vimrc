@@ -131,15 +131,10 @@ Plug 'dracula/vim',{'as':'dracula'}
 call plug#end()
 
 " Vimtex
-let g:vimtex_complete_img_use_tail = 1
-let g:vimtex_fold_enabled = 0
-let g:vimtex_format_enabled = 1
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_indent_ignored_envs = ['document', 'frame']
-let g:tex_flavor = 'latex'
+let g:livepreview_previewer = 'evince'              " Set previewer latex
 
 "Syntax Highlighting
-let g:loaded_matchparen=1
+let g:loaded_matchparen= 1
 "Javascript
 let g:jsx_ext_required = 0                          " Support JSX syntax highlighting in *.js, not just *.jsx.
 let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing for json files.
