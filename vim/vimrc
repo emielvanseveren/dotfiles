@@ -91,7 +91,7 @@ call plug#begin('~/.vim/plugged')
 
 "General
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'lervag/vimtex'                    " Latex support vim
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " Latex preview
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
 Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file)
