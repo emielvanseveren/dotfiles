@@ -39,7 +39,7 @@ fi
 
 
 
-SH_ENV="$HOME/.ssh/environment"
+SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
     echo "Initialising new SSH agent..."
@@ -60,4 +60,4 @@ if [ -f "${SSH_ENV}" ]; then
                         }
                         else
                             start_agent;
-                            fi
+fi
