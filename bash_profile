@@ -1,9 +1,9 @@
 # general
 alias claer="clear"
-alias ls='ls -a --color=auto'
+alias ls='ls --color=auto'
 alias ll="ls -la"
 alias untar='tar -zxvf'
-alias wget='wget -c' 
+alias wget='wget -c'
 alias daddy='sudo '
 alias pls='apt '
 alias vi='vim'
