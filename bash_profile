@@ -9,6 +9,7 @@ alias pls='apt '
 alias vi='vim'
 alias fuck='sudo !!'
 alias reloadzsh='source ~/.zshrc'
+alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 
 # docker
 alias dcu='sudo docker-compose up -d'

@@ -106,7 +106,6 @@ Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
 Plug 'ntpeters/vim-better-whitespace'   " Highlight whitespaces
 
-
 "Go
 Plug 'fatih/vim-go'                                                   " Go support
 
@@ -130,8 +129,9 @@ Plug 'dracula/vim',{'as':'dracula'}
 
 call plug#end()
 
-" Vimtex
+" vim previewer
 let g:livepreview_previewer = 'evince'              " Set previewer latex
+let g:tex_flavor = 'tex'
 
 "Syntax Highlighting
 let g:loaded_matchparen= 1
