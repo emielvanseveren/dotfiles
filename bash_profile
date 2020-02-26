@@ -45,6 +45,10 @@ alias suspend='sudo systemctl suspend' # suspend-to-RAM (instant, but uses more 
 alias poweroff='sudo systemctl poweroff'
 
 
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+
 SSH_ENV="$HOME/.ssh/environment"
 
 function start_agent {
