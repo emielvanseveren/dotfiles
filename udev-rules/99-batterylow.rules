@@ -1,0 +1,11 @@
+
+
+# Show notification when battery goes below 15%
+SUBSYSTEM=="power_suply", ATTR{status}=="Discharging", ATTR{capacity}=="33", RUN+="notify-send 'Battery low!'"
+
+# Suspend the system when battery level drops to 5% or lower.
+# Batteries can jump to a lower value instead of discharging continuously,
+# therefore a matching pattern for all capacities 0 through 5 is used.
+SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[0-5]", RUN+="/usr/bin/systemctl hibernate"
+
+
