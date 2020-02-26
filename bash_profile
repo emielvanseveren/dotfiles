@@ -40,9 +40,8 @@ if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]
   exec startx
 fi
 
-# Alias for system
-alias suspend='sudo systemctl suspend'
-alias hibernate='sudo systemctl hibernate'
+# Alias for power options
+alias suspend='sudo systemctl suspend' # suspend-to-RAM (instant, but uses more power than hibernation
 alias poweroff='sudo systemctl poweroff'
 
 
