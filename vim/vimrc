@@ -131,7 +131,7 @@ call plug#end()
 
 " vim previewer
 let g:livepreview_previewer = 'evince'              " Set previewer latex
-let g:tex_flavor = 'tex'
+let g:tex_flavor = 'tex'                            " .tex files are automatically recognized as tex types. Which enables the .tex.
 
 "Syntax Highlighting
 let g:loaded_matchparen= 1

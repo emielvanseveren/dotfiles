@@ -10,6 +10,7 @@ alias vi='vim'
 alias fuck='sudo !!'
 alias reloadzsh='source ~/.zshrc'
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
+alias screen='gnome-screenshot -i'
 
 # docker
 alias dcu='sudo docker-compose up -d'
@@ -34,10 +35,15 @@ alias vi='vim'
 alias vimtex='vim --servername vim'
 
 # run startx on login tty1
+# TODO: this should only be fired if the operating sytem is Arch.
 if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
   exec startx
 fi
 
+# Alias for system
+alias suspend='sudo systemctl suspend'
+alias hibernate='sudo systemctl hibernate'
+alias poweroff='sudo systemctl poweroff'
 
 
 SSH_ENV="$HOME/.ssh/environment"
