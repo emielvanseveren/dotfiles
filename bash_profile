@@ -43,6 +43,7 @@ fi
 # Alias for power options
 alias suspend='sudo systemctl suspend' # suspend-to-RAM (instant, but uses more power than hibernation
 alias poweroff='sudo systemctl poweroff'
+alias lock='i3-lock-fancy'
 
 
 export VISUAL=vim
