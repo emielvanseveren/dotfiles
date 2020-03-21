@@ -1,5 +1,3 @@
-" source ~/.dotfiles/vim/splits.vim
-"
 " filetype plugin on
 " filetype indent on
 
@@ -90,7 +88,6 @@ au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@N
 call plug#begin('~/.vim/plugged')
 
 "General
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " Latex preview
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
@@ -184,34 +181,6 @@ nmap <silent> <leader>t :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
-
-"Coc.nvim default settings
-set hidden                                                    " If hidden is not set, TextEdit might fail
-set cmdheight=2                                               " Better display for messages
-set updatetime=300                                            " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c                                              " Don't give ins-completion-menu messages.
-set signcolumn=yes                                            " Always show signcolumns
-autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight symbol under cursor on CursorHold
-
-"use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-" use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 
 "Language specific configuration.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs

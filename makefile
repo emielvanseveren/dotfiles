@@ -2,8 +2,6 @@
 link:
 	# vim & coc
 	ln -sf `pwd`/vim/vimrc ~/.vimrc
-	ln -sf `pwd`/vim/coc-settings.json ~/.vim/coc-settings.json
-	ln -sf `pwd`/zathura/zathurarc ~/.config/zathura/zathurarc
 	ln -sf `pwd`/tmux/tmux.conf ~/.tmux.conf
 	# zsh + theme
 	ln -sf `pwd`/zsh/zshrc ~/.zshrc
