@@ -54,3 +54,5 @@
         
         
 
+[credential]
+	helper = store

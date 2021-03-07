@@ -31,3 +31,11 @@ alias gpush='git push origin master'
 # Vim
 alias vi='vim'
 alias vimtex='vim --servername vim'
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# fix for broken sam-cli-path
+export PATH="/home/linuxbrew/.linuxbrew/Cellar/aws-sam-cli/1.11.0/bin:$PATH"
+
+
