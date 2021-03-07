@@ -12,47 +12,6 @@
 
 [push]
         default = tracking # Only push the current branch.
-
-[alias]
-        a = add --all
-        aliases = config --get-regexp alias # List aliases.
-        # Amend the currently staged files to teh latest commit.
-        amend = commit --amend --reuse-message=HEAD
-        
-        b = branch
-        bd = branch -d
-        bdd = branch -D
-
-        c = commit
-        ca = commit a
-        cam = commit -am
-        cp = cherry-pick # Choose a commit from one branch and apply it onto another.
-        cpa = cherry-pick --abort
-        cpc = cherry-pick --continue
-
-        co = checkout
-        com = checkout master
-        cob = checkout -b
-        
-        d = diff
-        di = diff
-        dm = "!git branch --merged | grep -v'\\*' xargs -n 1 git branch -d"
-        dt = difftool
-
-        ps = push
-        psf = push -f
-
-        s = status --short --branch
-        st = status
-
-        branches = branch -a
-        contributors = shortlog --summary --numbered # list contributors with number of commits.
-        remotes = remote -v
-      
-
-
-        
-        
-
+     
 [credential]
 	helper = store
