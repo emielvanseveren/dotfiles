@@ -1,5 +1,3 @@
-" source ~/.dotfiles/vim/splits.vim
-"
 " filetype plugin on
 " filetype indent on
 
@@ -12,8 +10,9 @@ syntax enable
 set background=dark
 set t_Co=256
 set clipboard=unnamed     " Use the same clipboard as system clipboard
+set linebreak
 set term=screen-256color  "Adds colorsupport inside tmux
-set mouse=a               " Enable the mouse in vim. 
+set mouse=a               " Enable the mouse in vim.
 set wildmenu              " Much nicer tab completion for commands
 set scrolloff=5           " Keep 5 lines below and above the cursor 
 set autoread              " Reload files changed outside vim
@@ -22,6 +21,7 @@ set gcr=a:blinkon0        " Disable cursor blink
 set noswapfile            " No swap files
 set nobackup              " No swap files
 set nowb                  " No swap files
+set nowrap                " No line wrapping
 
 "Tmux
 if exists('+termguicolors') " if no tmux set termguicolors
@@ -37,7 +37,7 @@ nnoremap <C-H> <C-W><C-H>
 
 "Spaces and tabs
 set tabstop=2         " 2 space tab
-set shiftwidth=2    
+set shiftwidth=2
 set softtabstop=2     " 2 space tab
 set expandtab         " use spaces for tabs
 set smarttab          " insert tabstop number of spaces when the tab key is pressed
@@ -88,8 +88,7 @@ au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@N
 call plug#begin('~/.vim/plugged')
 
 "General
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'lervag/vimtex'                    " Latex support vim
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " Latex preview
 Plug 'janko-m/vim-test'
 Plug 'moll/vim-node'                    " Node support
 Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file)
@@ -102,6 +101,7 @@ Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
 Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
 Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
 Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
+Plug 'ntpeters/vim-better-whitespace'   " Highlight whitespaces
 
 "Go
 Plug 'fatih/vim-go'                                                   " Go support
@@ -126,16 +126,12 @@ Plug 'dracula/vim',{'as':'dracula'}
 
 call plug#end()
 
-" Vimtex 
-let g:vimtex_complete_img_use_tail = 1
-let g:vimtex_fold_enabled = 0
-let g:vimtex_format_enabled = 1
-let g:vimtex_view_method = 'zathura'
-let g:vimtex_indent_ignored_envs = ['document', 'frame']
-let g:tex_flavor = 'latex'
+" vim previewer
+let g:livepreview_previewer = 'evince'              " Set previewer latex
+let g:tex_flavor = 'tex'                            " .tex files are automatically recognized as tex types. Which enables the .tex.
 
 "Syntax Highlighting
-let g:loaded_matchparen=1
+let g:loaded_matchparen= 1
 "Javascript
 let g:jsx_ext_required = 0                          " Support JSX syntax highlighting in *.js, not just *.jsx.
 let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing for json files.
@@ -151,12 +147,19 @@ let g:go_highlight_operators = 0                    " Syntax highlighting
 let g:go_highlight_structs = 0                      " Syntax highlighting
 let g:go_highlight_types = 0                        " Syntax highlighting
 
-"Vim-arline theme
+"Vim-airline theme
 let g:airline_theme = 'minimalist'
 let g:airline_left_sep = ''
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_sep = ''
+
+"Vim-better-whitespace
+let g:better_whitespace_enabled=1
+let g:better_whitespace_ctermcolor='lightmagenta'
+let g:better_whitespace_guicolor='lightmagenta'
+let g:show_spaces_that_precede_tabs=1               " Highlight spaces that appear before or in-between tabs
+
 
 "Vim-indent-guides
 let g:indent_guides_guide_size = 1                  " Size of indent
@@ -178,34 +181,6 @@ nmap <silent> <leader>t :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
-
-"Coc.nvim default settings
-set hidden                                                    " If hidden is not set, TextEdit might fail
-set cmdheight=2                                               " Better display for messages
-set updatetime=300                                            " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c                                              " Don't give ins-completion-menu messages.
-set signcolumn=yes                                            " Always show signcolumns
-autocmd CursorHold * silent call CocActionAsync('highlight')  " Highlight symbol under cursor on CursorHold
-
-"use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-    let col = col('.') - 1
-      return !col || getline('.')[col - 1]  =~ '\s'
-    endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-" use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
 
 "Language specific configuration.
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs

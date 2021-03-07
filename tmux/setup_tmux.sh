@@ -6,19 +6,12 @@ for file in ../helper-functions/*; do
   source "$file"
 done
 
-echo "Checking if Tmux is installed.."
-if [[ ! "$(command -v tmux)" ]]; then
-  echo "Intalling Tmux.."
-  sudo apt update
-  sudo apt install tmux urlview -y
-  git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-  sudo apt install urlview # required for plugin
-  ensure_symlink "$(pwd)/tmux.conf" "$HOME/.tmux.conf"
+# URLVIEW: Required dependency to automatically redirect urls in tmux to a browserview.
+sudo apt install tmux urlview -y
 
-else
-  echo "Tmux is already installed."
-  exit 1; # exit
-fi
+# Get tmux package manager (TPM) repository
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+ensure_symlink "$(pwd)/tmux.conf" "$HOME/.tmux.conf"
 
-echo "To install the plugins open tmux.conf and press prefix + I "
-echo "Installing complete.
+echo "IMPORTANT: To install the plugins open tmux.conf and press prefix + I "
+echo "Tmux installation complete.

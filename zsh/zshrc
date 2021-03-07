@@ -33,4 +33,3 @@ export UPDATE_ZSH_DAYS=7            # auto-update every 7 days.
 # Load configs
 source $ZSH/oh-my-zsh.sh            # load config from oh-my-zsh
 source ~/.bash_profile              # load config from bash_profile
-source ~/.profile                   # load config from profile
