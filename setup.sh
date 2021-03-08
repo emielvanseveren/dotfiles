@@ -1,10 +1,7 @@
 #! /bin/bash
 
-# TODO: setup nvm
 VIM_SCRIPT_PATH="./vim/setup_vim.sh"
-TMUX_SCRIPT_PATH="./tmux/setup_tmux.sh"
 ZSH_SCRIPT_PATH="./zsh/setup_zsh.sh"
-
 
 # import helper functions
 for file in ./helper-functions/*; do
@@ -17,15 +14,8 @@ done
 os=$(get_os)
 echo "The operating system is identified as: $os"
 
-
 # Make sure general packages are installed
 sudo apt-get update && sudo apt-get install git curl wget node npm -y
-
-# Install yarn
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-  echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get install --noinstall-recommends -y yarn
-echo "yarn version: $(yarn --version)"
 
 # create symlinks
 make -f ./makefile

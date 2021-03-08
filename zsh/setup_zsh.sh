@@ -1,5 +1,3 @@
-
-# load helper tools
 for file in ../helper-functions/*; do
   [ -e "$file" ] || continue
   echo "Loading tool '$file'.."
@@ -8,6 +6,7 @@ done
 
 if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
 
+  # firacode font
   sudo apt install zsh fonts-firacode -y
   sudo chsh -s "$(which zsh)"
 
@@ -22,7 +21,7 @@ if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/plugins/zsh-autosuggestions
   git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 
-  echo "Ensure symlinks exist.."
+  echo "Ensure symlinks exist.. \n"
   ensure_symlink "$(pwd)/themes/theunraveler.zsh-theme" "$HOME/.oh-my-zsh/themes/theunraveler.zsh-theme"
   ensure_symlink "$(pwd)/zshrc" "$HOME/.zshrc"
 
@@ -31,4 +30,4 @@ if [[ "$SHELL" != "/usr/bin/zsh" ]]; then
     exit 1;
 fi
 
-echo "Zsh installation complete."
+echo "Zsh installation complete.\n"

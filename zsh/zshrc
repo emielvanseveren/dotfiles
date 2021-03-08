@@ -8,7 +8,6 @@ HYPHEN_INSENSITIVE="true"             # while completing '_' and '-' will be int
 COMPLETION_WAITING_DOTS="true"        # Red dots whilst waiting for completion.
 DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files (great for large repos)
 
-
 ###################
 ###   PLUGINS   ###
 ###################
@@ -16,7 +15,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files (great f
 # web-search            - Adds aliases for searching with google. f.e. google einstein (will search for einstein on google
 # zsh-autosuggestions   - suggestions while typing (custom plugin)
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting npm copydir web-search)
-
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -28,7 +26,6 @@ export ZSH="/home/emiel/.oh-my-zsh" # path to your oh-my-zsh installation
 export VISUAL=""                    # Use vim as default editor (Some programs rely on $VISUAL instead of $EDITOR
 export EDITOR="$VISUAL"             # Use vim as default editor
 export UPDATE_ZSH_DAYS=7            # auto-update every 7 days.
-# export LANG=en_US.UTF-8 #language environment
 
 # Load configs
 source $ZSH/oh-my-zsh.sh            # load config from oh-my-zsh

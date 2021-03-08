@@ -25,7 +25,6 @@ If there are no errors in your config files. It will create a .build folder in t
 **Linux**: [dfu-programmer CLI](https://github.com/dfu-programmer/dfu-programmer)
 
 
-
 ## .zshrc / ohmyzsh 🐚
 
 ## .vimrc 🔡

@@ -16,19 +16,11 @@ set mouse=a               " Enable the mouse in vim.
 set wildmenu              " Much nicer tab completion for commands
 set scrolloff=5           " Keep 5 lines below and above the cursor 
 set autoread              " Reload files changed outside vim
-set novisualbell            " No sounds
-set gcr=a:blinkon0        " Disable cursor blink
+set novisualbell          " No sounds
 set noswapfile            " No swap files
 set nobackup              " No swap files
 set nowb                  " No swap files
 set nowrap                " No line wrapping
-
-"Tmux
-if exists('+termguicolors') " if no tmux set termguicolors
-		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-		set termguicolors
-endif
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -81,43 +73,24 @@ set complete+=kspell                        " For filetypes with spellcheck avai
 au BufNewFile,BufRead syn match AcronymNoSpell '\<\(\u\|\d\)\{3,}s\?\>' contains=@NoSpell
 au BufNewFile,BufRead syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
 
-"Vim Plug (pluginmanager)
 
-" Install plugins :PlugInstall
-" Remove plugins  :PlugClean
+" Install vim-plug if not found.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Run PlugInstall if there are missing plugins.
+autocmd VimEnter * if len(filter(values(g:plugs),'!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
 call plug#begin('~/.vim/plugged')
 
 "General
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' } " Latex preview
-Plug 'janko-m/vim-test'
-Plug 'moll/vim-node'                    " Node support
-Plug 'kien/ctrlp.vim'                   " Fuzzy file explorer (literaly open every file)
-Plug 'scrooloose/nerdtree'              " Tree viewer
-Plug 'Xuyuanp/nerdtree-git-plugin'      " Git status for Nerdtree
-Plug 'tpope/vim-fugitive'               " Best git wrapper in the world
-Plug 'sjl/vitality.vim'                 " Nicer cursor, tmux interactions
-Plug 'docker/docker'                    " Dockerfile code completion
 Plug 'nathanaelkane/vim-indent-guides'  " Shows indents
-Plug '907th/vim-auto-save'              " Automatically save changes to disk without having to use :w
-Plug 'christoomey/vim-tmux-navigator'   " Tmux navigator
-Plug 'google/vim-searchindex'           " Show how many times a search pattern occurs in the current buffer.
 Plug 'ntpeters/vim-better-whitespace'   " Highlight whitespaces
-
-"Go
-Plug 'fatih/vim-go'                                                   " Go support
-
-"Javascript
-Plug 'hail2u/vim-css3-syntax'                                         " CSS syntax
-Plug 'ap/vim-css-color'                                               " Shows colors
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }  " Styled-components support
-Plug 'joegesualdo/jsdoc.vim'                                          " JSDoc support
-Plug 'yuezk/vim-js'                                                   " Syntax highlighting Javascript
-Plug 'maxmellon/vim-jsx-pretty'                                       " React Syntax Highlighting
-
-
-"Plugins for Markdown
-Plug 'godlygeek/tabular'                " Line up text! Needed by Vim markdown.
-Plug 'plasticboy/vim-markdown'          " Markdown support
 
 "Theme
 Plug 'bling/vim-airline'
@@ -126,33 +99,8 @@ Plug 'dracula/vim',{'as':'dracula'}
 
 call plug#end()
 
-" vim previewer
-let g:livepreview_previewer = 'evince'              " Set previewer latex
-let g:tex_flavor = 'tex'                            " .tex files are automatically recognized as tex types. Which enables the .tex.
-
-"Syntax Highlighting
-let g:loaded_matchparen= 1
-"Javascript
-let g:jsx_ext_required = 0                          " Support JSX syntax highlighting in *.js, not just *.jsx.
-let g:vim_json_syntax_conceal = 0                   " Disable syntax concealing for json files.
-
-"Vim-go
-let g:go_def_mapping_enabled = 0                    " Disable vim-go :GoDef short cut (gd). This is handled by LanguageClient (LC)
-let g:go_highlight_build_constraints = 0            " Syntax highlighting
-let g:go_highlight_extra_types = 0                  " Syntax highlighting
-let g:go_highlight_fields = 0                       " Syntax highlighting
-let g:go_highlight_functions = 0                    " Syntax highlighting
-let g:go_highlight_methods = 0                      " Syntax highlighting
-let g:go_highlight_operators = 0                    " Syntax highlighting
-let g:go_highlight_structs = 0                      " Syntax highlighting
-let g:go_highlight_types = 0                        " Syntax highlighting
-
 "Vim-airline theme
 let g:airline_theme = 'minimalist'
-let g:airline_left_sep = ''
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_sep = ''
 
 "Vim-better-whitespace
 let g:better_whitespace_enabled=1
@@ -160,24 +108,10 @@ let g:better_whitespace_ctermcolor='lightmagenta'
 let g:better_whitespace_guicolor='lightmagenta'
 let g:show_spaces_that_precede_tabs=1               " Highlight spaces that appear before or in-between tabs
 
-
 "Vim-indent-guides
 let g:indent_guides_guide_size = 1                  " Size of indent
 let g:indent_guides_start_level = 2                 " Starts showing from second level
 let g:indent_guides_enable_on_vim_startup = 1       " Enable indent guides on startup
-
-"NERDTree
-let NerdTreeShowHidden=1                                                                " Show hidden files by default
-let NERDTreeQuitOnOpen = 1                                                              " Automatically close if a file is selected
-let NERDTreeMinimalUI = 1                                                               " Cleaner UI
-let NERDTreeDirArrows = 1                                                               " Arrows to show that you are opening a folder.
-let g:NerdTreeIgnore=['\.git$[[dir]]', 'node_modules$[[dir]]', '\.nyc_output$[[dir]]']  " Ignore node_modules and .git files
-autocmd StdinReadPre * let s:std_in=1                                                   " Open NERDTree on startup
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif             " Open NERDTree on startup
-
-"NERDTree keybindings
-nmap <leader>v :NERDTreeFind<CR>
-nmap <silent> <leader>t :NERDTreeToggle<CR>
 
 "Vim-auto-save
 let g:auto_save=1 " Enable AutoSave on startup
@@ -186,6 +120,5 @@ let g:auto_save=1 " Enable AutoSave on startup
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2
 au FileType json      syntax match Comment +\/\/.\+$+
-
 
 colorscheme dracula

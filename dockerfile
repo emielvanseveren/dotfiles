@@ -12,5 +12,5 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 COPY . /opt/dots
 WORKDIR  /opt/dots
 USER emiel
-# test setup2
-CMD ["./setup2.sh"]
+
+CMD ["./setup.sh"]

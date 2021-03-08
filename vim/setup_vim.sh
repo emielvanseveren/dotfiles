@@ -7,10 +7,6 @@ done
 sudo apt install vim -y
 ensure_symlink '$(pwd)/vimrc' '$HOME/.vimrc'
 
-# Install vim plug repository
-curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugInstall
 vim -c 'source $HOME/.vimrc|q'
 
 echo 'Vim installation complete.'
