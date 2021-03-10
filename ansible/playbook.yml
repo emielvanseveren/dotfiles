@@ -1,0 +1,5 @@
+- name: dotfiles manager (https://github.com/emielvanseveren)
+  hosts: localhost
+  roles:
+    - vim
+  # set default inventory here
