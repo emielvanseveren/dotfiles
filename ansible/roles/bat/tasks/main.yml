@@ -1,0 +1,14 @@
+# cat but with syntax highlighting. Or like BAT likes to say it. Cat but with WINGS.
+
+- name: Install bat
+  ansible.builtin.package:
+    name: bat
+    state: latest
+  become: yes
+
+- name: Symlink
+  file:
+    src: "/usr/bin/batcat"
+    dest: "{{user_home}}/.local/bin/bat"
+    state: link
+  when: ansible_os_family == "Debian"

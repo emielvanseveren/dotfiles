@@ -1,0 +1,9 @@
+# install a role from Ansible Galaxy
+roles:
+  - name: geerlingguy.git
+    version: 3.0.0
+#########################################
+# install a collection from Ansible Galax
+#collections:
+#  - name: collection.here
+#    version: version-here

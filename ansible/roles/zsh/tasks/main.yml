@@ -1,0 +1,23 @@
+# tasks file for zsh
+
+- name: Install zsh
+  ansible.builtin.package
+    name: vim
+    state: latest
+  become: yes
+
+# Framework
+- name: Install oh-my-zsh
+  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+- name: copy zshrc to target
+  src: "zshrc"
+  dest: "{{user_home}}/.zshrc
+  owner: "{{user}}"
+  group: "{{user}}"
+
+
+
+
+- name: install plugin manager (zplug)
+  command: $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh

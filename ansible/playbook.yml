@@ -1,5 +1,9 @@
-- name: dotfiles manager (https://github.com/emielvanseveren)
+- name: local desktop manager (https://github.com/emielvanseveren)
   hosts: localhost
+  connection: local
   roles:
+    - { role: geerlingguy.git, become: yes }
     - vim
   # set default inventory here
+
+# - name: servers

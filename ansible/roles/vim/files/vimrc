@@ -95,12 +95,14 @@ Plug 'ntpeters/vim-better-whitespace'   " Highlight whitespaces
 "Theme
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'dracula/vim',{'as':'dracula'}
+Plug 'sonph/onehalf', { 'rtp': 'vim' }
 
 call plug#end()
 
 "Vim-airline theme
-let g:airline_theme = 'minimalist'
+let g:airline_theme = 'onehalfdark'
+colorscheme onehalfdark
+let g:lightline = { 'colorscheme': 'onehalfdark'}
 
 "Vim-better-whitespace
 let g:better_whitespace_enabled=1
@@ -120,5 +122,3 @@ let g:auto_save=1 " Enable AutoSave on startup
 au FileType make      set noexpandtab shiftwidth=8 softtabstop=0 " Makefiles must use tabs
 au FileType yaml      setl  sw=2 sts=2
 au FileType json      syntax match Comment +\/\/.\+$+
-
-colorscheme dracula

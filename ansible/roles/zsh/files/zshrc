@@ -3,7 +3,7 @@ bindkey -a '^R' redo
 bindkey '^?' backward-delete-char
 
 ZSH_THEME="theunraveler"              # ZSH theme - See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-CASE_SENSITIVE="false"                # Case sensitive completion
+CASE_SENSITIVE="false"                # Case sensitive completion 
 HYPHEN_INSENSITIVE="true"             # while completing '_' and '-' will be interchangeable
 COMPLETION_WAITING_DOTS="true"        # Red dots whilst waiting for completion.
 DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files (great for large repos)

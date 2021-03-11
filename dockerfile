@@ -1,16 +1,12 @@
-FROM debian
-RUN apt-get update
-RUN apt-get install curl sudo -y
+FROM ubuntu
+
+RUN apt-get update && apt-get install python3-pip sudo openssh-client -y
+RUN pip3 install ansible
 
 # create user + add to sudoers group
 RUN useradd -m emiel && \
     echo "emiel ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# Replace sh with bash so we can source files.
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
-COPY . /opt/dots
-WORKDIR  /opt/dots
 USER emiel
-
-CMD ["./setup.sh"]
+CMD "/bin/bash"
