@@ -2,8 +2,9 @@
   hosts: localhost
   connection: local
   roles:
-    - { role: geerlingguy.git, become: yes }
-    - vim
-  # set default inventory here
+    #- { role: geerlingguy.git, become: yes }
+    # - base
+    #- vim
+    - zsh
 
 # - name: servers

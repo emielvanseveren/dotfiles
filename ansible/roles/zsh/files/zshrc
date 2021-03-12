@@ -8,13 +8,29 @@ HYPHEN_INSENSITIVE="true"             # while completing '_' and '-' will be int
 COMPLETION_WAITING_DOTS="true"        # Red dots whilst waiting for completion.
 DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files (great for large repos)
 
+
+
+
 ###################
 ###   PLUGINS   ###
 ###################
+
+source ~/.zplug/init.zsh                                # initialize plugins 
+zplug "plugins/git", from:oh-my-zsh                     #
+zplug "plugins/ssh-agent", from:oh-my-zsh               # Automatically starts the ssh agent
+
+zplug "zsh-users/zsh-history-substring-search"          #  
+zplug "zsh-users/zsh-syntax-highlighting", defer: 2     #
+zplug "zsh-users/zsh-autosuggestions"                   #
+zplug "qoomon/zsh-lazyload"                             # Lazy load commands to speed up start up time of zsh.
+
+zplug 'dracula/zsh', as:theme                           # no clue wtf dit doet
+zplug load --verbose                                    # Should generate the plugins=(...) part.
+
 # copydir               - Copies the PWD (working directory)
 # web-search            - Adds aliases for searching with google. f.e. google einstein (will search for einstein on google
 # zsh-autosuggestions   - suggestions while typing (custom plugin)
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting npm copydir web-search)
+# plugins=(git zsh-autosuggestions zsh-syntax-highlighting npm copydir web-search)
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -27,6 +43,6 @@ export VISUAL=""                    # Use vim as default editor (Some programs r
 export EDITOR="$VISUAL"             # Use vim as default editor
 export UPDATE_ZSH_DAYS=7            # auto-update every 7 days.
 
-# Load configs
+# Load configs (keep this at the bottom!)
 source $ZSH/oh-my-zsh.sh            # load config from oh-my-zsh
 source ~/.bash_profile              # load config from bash_profile

@@ -1,23 +1,69 @@
 # tasks file for zsh
-
 - name: Install zsh
-  ansible.builtin.package
-    name: vim
+  ansible.builtin.package:
+    name: zsh 
     state: latest
   become: yes
 
-# Framework
+- name: Change shell to zsh
+  ansible.builtin.shell: chsh -s $(which zsh)
+  become: yes
+
+- name: Create tmp folder
+  ansible.builtin.file:
+    path: "{{user_home}}/tmp"
+    state: directory
+
+
+
+# oh-my-zsh framework
+- name: get oh-my-zsh install script
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    dest: "{{user_home}}/tmp/ohmyzsh.sh"
+
+- name: Make install script executable 
+  ansible.builtin.file:
+    path: "{{user_home}}/tmp/ohmyzsh.sh"
+    mode: '755'
+
+- name: Remove existing oh-my-zsh folder (otherwise the fresh install will fail)
+  ansible.builtin.file:
+    path: "{{user_home}}/.oh-my-zsh"
+    state: absent
+
 - name: Install oh-my-zsh
-  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  ansible.builtin.shell: 
+    cmd: ./ohmyzsh.sh --unattended
+    chdir: "{{user_home}}/tmp"
 
 - name: copy zshrc to target
-  src: "zshrc"
-  dest: "{{user_home}}/.zshrc
-  owner: "{{user}}"
-  group: "{{user}}"
+  ansible.builtin.copy:
+    src: zshrc
+    dest: "{{user_home}}/.zshrc"
+    owner: "{{user}}"
+    group: "{{user}}"
 
+# Zplug plugin manager 
+- name: Get zplug install script.
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh 
+    dest: "{{user_home}}/tmp/zplug_install.zsh"
 
+- name: Make install script executable 
+  ansible.builtin.file:
+    path: "{{user_home}}/tmp/zplug_install.zsh"
+    mode: '755'
 
+- name: Install zplug
+  ansible.builtin.shell: 
+    cmd: ./zplug_install.zsh   
+    chdir: "{{user_home}}/tmp"
+  register: zplug
+  failed_when: "zplug.rc not in [ 0, 1]"
 
-- name: install plugin manager (zplug)
-  command: $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+# clean up
+#- name: remove tmp folder that contains install scripts # recursively removes /tmp folder
+#  ansible.builtin.file:
+#    path: "{{user_home}}/tmp"
+#    state: absent
