@@ -2,35 +2,43 @@ bindkey -a u undo
 bindkey -a '^R' redo
 bindkey '^?' backward-delete-char
 
-ZSH_THEME="theunraveler"              # ZSH theme - See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-CASE_SENSITIVE="false"                # Case sensitive completion 
-HYPHEN_INSENSITIVE="true"             # while completing '_' and '-' will be interchangeable
-COMPLETION_WAITING_DOTS="true"        # Red dots whilst waiting for completion.
-DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files (great for large repos)
+export LANGUAGE=en_US.UTF-8           # fixes perl locale errors
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_TYPE=en_US.UTF-8
 
-
-
+# ZSH | oh-myzsh settings
+ZSH_THEME="theunraveler"                                # ZSH theme - See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+CASE_SENSITIVE="false"                                  # Case sensitive completion 
+HYPHEN_INSENSITIVE="true"                               # while completing '_' and '-' will be interchangeable
+COMPLETION_WAITING_DOTS="true"                          # Red dots whilst waiting for completion.
+DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untracked files (great for large repos)
 
 ###################
 ###   PLUGINS   ###
 ###################
 
 source ~/.zplug/init.zsh                                # initialize plugins 
-zplug "plugins/git", from:oh-my-zsh                     #
 zplug "plugins/ssh-agent", from:oh-my-zsh               # Automatically starts the ssh agent
+zplug "plugins/autojump", from:oh-my-zsh                # faster navigation - See https://github.com/wting/autojump
+zplug "plugins/vi-mode", from:oh-my-zsh                 # vim mode in terminal
 
-zplug "zsh-users/zsh-history-substring-search"          #  
-zplug "zsh-users/zsh-syntax-highlighting", defer: 2     #
-zplug "zsh-users/zsh-autosuggestions"                   #
-zplug "qoomon/zsh-lazyload"                             # Lazy load commands to speed up start up time of zsh.
+zplug "zsh-users/zsh-history-substring-search"            #  
+zplug "zsh-users/zsh-syntax-highlighting"                 #
+zplug "zsh-users/zsh-autosuggestions"                     # suggestions while typing (custom plugin)
+zplug "qoomon/zsh-lazyload"                               # Lazy load commands to speed up start up time of zsh.
 
-zplug 'dracula/zsh', as:theme                           # no clue wtf dit doet
-zplug load --verbose                                    # Should generate the plugins=(...) part.
+zplug load --verbose                                      # Should generate the plugins=(...) part.
 
-# copydir               - Copies the PWD (working directory)
-# web-search            - Adds aliases for searching with google. f.e. google einstein (will search for einstein on google
-# zsh-autosuggestions   - suggestions while typing (custom plugin)
-# plugins=(git zsh-autosuggestions zsh-syntax-highlighting npm copydir web-search)
+# plugin settings
+unsetopt cdablevars
+setopt PROMPT_SUBST
+setopt COMPLETE_IN_WORD                                   # complete from both ends of the word
+setopt PATH_DIRS                                          # Perform path search even on command names with slashes
+setopt AUTO_LIST                                          # Automatically list choices on ambiguous completion. 
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive matching
+
+VI_MODE_SET_CURSOR=true                                   # Change cursor style in different vim modes.
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
@@ -43,6 +51,16 @@ export VISUAL=""                    # Use vim as default editor (Some programs r
 export EDITOR="$VISUAL"             # Use vim as default editor
 export UPDATE_ZSH_DAYS=7            # auto-update every 7 days.
 
+
 # Load configs (keep this at the bottom!)
 source $ZSH/oh-my-zsh.sh            # load config from oh-my-zsh
-source ~/.bash_profile              # load config from bash_profile
+source ~/.profile                   # load config from bash_profile
+
+
+###################
+###   ALIASES   ###
+###################
+
+alias reload="source ~/.zshrc"
+alias c="clear"
+alias claer="clear"

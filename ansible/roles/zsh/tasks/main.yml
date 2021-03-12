@@ -5,16 +5,11 @@
     state: latest
   become: yes
 
-- name: Change shell to zsh
-  ansible.builtin.shell: chsh -s $(which zsh)
-  become: yes
 
 - name: Create tmp folder
   ansible.builtin.file:
     path: "{{user_home}}/tmp"
     state: directory
-
-
 
 # oh-my-zsh framework
 - name: get oh-my-zsh install script
@@ -37,6 +32,7 @@
     cmd: ./ohmyzsh.sh --unattended
     chdir: "{{user_home}}/tmp"
 
+# copy zshrc
 - name: copy zshrc to target
   ansible.builtin.copy:
     src: zshrc
@@ -45,25 +41,22 @@
     group: "{{user}}"
 
 # Zplug plugin manager 
-- name: Get zplug install script.
-  ansible.builtin.get_url:
-    url: https://raw.githubusercontent.com/zplug/installer/master/installer.zsh 
-    dest: "{{user_home}}/tmp/zplug_install.zsh"
+- name: Get zplug install repo.
+  ansible.builtin.git:
+    repo: 'https://github.com/zplug/zplug'
+    dest: "{{user_home}}/.zplug"
 
-- name: Make install script executable 
-  ansible.builtin.file:
-    path: "{{user_home}}/tmp/zplug_install.zsh"
-    mode: '755'
-
-- name: Install zplug
-  ansible.builtin.shell: 
-    cmd: ./zplug_install.zsh   
-    chdir: "{{user_home}}/tmp"
-  register: zplug
-  failed_when: "zplug.rc not in [ 0, 1]"
-
+- name: Install zplug plugins
+  ansible.bulitin.shell:
+    cmd: zplug install
+   
 # clean up
-#- name: remove tmp folder that contains install scripts # recursively removes /tmp folder
-#  ansible.builtin.file:
-#    path: "{{user_home}}/tmp"
-#    state: absent
+- name: remove tmp folder that contains install scripts # recursively removes /tmp folder
+  ansible.builtin.file:
+    path: "{{user_home}}/tmp"
+    state: absent
+
+- name: Change shell to zsh
+  ansible.builtin.shell: 
+    cmd: chsh -s $(which zsh)
+  become: yes

@@ -2,7 +2,7 @@
   hosts: localhost
   connection: local
   roles:
-    #- { role: geerlingguy.git, become: yes }
+    - { role: geerlingguy.git, become: yes }
     # - base
     #- vim
     - zsh
