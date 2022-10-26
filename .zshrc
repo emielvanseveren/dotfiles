@@ -70,6 +70,18 @@ PATH=$PATH:~/.zsh_history_fix
 ###       Other stuff        ###
 ################################
 
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+source <(npm completion)
+
+# Key bindings
+# ------------
+source "/home/emiel/fzf/shell/key-bindings.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+bindkey '^R' history-incremental-search-backward
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -78,4 +90,5 @@ if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel
 
 
 source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh # Reload config from oh-my-zsh
+
 
