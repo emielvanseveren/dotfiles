@@ -1,0 +1,35 @@
+# This file sets environment variables that should be globally set on the system.
+# that is, across all shell types.
+#
+# Docs: https://wiki.archlinux.org/title/environment_variables#Using_pam_env
+# Help: https://www.man7.org/linux/man-pages//man8/pam_env.8.html
+#
+# Note pam_env is very picky about formatting.
+# Lines can _either_ be KEY=VALUE (no spaces!)
+# or they can be KEY DEFAULT="VALUE" where VALUE can then have spaces
+# KEY="VALUE" does not work!
+
+EDITOR=vim
+BROWSER=firefox
+NAME DEFAULT="Emiel Van Severen"
+EMAIL=emiel@vanseveren.dev
+
+# Add some stuff to $PATH
+PATH DEFAULT=${PATH}:@{HOME}/bin
+PATH DEFAULT=${PATH}:@{HOME}/.cargo/bin
+PATH DEFAULT=${PATH}:@{HOME}/.npm-global/bin
+PATH DEFAULT=${PATH}:@{HOME}/.local/bin
+
+# Globals
+TZ=Europe/Brussels
+
+# Rust stuff
+CARGO_INCREMENTAL=1
+RUSTFLAGS DEFAULT="-C target-cpu=native"
+RUST_BACKTRACE=1
+
+# Make less better
+# X = leave content on screen
+# F = quit automatically if less than one screenfull
+# R = raw terminal characters (fixes git diff)
+LESS DEFAULT="-F -X -R"
