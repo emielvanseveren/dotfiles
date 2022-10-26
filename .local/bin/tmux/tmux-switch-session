@@ -1,5 +1,7 @@
 #!/bin/bash
-# ~/.local/bin/tmux-siwtch-session
+# ~/.local/bin/tmux-switch-session
+
+# stolen from: github.com/brancobruyneel
 tmuxsessions=$(tmux list-sessions -F "#{session_name}")
 
 tmux_switch_to_session() {
