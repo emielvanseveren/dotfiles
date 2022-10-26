@@ -1,30 +1,31 @@
-
+-- ===============================================================
+-- # General Autocommands
+-- Basically callbacks that are executed when a certain event is triggered.
+-- ===============================================================
 
 -- Automatically source and re-compile packer whenever you save this init.lua
-local packer_group = vim.api.nvim_create_augroup('Packer', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePost', {
   command = 'source <afile> | PackerCompile',
-  group = packer_group,
+  group = vim.api.nvim_create_augroup('Packer', { clear = true }),
   pattern = { vim.fn.expand '$MYVIMRC', '*/lua/**' },
 })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = highlight_group,
+  group = vim.api.nvim_create_augroup('YankHighlight', { clear = true }),
   pattern = '*',
 })
 
 -- [[ Packadd cfilter on qf ]]
-local qf_group = vim.api.nvim_create_augroup('quickfixlist', { clear = true })
 vim.api.nvim_create_autocmd('filetype', {
   callback = function()
     vim.cmd [[packadd cfilter]]
   end,
-  group = qf_group,
+  group = vim.api.nvim_create_augroup('quickfixlist', { clear = true }),
   pattern = 'qf',
 })
+

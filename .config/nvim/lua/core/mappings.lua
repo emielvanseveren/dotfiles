@@ -51,11 +51,8 @@ keymap.set("n", "ls", "<cmd>Telescope buffers<CR>", { desc = "List buffers" })
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
 -- empty mode is same as using <cmd> :map
 -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
-
 keymap.set("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-
-
 
 -- ===============================================================
 -- # Plugin mappings
@@ -80,32 +77,7 @@ keymap.set("n", "ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
 keymap.set("n", "<leader>g", "<cmd>lua require('neogit').open()<CR>")
 
 -- Hop (vim motion)
-keymap.set('n', 'f',
+keymap.set('n', 'fc',
   "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
   , {})
-keymap.set('n', 'F',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
-  , {})
-keymap.set('n', 't',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>"
-  , {})
-keymap.set('n', 'T',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>"
-  , {})
 
--- ===============================================================
--- # Autocommands
--- Basically a callback that is executed when a certain event is triggered.
--- ===============================================================
-
--- Leave paste mode when leaving insert mode
-vim.api.nvim_command("autocmd InsertLeave * set nopaste")
-
--- Help filetype detection
-vim.api.nvim_command("autocmd BufRead *.md    set filetype=markdown")
-vim.api.nvim_command("autocmd BufRead *.tex   set filetype=tex")
-vim.api.nvim_command("autocmd BufRead *.trm   set filetype=c")
-vim.api.nvim_command("autocmd BufRead *.plot  set filetype=gnuplot")
-
--- Automatically close tab when nvim tree is the only thing still open
--- vim.api.nvim_command("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")

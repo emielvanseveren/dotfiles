@@ -43,6 +43,7 @@ local completionMappings = {
       fallback()
     end
   end, { "i", "s", "c" }),
+
 }
 
 cmp.setup({
@@ -73,7 +74,6 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert(completionMappings),
 
   sources = {
-    -- { name = 'luasnip'} TODO: implement
     { name = 'luasnip' },
     { name = "nvim_lsp" },
     { name = 'nvim_lsp_signature_help' },
