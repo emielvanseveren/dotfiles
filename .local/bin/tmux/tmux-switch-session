@@ -1,17 +1,16 @@
 #!/bin/bash
-# ~/.local/bin/tmux-switch-session
+#
 
+# ~/.local/bin/tmux-switch-session
 # stolen from: github.com/brancobruyneel
-tmuxsessions=$(tmux list-sessions -F "#{session_name}")
+tmux_sessions=$(tmux list-sessions -F "#{session_name}")
 
 tmux_switch_to_session() {
 	session="$1"
-	if [[ $tmuxsessions = *"$session"* ]]; then
-		tmux switch-client -t "$session"
+	if echo "$tmux_sessions" | grep "^$session$" >/dev/null 2>&1; then
+	  tmux switch-client -t "$session"
 	fi
 }
 
-choice=$(sort -rfu <<<"$tmuxsessions" |
-	fzf-tmux -w 80 -h 30 |
-	tr -d '\n')
-tmux_switch_to_session "$choice"
+choice=$(sort -rfu <<< "$tmux_sessions" | fzf-tmux -w 80 -h 30 | tr -d '\n')
+tmux_switch_to_session $choice
