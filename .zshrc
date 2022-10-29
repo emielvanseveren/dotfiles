@@ -78,7 +78,6 @@ source <(npm completion)
 # ------------
 source "/home/emiel/fzf/shell/key-bindings.zsh"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 bindkey '^R' history-incremental-search-backward
 
@@ -87,7 +86,6 @@ if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/googl
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/completion.zsh.inc'; fi
-
 
 source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh # Reload config from oh-my-zsh
 
