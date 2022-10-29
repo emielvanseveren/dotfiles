@@ -1,19 +1,16 @@
 local keymap = vim.keymap
-
--- modes
--- n = normal
--- i = insert
--- t = terminal
+local neogit = require("neogit")
+local builtin = require("telescope.builtin")
 
 -- # Mappings
 -- ========================================
 -- Show a short highlight flash on yank
-vim.cmd [[
+vim.cmd([[
   augroup YankHighlight
     autocmd!
     autocmd TextYankPost * silent! lua vim.highlight.on_yank()
   augroup end
-]]
+]])
 
 keymap.set("n", "<Esc>", "<cmd> nohlsearch <CR>", { desc = "Remove search highlight" })
 keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
@@ -40,11 +37,10 @@ keymap.set("i", "<C-j>", "<Down>")
 keymap.set("i", "<C-k>", "<Up>")
 
 -- Switch between buffers.
-keymap.set("n", "<leader>n", ":bn<CR>", { desc = "Go to next buffer." })
-keymap.set("n", "<leader>p", ":bp<CR>", { desc = "Go to previous buffer." })
+keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "Go to next buffer." })
+keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "Go to previous buffer." })
 keymap.set("n", "<leader>cb", ":bd<CR>:bp<CR>", { desc = "Close buffer (safe)." })
-keymap.set("n", "<TAB>", ":bn<CR>", { desc = "Go to next buffer if it exists." })
-keymap.set("n", "ls", "<cmd>Telescope buffers<CR>", { desc = "List buffers" })
+keymap.set("n", "ls", builtin.buffers, { desc = "List buffers" })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -59,25 +55,32 @@ keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = tr
 -- ===============================================================
 
 -- Telescope
-keymap.set("n", "ff", "<cmd>Telescope find_files<CR>", { desc = "Find files in the current directory" })
-keymap.set("n", "fg", "<cmd>Telescope live_grep<CR>", { desc = "Grep in files in the current directory" })
+keymap.set("n", "ff", builtin.find_files, { desc = "Find files in the current directory" })
+keymap.set("n", "fg", builtin.live_grep, { desc = "Grep in files in the current directory" })
+keymap.set("n", "fh", builtin.help_tags, { desc = "Show list of nvim keywords that link to help files" })
 
 -- Neoclip
-keymap.set("n", "<leader>yy", "<cmd>Telescope neoclip unnamedplus extra=unnamedplus<CR>",
-  { desc = "Open the neoclip dashboard" })
+keymap.set(
+	"n",
+	"<leader>yy",
+	"<cmd>Telescope neoclip unnamedplus extra=unnamedplus<CR>",
+	{ desc = "Open the neoclip dashboard" }
+)
 
 -- nvim tree
-keymap.set("n", "<leader>,", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer treeview." })
+keymap.set("n", "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer treeview." })
 
 -- Harpoon
 keymap.set("n", "ma", "<cmd>lua require('harpoon.mark').add_file()<CR>")
 keymap.set("n", "ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
 
 -- neogit
-keymap.set("n", "<leader>g", "<cmd>lua require('neogit').open()<CR>")
+keymap.set("n", "<leader>g", neogit.open)
 
 -- Hop (vim motion)
-keymap.set('n', 'fc',
-  "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
-  , {})
-
+keymap.set(
+	"n",
+	"fq",
+	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
+	{}
+)
