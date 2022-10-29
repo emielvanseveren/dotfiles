@@ -25,8 +25,7 @@ s(
   ),
  s(
     { trig = "test" },
-    fmt(
-      [[
+    fmt([[
   #[test]
   fn {}(){}{{
     {}
