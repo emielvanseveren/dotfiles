@@ -1,34 +1,27 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
-
 import:
   - ./dracula.yml
+font:
+  normal:
+    family: JetBrainsMono Nerd Font
+    style: Regular
+  bold:
+    family: JetBrainsMono Nerd Font
+    style: Bold
+
+  italic:
+    family: JetBrainsMono Nerd Font
+    style: Italic
+
+  bold_italic:
+    family: JetBrainsMono Nerd Font
+    style: Bold italic
 
 # any items in the `env` entry below will be added as environment variables.
 # Some entries may override variables set by alacritty itself.
 env:
-  WINIT_X11_SCALE_FACTOR: "1.0"
+  WINIT_X11_SCALE_FACTOR: "1.33"
 
-font:
-  normal:
-    family: JetBrains Mono Nerd Font
-    style: Regular
-
-  bold:
-    family: JetBrains Mono Nerd Font
-    style: bold
-
-  italic:
-    family: JetBrains Mono Nerd Font
-    style: italic
-
-  bold_italic:
-    family: JetBrains Nerd Font
-    style: Regular
-  size: 13
-
-  offset:
-    x: 0
-    y: 2
 # If 'true', bold text is drawn using the bright color variant.
 draw_bold_text_with_bright_colors: true
 
@@ -54,13 +47,12 @@ window:
   decorations: None
   startup_mode: Windowed
 
-
 scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
   history;: 10000
 
-  # Number of lines the viewport will move for every line scrolled when 
+  # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0)
   multiplier: 2
 
@@ -70,9 +62,7 @@ mouse:
   # if this is `true`, the cursor is temporarily hidden when typing.
   hide_when_typing: true
 
-
 cursor:
-
   # Values for 'style':
   # Block, Underline, Beam
   style: Beam
@@ -88,7 +78,6 @@ cursor:
 
   # If set to 'true', the cursor will be rendered as a hollow box when the window is not focused.
   unfocused_hollow: true
-
 
 # Live config reload (changes require restart)
 live_config_reload: true
@@ -107,16 +96,15 @@ key_bindings:
   # Spawn new instance in the same directory with CTRL+SHIFT+ENTER
   - { key: Return, mods: Control|Shift, action: SpawnNewInstance }
     # (Windows, Linux, and BSD only)
-  - { key: V,         mods: Control|Shift, action: Paste                       }
-  - { key: C,         mods: Control|Shift, action: Copy                        }
-  - { key: Insert,    mods: Shift,         action: PasteSelection              }
-  - { key: Equals,    mods: Control,       action: IncreaseFontSize            }
-  - { key: Plus,      mods: Control,       action: IncreaseFontSize            }
-  - { key: Minus,     mods: Control,       action: DecreaseFontSize            }
-  - { key: Paste,     mods: None,          action: Paste                       }
-  - { key: Copy,      mods: None,          action: Copy                        }
-  - { key: L,         mods: Control,       action: ClearLogNotice              }
-  - { key: L,         mods: Control,       chars: "\x0c"                       }
-  - { key: PageUp,    mods: None,          action: ScrollPageUp,   mode: ~Alt  }
-  - { key: PageDown,  mods: None,          action: ScrollPageDown, mode: ~Alt  }
-
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Plus, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: Paste, mods: None, action: Paste }
+  - { key: Copy, mods: None, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, chars: "\x0c" }
+  - { key: PageUp, mods: None, action: ScrollPageUp, mode: ~Alt }
+  - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
