@@ -101,6 +101,24 @@ lspconfig.sumneko_lua.setup({
 	},
 })
 
+local shellcheck = {
+	lintCommand = "shellcheck -f gcc -x -",
+	lintStdin = true,
+	lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m" },
+	lintSource = "shellcheck",
+}
+
+lspconfig.efm.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+
+	cmd = { "efm-langserver", "-logfile", "/tmp/efm.log", "-loglevel", "1" },
+	settings = {
+		sh = { shellcheck }, -- You need to install this separately .
+		bash = { shellcheck },
+	},
+})
+
 --------------------------------------------------------------------
 -- Rust
 -- Rust tools sets up the lsp server automatically.

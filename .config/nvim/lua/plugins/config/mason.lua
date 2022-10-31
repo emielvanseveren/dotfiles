@@ -11,5 +11,6 @@ require("mason-lspconfig").setup({
 		"eslint",
 		"jsonls",
 		"texlab",
+		"efm",
 	},
 })
