@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # stolen from: github.com/brancobruyneel
 
-dirs=$(find ~/dev ~/.config ~/.local/src -mindepth 1 -maxdepth 1 -type d)
+dirs=$(find ~/code ~/.config -mindepth 1 -maxdepth 1 -type d)
 
 # Inside tmux
 if [[ -n $TMUX ]]; then
