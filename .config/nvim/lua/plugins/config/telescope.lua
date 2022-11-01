@@ -46,7 +46,7 @@ local options = {
 			},
 		},
 	},
-	extensions_list = { "terms", "ui-select", "neoclip", "harpoon" },
+	extensions_list = { "emoji", "terms", "ui-select", "neoclip", "harpoon" },
 }
 
 telescope.setup(options)

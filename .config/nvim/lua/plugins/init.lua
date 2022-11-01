@@ -39,6 +39,7 @@ require("packer").startup(function(use)
 	use({ "nvim-telescope/telescope.nvim", requires = { "nvim-lua/popup.nvim" } })
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
 	use({ "nvim-telescope/telescope-ui-select.nvim" })
+	use({ "xiyaowong/telescope-emoji.nvim" })
 
 	-- ========================================
 	-- # LSP
