@@ -10,7 +10,7 @@
 set $mod Mod1
 
 # Fontsize of title.
-font pango: JetBrains Mono Bold Nerd Font Complete 20
+font pango: JetBrainsMono Bold Nerd Font Mono Regular 20
 
 # This will hide the border when workspace only has one window.
 hide_edge_borders smart
@@ -56,11 +56,11 @@ popup_during_fullscreen smart
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:code"
 set $ws2 "2:browser"
-set $ws3 "3"
+set $ws3 "3:"
 set $ws4 "4:obsidian"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
+set $ws5 "5:"
+set $ws6 "6:"
+set $ws7 "7:"
 set $ws8 "8:discord"
 set $ws9 "9:spotify"
 
@@ -117,11 +117,15 @@ bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Move focused window (like vim)
+# Move focused window to other visible workspace (like vim)
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
+
+# Move focused workspace to other monitor
+bindsym $mod+Ctrl+h move workspace to output left
+bindsym $mod+Ctrl+l move workspace to output right
 
 # Change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+n layout stacking
@@ -149,6 +153,8 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
+
+
 
 # Reload the configuration file
 bindsym $mod+Shift+c reload
