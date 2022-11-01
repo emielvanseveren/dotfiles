@@ -119,6 +119,19 @@ lspconfig.efm.setup({
 	},
 })
 
+-- https://dev.languagetool.org/finding-errors-using-n-gram-data.html
+lspconfig.ltex.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		ltex = {
+			additionalRules = {
+				languageModel = "~/.ngrams/",
+			},
+		},
+	},
+})
+
 --------------------------------------------------------------------
 -- Rust
 -- Rust tools sets up the lsp server automatically.

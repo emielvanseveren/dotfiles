@@ -12,5 +12,6 @@ require("mason-lspconfig").setup({
 		"jsonls",
 		"texlab",
 		"efm",
+		"ltex",
 	},
 })
