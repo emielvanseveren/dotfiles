@@ -60,7 +60,7 @@ set $ws3 "3:"
 set $ws4 "4:obsidian"
 set $ws5 "5:"
 set $ws6 "6:"
-set $ws7 "7:"
+set $ws7 "7:files"
 set $ws8 "8:discord"
 set $ws9 "9:spotify"
 
@@ -215,7 +215,8 @@ bindsym $mod+r mode "resize"
 smart_gaps inverse_outer
 
 # Examples
-gaps outer 10
+gaps outer 80
+gaps inner 0 
 
 
 # Take a screenshot with flameshot by pressing <Mod+Shift+s>
@@ -225,20 +226,8 @@ bindsym --release $mod+Shift+s exec "flameshot gui"
 ## Startup Application                                                       ##
 ###############################################################################
 
-# picom
-exec --no-startup-id "picom"
-# flameshot (otherwise it has a long initial launch time)
-exec --no-startup-id "flameshot"
-# polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # background image
 exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpapers/*"
-# dunst (notification daemon)
-exec_always --no-startup-id "dunst"
-# nm-applet
-exec_always --no-startup-id "nm-applet"
-# Fix monitor layout
-exec --no-startup-id "xrandr --output DP-3 --mode 3440x1440 --output DP-2 --mode 1920x1080 --output DP-2 --right-of DP-3"
 
 # alacritty, firefox, obsidian, discord, spotify
 exec run-if-not-running /usr/bin/alacritty
