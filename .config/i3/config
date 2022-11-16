@@ -210,13 +210,14 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-
 # Only enable outer gaps when there is exactly one container
-smart_gaps inverse_outer
+# smart_gaps inverse_outer
 
 # Examples
-gaps outer 80
-gaps inner 0 
+gaps inner 15
+
+# When there is only 1 window
+gaps top 70
 
 
 # Take a screenshot with flameshot by pressing <Mod+Shift+s>
