@@ -6,8 +6,8 @@ require("core.snippets.typescript")
 
 require("plugins")
 require("impatient") -- FASTERRRRRR
-require("plugins.config.mason")
 require("plugins.config.luasnip")
+require("plugins.config.dap")
 require("plugins.config.cmp")
 require("plugins.config.null")
 require("plugins.config.lsp")

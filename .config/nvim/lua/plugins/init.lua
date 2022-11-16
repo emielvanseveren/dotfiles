@@ -54,7 +54,6 @@ require("packer").startup(function(use)
 	use({ "hrsh7th/cmp-nvim-lsp-signature-help" })
 	use({ "saadparwaiz1/cmp_luasnip" })
 	use({ "onsails/lspkind.nvim" })
-	use({ "simrat39/rust-tools.nvim" })
 	use({ "RishabhRD/nvim-lsputils" })
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
@@ -67,6 +66,13 @@ require("packer").startup(function(use)
 	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
 
 	-- ========================================
+	-- # DAP
+	-- ========================================
+	use({ "mfussenegger/nvim-dap" })
+	use({ "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } })
+	use({ "theHamsta/nvim-dap-virtual-text" })
+
+	-- ========================================
 	-- # Other
 	-- ========================================
 	use({ "github/copilot.vim" })
@@ -75,9 +81,18 @@ require("packer").startup(function(use)
 	use({ "ThePrimeagen/harpoon" })
 	use({ "lervag/vimtex" })
 	use({ "AckslD/nvim-neoclip.lua" })
+	use({ "j-hui/fidget.nvim" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use({ "nvim-treesitter/nvim-treesitter-context" })
 	use({ "norcalli/nvim-colorizer.lua" })
+
+	use({
+		"saecki/crates.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("crates").setup()
+		end,
+	})
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = function()
