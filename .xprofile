@@ -5,8 +5,8 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$HOME/.local/bin:$PATH"
 
-picom -b --no-vsync --no-use-damage &
-xrandr --output DP-1 --mode 3440x1440 --primary --output DP-2 --mode 1920x1080 --output DP-2 --left-of DP-1
+picom -b --experimental-backends --no-use-damage &
+xrandr --output DP-4 --mode 3440x1440 --primary --output DP-2 --mode 1920x1080 --output DP-2 --left-of DP-4
 $HOME/.config/polybar/launch.sh &
 nm-applet &
 flameshot &
