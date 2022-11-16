@@ -4,6 +4,25 @@ if not present then
 	return
 end
 
+-- keep order mason, mason_lsp_config
+require("mason").setup()
+
+-- This installs the actual language servers
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		"sumneko_lua",
+		"tsserver",
+		"yamlls",
+		"pyright",
+		"eslint",
+		"jsonls",
+		"texlab",
+		"efm",
+		"ltex",
+		"rust_analyzer",
+	},
+})
+
 -- Disable inline diagnostic text messages
 vim.diagnostic.config({
 	virtual_text = false,
@@ -72,7 +91,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple language servers and
 -- map buffer local keybindings when the language server attaches.
 --------------------------------------------------------------------------------
-local servers = { "pyright", "yamlls", "eslint", "jsonls", "tsserver", "texlab" }
+local servers = { "pyright", "yamlls", "eslint", "jsonls", "tsserver", "texlab", "rust_analyzer" }
 for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
@@ -80,7 +99,7 @@ for _, lsp in pairs(servers) do
 	})
 end
 
---------------------------------------------------------------------------------
+--------------------------------------------------------------------
 -- Custom LSP configuration
 --------------------------------------------------------------------
 
@@ -127,52 +146,6 @@ lspconfig.ltex.setup({
 		ltex = {
 			additionalRules = {
 				languageModel = "~/.ngrams/",
-			},
-		},
-	},
-})
-
---------------------------------------------------------------------
--- Rust
--- Rust tools sets up the lsp server automatically.
---------------------------------------------------------------------
-require("rust-tools").setup({
-	tools = {
-		executor = require("rust-tools/executors").termopen, -- How to execute terminal commands
-		runnables = { use_telescope = true }, -- Wether to use telescope for selection menu or not
-
-		-- apply to the defualt RustSetInlayHints
-		inlay_hints = {
-			auto = true, -- Automatically set inlay hints
-			only_current_line = false, -- Only show inlay hints for the current line
-			show_parameter_hints = true, -- Wether to show parameter hints with the inlay hints or not
-			show_variable_name = true, -- Wether to show variable name before type hints with the inlay hints or not
-			max_len_align = true, -- Wether to align to the length of the longest line in the file
-			highlight = "Comment", -- The color of the hints
-		},
-
-		hover_actions = {
-			border = {
-				{ "╭", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╮", "FloatBorder" },
-				{ "│", "FloatBorder" },
-				{ "╯", "FloatBorder" },
-				{ "─", "FloatBorder" },
-				{ "╰", "FloatBorder" },
-				{ "│", "FloatBorder" },
-			},
-		},
-	},
-
-	-- Lsp server configuration
-	server = {
-		on_attach = on_attach,
-		capabilities = capabilities,
-		standalone = true,
-		settings = {
-			["rust-analyzer"] = {
-				checkOnSave = { command = "clippy" },
 			},
 		},
 	},
