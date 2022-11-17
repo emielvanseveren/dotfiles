@@ -86,6 +86,7 @@ require("packer").startup(function(use)
 	use({ "nvim-treesitter/nvim-treesitter-context" })
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({ "stevearc/aerial.nvim" })
+	use({ "numtoStr/Comment.nvim" })
 
 	use({
 		"saecki/crates.nvim",

@@ -8,11 +8,18 @@ local colorizer = require("colorizer")
 local neogit = require("neogit")
 local fidget = require("fidget")
 local aerial = require("aerial")
+local comment = require("Comment")
 
 colorizer.setup()
 neoclip.setup()
 hop.setup()
-fidget.setup({})
+fidget.setup()
+
+-- keymaps to remember
+-- comment current line: gcc
+-- linewise comment visual selection -> gc
+-- blockwise comment visual seleciton -> gb
+comment.setup()
 
 harpoon.setup({
 	nav_first_in_list = true,
