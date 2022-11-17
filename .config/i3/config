@@ -229,6 +229,7 @@ bindsym --release $mod+Shift+s exec "flameshot gui"
 
 # background image
 exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpapers/*"
+exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
 # alacritty, firefox, obsidian, discord, spotify
 exec run-if-not-running /usr/bin/alacritty

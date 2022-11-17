@@ -7,7 +7,11 @@ export PATH="$HOME/.local/bin:$PATH"
 
 picom -b --experimental-backends --no-use-damage &
 xrandr --output DP-4 --mode 3440x1440 --primary --output DP-2 --mode 1920x1080 --output DP-2 --left-of DP-4
-$HOME/.config/polybar/launch.sh &
+
+# We cannot launch polybar here because polybar has an i3 module (depends on i3) 
+# This script is
+# $HOME/.config/polybar/launch.sh &
+
 nm-applet &
 flameshot &
 dunst & 
