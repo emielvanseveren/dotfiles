@@ -3,8 +3,7 @@ local neogit = require("neogit")
 local builtin = require("telescope.builtin")
 
 -- # Mappings
--- ========================================
--- Show a short highlight flash on yank
+-- ======================================== Show a short highlight flash on yank
 vim.cmd([[
   augroup YankHighlight
     autocmd!
@@ -40,7 +39,6 @@ keymap.set("i", "<C-k>", "<Up>")
 keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "Go to next buffer." })
 keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "Go to previous buffer." })
 keymap.set("n", "<leader>cb", ":bd<CR>:bp<CR>", { desc = "Close buffer (safe)." })
-keymap.set("n", "ls", builtin.buffers, { desc = "List buffers" })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
@@ -55,9 +53,16 @@ keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = tr
 -- ===============================================================
 
 -- Telescope
-keymap.set("n", "ff", builtin.find_files, { desc = "Find files in the current directory" })
+keymap.set(
+	"n",
+	"ff",
+	"<CMD>lua require'../plugins/config/telescope'.project_files()<CR>",
+	{ desc = "Find files in the current directory" }
+)
+
 keymap.set("n", "fg", builtin.live_grep, { desc = "Grep in files in the current directory" })
 keymap.set("n", "fh", builtin.help_tags, { desc = "Show list of nvim keywords that link to help files" })
+keymap.set("n", "ls", builtin.buffers, { desc = "List buffers" })
 
 -- Neoclip
 keymap.set(

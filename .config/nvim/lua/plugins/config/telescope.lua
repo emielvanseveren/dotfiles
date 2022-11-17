@@ -1,9 +1,22 @@
 local present, telescope = pcall(require, "telescope")
 
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 if not present then
 	return
+end
+
+local M = {}
+
+-- First search in git repo, if not in repo, search from curr_dir
+M.project_files = function()
+	vim.fn.system("git rev-parse --is-inside-work-tree")
+	if vim.v.shell_error == 0 then
+		builtin.git_files()
+	else
+		builtin.find_files()
+	end
 end
 
 local options = {
@@ -57,3 +70,5 @@ pcall(function()
 		telescope.load_extension(ext)
 	end
 end)
+
+return M
