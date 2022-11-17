@@ -82,6 +82,9 @@ keymap.set("n", "ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
 -- neogit
 keymap.set("n", "<leader>g", neogit.open)
 
+-- Aerial
+keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+
 -- Hop (vim motion)
 keymap.set(
 	"n",

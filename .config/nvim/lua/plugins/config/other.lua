@@ -7,6 +7,7 @@ local bufferline = require("bufferline")
 local colorizer = require("colorizer")
 local neogit = require("neogit")
 local fidget = require("fidget")
+local aerial = require("aerial")
 
 colorizer.setup()
 neoclip.setup()
@@ -15,6 +16,13 @@ fidget.setup({})
 
 harpoon.setup({
 	nav_first_in_list = true,
+})
+
+aerial.setup({
+	on_attach = function(bufnr)
+		vim.keymap.set("n", "(", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+		vim.keymap.set("n", ")", "<cmd>AerialNext<CR>", { buffer = bufnr })
+	end,
 })
 
 neogit.setup({
