@@ -62,7 +62,7 @@ keymap.set(
 
 keymap.set("n", "fg", builtin.live_grep, { desc = "Grep in files in the current directory" })
 keymap.set("n", "fh", builtin.help_tags, { desc = "Show list of nvim keywords that link to help files" })
-keymap.set("n", "ls", builtin.buffers, { desc = "List buffers" })
+keymap.set("n", "fb", builtin.buffers, { desc = "List buffers" })
 
 -- Neoclip
 keymap.set(
