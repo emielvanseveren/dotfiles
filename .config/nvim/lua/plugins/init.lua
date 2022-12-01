@@ -87,6 +87,7 @@ require("packer").startup(function(use)
 	use({ "norcalli/nvim-colorizer.lua" })
 	use({ "stevearc/aerial.nvim" })
 	use({ "numtoStr/Comment.nvim" })
+	use({ "chentoast/marks.nvim" })
 
 	use({
 		"saecki/crates.nvim",

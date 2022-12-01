@@ -1,28 +1,26 @@
-local neoclip = require("neoclip")
-local hop = require("hop")
-local harpoon = require("harpoon")
 local gitsigns = require("gitsigns")
 local indent_blankline = require("indent_blankline")
 local bufferline = require("bufferline")
-local colorizer = require("colorizer")
 local neogit = require("neogit")
-local fidget = require("fidget")
 local aerial = require("aerial")
-local comment = require("Comment")
+local marks = require("marks")
 
-colorizer.setup()
-neoclip.setup()
-hop.setup()
-fidget.setup()
-
--- keymaps to remember
+-- keymaps to remember:
 -- comment current line: gcc
 -- linewise comment visual selection -> gc
 -- blockwise comment visual seleciton -> gb
-comment.setup()
+require("Comment").setup()
+require("colorizer").setup()
+require("neoclip").setup()
+require("hop").setup()
+require("fidget").setup()
+require("harpoon").setup({ nav_first_in_list = true })
 
-harpoon.setup({
-	nav_first_in_list = true,
+marks.setup({
+	mappings = {
+		next = "m)",
+		previous = "m(",
+	},
 })
 
 aerial.setup({
