@@ -76,8 +76,8 @@ keymap.set(
 keymap.set("n", "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer treeview." })
 
 -- Harpoon
-keymap.set("n", "ma", "<cmd>lua require('harpoon.mark').add_file()<CR>")
-keymap.set("n", "ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
+keymap.set("n", "<leader>ma", "<cmd>lua require('harpoon.mark').add_file()<CR>")
+keymap.set("n", "<leader>ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
 
 -- neogit
 keymap.set("n", "<leader>g", neogit.open)
