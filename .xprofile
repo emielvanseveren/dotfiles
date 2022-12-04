@@ -5,16 +5,16 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$HOME/.local/bin:$PATH"
 
-picom -b --experimental-backends --no-use-damage &
+picom -b --no-use-damage &
 xrandr --output DP-4 --mode 3440x1440 --primary --output DP-2 --mode 1920x1080 --output DP-2 --left-of DP-4
 
-# We cannot launch polybar here because polybar has an i3 module (depends on i3) 
+# We cannot launch polybar here because polybar has an i3 module (depends on i3)
 # This script is
 # $HOME/.config/polybar/launch.sh &
 
 nm-applet &
 flameshot &
-dunst & 
+dunst &
 volumeicon &
 xfce4-power-manager &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
@@ -23,4 +23,3 @@ ksuperkey -e 'Super_L=Alt_L|F1' &
 ksuperkey -e 'Super_R=Alt_L|F1' &
 xset dpms 600 900 1200
 xset r rate 350 60
-
