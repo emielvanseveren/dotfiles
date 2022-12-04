@@ -56,6 +56,7 @@ alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatical
 alias tf='terraform'                                    # Alias for terraform
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
+alias rr="ranger"
 
 ################################
 ###    Add paths to $PATH    ###
