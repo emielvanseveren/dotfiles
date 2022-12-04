@@ -1,31 +1,31 @@
-# This is Git's per user configuration file
 [user]
-        name = Emiel Van Severen
-        email = 35073890+emielvanseveren@users.noreply.github.com
-        username = emielvanseveren
-	      signinkey = CBF6D963
-[core]
-        editor = nvim
-        whitespace = fix, -indent-with-non-tab, trailing-space,cr-at-eol
-        pager= delta
-        excludesfile = ~/.gitignore
+  name = Emiel Van Severen
+  email = 35073890+emielvanseveren@users.noreply.github.com
+  username = emielvanseveren
+  signinkey = CBF6D963
+
 [github]
-        user = emielvanseveren
+  user = emielvanseveren
+
 [commit]
-	      gpgsign = true      # Configure gpg to sign all commits
+  # Configure gpg to sign all commits
+  gpgsign = true      
+
 [push]
-        default = tracking        # Only push the current branch when multiple local branches contain changes.
-	      autoSetupRemote = true
+  default = tracking        
+  autoSetupRemote = true
+
+[pull]
+	rebase = true
 
 [filter "lfs"]
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
-        required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
 
 [includeIf "gitdir:~/code/uni/uni_projects"]
 	path = ~/.gitconfig-uni
 [gpg]
 	program = /usr/bin/gpg
-[pull]
-	rebase = true
+
