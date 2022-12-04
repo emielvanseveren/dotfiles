@@ -30,12 +30,13 @@ focus_follows_mouse no
 
 # Use <Mouse+$mod> to drag floating windows to their wanted position.
 floating_modifier $mod
-# Quick workspace toggle.
+
+# Toggle between last 2 workspaces on display.
 workspace_auto_back_and_forth yes
 
 # Show certain window types as a popup. This way it does not get focussed.
 # This way fullscreen windows do not get out of fullscreen.
-for_window [window_role="pop-up"]       floating enabe
+for_window [window_role="pop-up"]       floating enable
 for_window [window_role="bubble"]       floating enable
 for_window [window_role="task_dialog"]  floating enable
 for_window [window_role="Preferences"]  floating enable
@@ -64,14 +65,14 @@ set $ws7 "7:files"
 set $ws8 "8:discord"
 set $ws9 "9:spotify"
 
-# Automatically move these application to these workspaces
+# Automatically move these application to specific workspaces, cause that is were they belong >:(
 for_window [class="Firefox"] move to workspace $ws2
 for_window [class="Discord"] move to workspace $ws8
 for_window [class="Spotify"] move to workspace $ws9
 for_window [class="Obsidian"] move to workspace $ws4
 
 ###############################################################################
-## Theme                                                                     ##
+## Theme (dracula)                                                           ##
 ###############################################################################
 
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -103,11 +104,13 @@ bindsym $mod+s split h
 bindsym $mod+v split v
 # Enter fullscreen mode for the focused container.
 bindsym $mod+f fullscreen toggle
+
 # Move the currenlty focused window to the scratchpad.
-# bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 # Toggle tiling / floating.
-# bindsym $mod+Shift+space floating toggle
+bindsym $mod+space floating toggle
 # Change focus between tiling / floating windows.
 # bindsym $mod+space focus mode_toggle
 
@@ -154,8 +157,6 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
-
-
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 
@@ -183,25 +184,13 @@ mode "$mode_system" {
 # Pressing this will show the options
 bindsym $mod+shift+BackSpace mode "$mode_system"
 
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym l resize grow width 80 px or 80 ppt
+        bindsym h resize shrink width 80 px or 80 ppt
+        bindsym j resize grow height 80 px or 80 ppt
+        bindsym k resize shrink height 80 px or 80 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"
@@ -230,6 +219,7 @@ bindsym --release $mod+Shift+s exec "flameshot gui"
 # background image
 exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpapers/*"
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
+
 
 # alacritty, firefox, obsidian, discord, spotify
 exec run-if-not-running /usr/bin/alacritty
