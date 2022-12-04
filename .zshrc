@@ -1,7 +1,3 @@
-bindkey -a u undo
-bindkey -a '^R' redo
-bindkey '^?' backward-delete-char
-
 export NVM_LAZY_LOAD=true    # Enable Lazy load nvm
 export NVM_COMPLETION=true   # Autocomplete nvm commands
 
@@ -35,7 +31,6 @@ setopt PATH_DIRS                                          # Perform path search 
 setopt AUTO_LIST                                          # Automatically list choices on ambiguous completion.
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive matching
 
-
 ################################
 ###         EXPORTS          ###
 ################################
@@ -48,7 +43,9 @@ export GPG_TTY=$(tty)                                               # Make gpg-k
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"                   # Set bat as default manpage pager
 export GTEST_COLOR=1                                                # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                               # Silence the stupid "AT bridge not available" dbus messages.
-export MOZ_ENABLE_WAYLAND=1                                         # Enable wayland for firefox (reduces CPU usage)
+
+
+source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh                     # Reload config from oh-my-zsh
 
 ################################
 ###         ALIASES          ###
@@ -57,9 +54,8 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias reload='source ~/.zshrc'                          # reload zsh config with 'reload'
 alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatically open vault when logging in. instead of 2 steps >:(
 alias tf='terraform'                                    # Alias for terraform
-alias nvim='nvim'                                       # Show startup time when starting nvim
-alias cat='bat'                                         # Use bat as default cat
 alias grep='rg'                                         # Use ripgrep as default grep
+alias sd="sudo shutdown now"
 
 ################################
 ###    Add paths to $PATH    ###
@@ -67,26 +63,25 @@ alias grep='rg'                                         # Use ripgrep as default
 PATH=$PATH:~/.zsh_history_fix
 
 ################################
-###       Other stuff        ###
+###       Completion stuff   ###
 ################################
 
 source <(kubectl completion zsh)
 source <(helm completion zsh)
 source <(npm completion)
 
-# Key bindings
-# ------------
-source "/home/emiel/fzf/shell/key-bindings.zsh"
-
-
-bindkey '^R' history-incremental-search-backward
-
-# The next line updates PATH for the Google Cloud SDK.
+# completion for google cloud.
 if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
 if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/completion.zsh.inc'; fi
 
-source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh # Reload config from oh-my-zsh
+# completion for fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
+bindkey -v  # vi mode
+bindkey '^R' fzf-history-widget
+
+
+
 
 
