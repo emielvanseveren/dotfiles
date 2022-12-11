@@ -4,8 +4,6 @@ local api = vim.api
 
 g.mapleader = "," -- Sets leader key to 'COMMA'
 
-g.vim_version = vim.version().minor
-
 opt.shell = "/usr/bin/zsh" -- Sets default shell to zsh
 opt.compatible = false -- don't try to be like vi.
 opt.completeopt = "menuone,noinsert,noselect"
@@ -65,9 +63,6 @@ g.copilot_no_tab_map = 1 -- Don't use <Tab> but <C-J> to accept the suggestion.
 g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
--- Rust fmt
-g.rust_clip_command = "xclip -selection clipboard"
-
 -- Vimtex (\ll to start compilation)
 g.tex_flavor = "latex"
 g.vimtex_view_method = "zathura" -- Use zathura to view compiled pdfs
@@ -83,8 +78,6 @@ g.vimtex_compiler_latexmk = {
 		"-interaction=nonstopmode",
 	},
 }
-
-g.vimsyn_embed = 0 -- allows u to select what, if any, types of embedded script highlighting they wish to have.
 
 -- Beacon
 g.beacon_minimal_jump = 5 -- Only show beacon if the cursor jumps more than 5 lines.

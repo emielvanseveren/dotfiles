@@ -3,7 +3,9 @@ local neogit = require("neogit")
 local builtin = require("telescope.builtin")
 
 -- # Mappings
--- ======================================== Show a short highlight flash on yank
+-- =============
+
+-- Show a short highlight flash on yank
 vim.cmd([[
   augroup YankHighlight
     autocmd!
@@ -57,7 +59,7 @@ keymap.set(
 	"n",
 	"ff",
 	"<CMD>lua require'../plugins/config/telescope'.project_files()<CR>",
-	{ desc = "Find files in the current directory" }
+	{ desc = "Find files, if in git repo, all files in repo, otherwise cwd." }
 )
 
 keymap.set("n", "fg", builtin.live_grep, { desc = "Grep in files in the current directory" })
@@ -65,12 +67,7 @@ keymap.set("n", "fh", builtin.help_tags, { desc = "Show list of nvim keywords th
 keymap.set("n", "fb", builtin.buffers, { desc = "List buffers" })
 
 -- Neoclip
-keymap.set(
-	"n",
-	"<leader>yy",
-	"<cmd>Telescope neoclip unnamedplus extra=unnamedplus<CR>",
-	{ desc = "Open the neoclip dashboard" }
-)
+keymap.set("n", "<leader>yy", "<cmd>Telescope neoclip extra=unnamedplus<CR>", { desc = "Open the neoclip dashboard" })
 
 -- nvim tree
 keymap.set("n", "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer treeview." })
@@ -84,11 +81,3 @@ keymap.set("n", "<leader>g", neogit.open)
 
 -- Aerial
 keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
-
--- Hop (vim motion)
-keymap.set(
-	"n",
-	"fq",
-	"<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-	{}
-)

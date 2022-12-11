@@ -4,23 +4,41 @@ if not present then
 	return
 end
 
+-- These are the language servers installed and managed by mason
+local lsp_servers = {
+	"tsserver",
+	"yamlls",
+	"pyright",
+	"eslint",
+	"jsonls",
+	"texlab",
+	"rust_analyzer",
+	"ltex",
+	"sumneko_lua",
+	"clangd",
+	"cmake",
+}
+
+-- Some tools can be installed with mason, but are not language servers.
+local other = {
+	"stylua",
+	"luacheck",
+}
+
+-- Add the lsp servers to other, so they can all be installed automatically by mason.
+for k, v in pairs(lsp_servers) do
+	other[k] = v
+end
+
 -- keep order mason, mason_lsp_config
-require("mason").setup()
+require("mason").setup({
+	ensure_installed = other,
+	automatic_installation = true,
+})
 
 -- This installs the actual language servers
 require("mason-lspconfig").setup({
-	ensure_installed = {
-		"sumneko_lua",
-		"tsserver",
-		"yamlls",
-		"pyright",
-		"eslint",
-		"jsonls",
-		"texlab",
-		"efm",
-		"ltex",
-		"rust_analyzer",
-	},
+	ensure_installed = lsp_servers,
 })
 
 -- Disable inline diagnostic text messages
@@ -91,8 +109,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple language servers and
 -- map buffer local keybindings when the language server attaches.
 --------------------------------------------------------------------------------
-local servers = { "pyright", "yamlls", "eslint", "jsonls", "tsserver", "texlab", "rust_analyzer" }
-for _, lsp in pairs(servers) do
+for _, lsp in pairs(lsp_servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
@@ -102,6 +119,24 @@ end
 --------------------------------------------------------------------
 -- Custom LSP configuration
 --------------------------------------------------------------------
+
+lspconfig.rust_analyzer.setup({
+	settings = {
+		["rust-analyzer"] = {
+			checkOnSave = {
+				allFeatures = true,
+				overrideCommand = {
+					"cargo",
+					"clippy",
+					"--workspace",
+					"--message-format=json",
+					"--all-targets",
+					"--all-features",
+				},
+			},
+		},
+	},
+})
 
 -- required to manually install the lua-language-server
 lspconfig.sumneko_lua.setup({
@@ -117,24 +152,6 @@ lspconfig.sumneko_lua.setup({
 			},
 			telemetry = { enable = false },
 		},
-	},
-})
-
-local shellcheck = {
-	lintCommand = "shellcheck -f gcc -x -",
-	lintStdin = true,
-	lintFormats = { "%f:%l:%c: %trror: %m", "%f:%l:%c: %tarning: %m", "%f:%l:%c: %tote: %m" },
-	lintSource = "shellcheck",
-}
-
-lspconfig.efm.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-
-	cmd = { "efm-langserver", "-logfile", "/tmp/efm.log", "-loglevel", "1" },
-	settings = {
-		sh = { shellcheck }, -- You need to install this separately .
-		bash = { shellcheck },
 	},
 })
 

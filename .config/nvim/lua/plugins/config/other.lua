@@ -12,7 +12,6 @@ local marks = require("marks")
 require("Comment").setup()
 require("colorizer").setup()
 require("neoclip").setup()
-require("hop").setup()
 require("fidget").setup()
 require("harpoon").setup({ nav_first_in_list = true })
 
@@ -46,7 +45,7 @@ gitsigns.setup({
 	},
 
 	signcolumn = true, -- show signs in column
-	numhl = false, -- highlight line number
+	numhl = true, -- highlight line number
 	linehl = false, -- line highlighting
 	word_diff = false, -- highlight word diffs
 	attach_to_untracked = true, -- attach to untracked files

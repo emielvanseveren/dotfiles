@@ -30,7 +30,6 @@ require("packer").startup(function(use)
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "L3MON4D3/LuaSnip", tag = "v1.*" })
 	use({ "lewis6991/impatient.nvim" })
-	use({ "phaazon/hop.nvim", branch = "v2" })
 	use({ "akinsho/nvim-bufferline.lua", tag = "v3.*", requires = { "kyazdani42/nvim-web-devicons" } })
 
 	-- ========================================
