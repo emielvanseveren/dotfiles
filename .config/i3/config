@@ -239,9 +239,8 @@ exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpap
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
 # boot on start
-exec --no-startup-id /usr/bin/alacritty $ws1
-exec --no-startup-id /usr/bin/firefox $ws2
-exec --no-startup-id /usr/bin/discord $ws8
-exec --no-startup-id /usr/bin/spotify $ws9
-exec --no-startup-id /usr/bin/obsidian $ws6
+exec --no-startup-id /usr/bin/alacritty
+exec --no-startup-id /usr/bin/firefox
+exec --no-startup-id /usr/bin/discord
+exec --no-startup-id /usr/bin/spotify
 
