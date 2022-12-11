@@ -40,7 +40,9 @@ keymap.set("i", "<C-k>", "<Up>")
 -- Switch between buffers.
 keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "Go to next buffer." })
 keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "Go to previous buffer." })
-keymap.set("n", "<leader>cb", ":bd<CR>:bp<CR>", { desc = "Close buffer (safe)." })
+
+-- Mind the capital B, Bdelete is from a separate plugin, it does not delete the window
+keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "Close buffer (safe)." })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>

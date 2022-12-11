@@ -87,6 +87,7 @@ require("packer").startup(function(use)
 	use({ "stevearc/aerial.nvim" })
 	use({ "numtoStr/Comment.nvim" })
 	use({ "chentoast/marks.nvim" })
+	use({ "famiu/bufdelete.nvim" })
 
 	use({
 		"saecki/crates.nvim",
