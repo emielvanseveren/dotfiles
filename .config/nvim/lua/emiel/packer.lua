@@ -12,25 +12,14 @@ end
 local packer_is_bootstrap = ensure_packer()
 
 require("packer").startup(function(use)
-	use({ "wbthomason/packer.nvim" }) -- Packer can manage itself
+	use({ "wbthomason/packer.nvim" }) -- to manage itself
+
 	-- ========================================
-	-- # Gui Enhancements
+	-- # Themes
 	-- ========================================
 	use({ "RRethy/nvim-base16" })
 	use({ "dracula/vim", as = "dracula" })
 	use({ "danilamihailov/beacon.nvim" })
-	use({ "lewis6991/gitsigns.nvim" })
-	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
-	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
-
-	-- ========================================
-	-- # VIM Enhancements
-	-- ========================================
-	use({ "lukas-reineke/indent-blankline.nvim" })
-	use({ "nvim-lua/plenary.nvim" })
-	use({ "L3MON4D3/LuaSnip", tag = "v1.*" })
-	use({ "lewis6991/impatient.nvim" })
-	use({ "akinsho/nvim-bufferline.lua", tag = "v3.*", requires = { "kyazdani42/nvim-web-devicons" } })
 
 	-- ========================================
 	-- # Telescope
@@ -63,6 +52,7 @@ require("packer").startup(function(use)
 	-- ========================================
 	use({ "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" })
 	use({ "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" })
+	use({ "lewis6991/gitsigns.nvim" })
 
 	-- ========================================
 	-- # DAP
@@ -74,20 +64,34 @@ require("packer").startup(function(use)
 	-- ========================================
 	-- # Other
 	-- ========================================
+	use({ "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } })
+	use({ "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } })
+	use({ "lukas-reineke/indent-blankline.nvim" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "L3MON4D3/LuaSnip", tag = "v1.*" })
+	use({ "lewis6991/impatient.nvim" })
+	use({ "akinsho/nvim-bufferline.lua", tag = "v3.*", requires = { "kyazdani42/nvim-web-devicons" } })
 	use({ "github/copilot.vim" })
 	use({ "andweeb/presence.nvim" })
-	use({ "antoinemadec/FixCursorHold.nvim" })
-	use({ "ThePrimeagen/harpoon" })
 	use({ "lervag/vimtex" })
-	use({ "AckslD/nvim-neoclip.lua" })
-	use({ "j-hui/fidget.nvim" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use({ "nvim-treesitter/nvim-treesitter-context" })
-	use({ "norcalli/nvim-colorizer.lua" })
 	use({ "stevearc/aerial.nvim" })
-	use({ "numtoStr/Comment.nvim" })
-	use({ "chentoast/marks.nvim" })
 	use({ "famiu/bufdelete.nvim" })
+
+	use({
+		"j-hui/fidget.nvim",
+		config = function()
+			require("fidget").setup()
+		end,
+	})
+
+	use({
+		"numtoStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 
 	use({
 		"saecki/crates.nvim",
@@ -96,6 +100,7 @@ require("packer").startup(function(use)
 			require("crates").setup()
 		end,
 	})
+
 	use({
 		"iamcco/markdown-preview.nvim",
 		run = function()

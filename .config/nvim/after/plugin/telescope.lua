@@ -19,6 +19,8 @@ M.project_files = function()
 	end
 end
 
+vim.keymap.set("n", "ff", M.project_files, { desc = "Find files, if in git repo, all files in repo, otherwise cwd." })
+
 local options = {
 	defaults = {
 		prompt_prefix = "   ",
@@ -51,6 +53,9 @@ local options = {
 				["<C-n>"] = actions.move_selection_worse,
 				["<C-p>"] = actions.move_selection_better,
 				["<Esc>"] = actions.close,
+				["fg"] = builtin.livegrep,
+				["fh"] = builtin.help_tags,
+				["fb"] = builtin.buffers,
 			},
 			i = { -- insertion mode
 				["<C-n>"] = actions.move_selection_worse,

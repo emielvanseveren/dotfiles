@@ -60,7 +60,6 @@ g.termdebug_wide = 1 -- Set debugger to use wide terminal
 g.completion_enable_auto_popup = 1 -- Auto popup
 g.completion_matching_ingore_case = 1 -- While in popup ignore caps.
 g.copilot_no_tab_map = 1 -- Don't use <Tab> but <C-J> to accept the suggestion.
-g.copilot_node_command = "~/.nvm/versions/node/v17.9.1/bin/node"
 api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- Vimtex (\ll to start compilation)

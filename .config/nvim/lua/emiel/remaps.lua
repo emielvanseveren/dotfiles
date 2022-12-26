@@ -1,9 +1,4 @@
 local keymap = vim.keymap
-local neogit = require("neogit")
-local builtin = require("telescope.builtin")
-
--- # Mappings
--- =============
 
 -- Show a short highlight flash on yank
 vim.cmd([[
@@ -65,35 +60,3 @@ keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "Close buffer (saf
 -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
 keymap.set("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 keymap.set("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
-
--- ===============================================================
--- # Plugin mappings
--- ===============================================================
-
--- Telescope
-keymap.set(
-	"n",
-	"ff",
-	"<CMD>lua require'../plugins/config/telescope'.project_files()<CR>",
-	{ desc = "Find files, if in git repo, all files in repo, otherwise cwd." }
-)
-
-keymap.set("n", "fg", builtin.live_grep, { desc = "Grep in files in the current directory" })
-keymap.set("n", "fh", builtin.help_tags, { desc = "Show list of nvim keywords that link to help files" })
-keymap.set("n", "fb", builtin.buffers, { desc = "List buffers" })
-
--- Neoclip
-keymap.set("n", "<leader>yy", "<cmd>Telescope neoclip extra=unnamedplus<CR>", { desc = "Open the neoclip dashboard" })
-
--- nvim tree
-keymap.set("n", "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer treeview." })
-
--- Harpoon
-keymap.set("n", "<leader>ma", "<cmd>lua require('harpoon.mark').add_file()<CR>")
-keymap.set("n", "<leader>ml", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<CR>")
-
--- neogit
-keymap.set("n", "<leader>g", neogit.open)
-
--- Aerial
-keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
