@@ -17,6 +17,20 @@ keymap.set("n", "<Esc>", "<cmd> nohlsearch <CR>", { desc = "Remove search highli
 keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 keymap.set("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
 
+-- Move selected lines
+keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Keep cursor centered when searching
+keymap.set("n", "n", "nzzzv")
+keymap.set("n", "N", "Nzzzv")
+
+-- keep cursor in place when using J
+keymap.set("n", "J", "mzJ`z")
+
+-- don't copy selection to copy register
+keymap.set("x", "<leader>p", '"_dP')
+
 -- Disable arrow keys, break the bad habbit.
 keymap.set("n", "<Up>", "<NOP>")
 keymap.set("n", "<Down>", "<NOP>")
