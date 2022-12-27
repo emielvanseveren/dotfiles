@@ -1,8 +1,8 @@
-require("autocmd")
-require("remaps")
-require("packer")
+require("emiel.autocmd")
+require("emiel.remaps")
+require("emiel.packer")
 
-require("options")
+require("emiel.options")
 
-require("snippets.rust")
-require("snippets.typescript")
+require("emiel.snippets.rust")
+require("emiel.snippets.typescript")
