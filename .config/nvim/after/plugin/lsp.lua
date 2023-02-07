@@ -12,8 +12,8 @@ local lsp_servers = {
 	"eslint",
 	"jsonls",
 	"texlab",
-	"rust_analyzer",
 	"ltex",
+	"rust_analyzer",
 	"sumneko_lua",
 	"clangd",
 	"cmake",
@@ -121,6 +121,15 @@ end
 --------------------------------------------------------------------
 
 lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	-- Use rustup to find the correct rust-analyzer binary
+	cmd = {
+		"rustup",
+		"run",
+		"stable",
+		"rust-analyzer",
+	},
 	settings = {
 		["rust-analyzer"] = {
 			checkOnSave = {
