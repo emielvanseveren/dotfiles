@@ -1,6 +1,6 @@
 require("emiel.autocmd")
 require("emiel.remaps")
-require("emiel.packer")
+require("emiel.lazy")
 
 require("emiel.options")
 
