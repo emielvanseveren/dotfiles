@@ -14,7 +14,7 @@ local lsp_servers = {
 	"texlab",
 	"ltex",
 	"rust_analyzer",
-	"sumneko_lua",
+	"lua_ls",
 	"clangd",
 	"cmake",
 }
@@ -123,6 +123,7 @@ end
 lspconfig.rust_analyzer.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+
 	-- Use rustup to find the correct rust-analyzer binary
 	cmd = {
 		"rustup",
@@ -148,7 +149,7 @@ lspconfig.rust_analyzer.setup({
 })
 
 -- required to manually install the lua-language-server
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
