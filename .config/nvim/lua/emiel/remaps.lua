@@ -33,25 +33,25 @@ keymap.set("n", "<Left>", "<NOP>")
 keymap.set("n", "<Right>", "<NOP>")
 
 -- Better window navigation.
-keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Go to the window on the left." })
-keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Go to the window on the right." })
-keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Go to the window below." })
-keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Go to the window above." })
-keymap.set("n", "<leader>h", "<C-w>s", { desc = "Split window horizontally." })
-keymap.set("n", "<leader>v", "<C-w>v", { desc = "Split window vertically." })
+keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "[NAV] Go to the window on the left." })
+keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "[NAV] Go to the window on the right." })
+keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "[NAV] Go to the window below." })
+keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "[NAV] Go to the window above." })
+keymap.set("n", "<leader>h", "<C-w>s", { desc = "[NAV] Split window horizontally." })
+keymap.set("n", "<leader>v", "<C-w>v", { desc = "[NAV] Split window vertically." })
 
 -- Navigate within insertion mode.
-keymap.set("i", "<C-h>", "<Left>")
-keymap.set("i", "<C-l>", "<Right>")
-keymap.set("i", "<C-j>", "<Down>")
-keymap.set("i", "<C-k>", "<Up>")
+keymap.set("i", "<C-h>", "<Left>", { desc = "[NAV] Go to the left." })
+keymap.set("i", "<C-l>", "<Right>", { desc = "[NAV] Go to the right." })
+keymap.set("i", "<C-j>", "<Down>", { desc = "[NAV] Go down." })
+keymap.set("i", "<C-k>", "<Up>", { desc = "[NAV] Go up." })
 
 -- Switch between buffers.
-keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "Go to next buffer." })
-keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "Go to previous buffer." })
+keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "[BUFFER] Go to next buffer." })
+keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "[BUFFER] Go to previous buffer." })
 
 -- Mind the capital B, Bdelete is from a separate plugin, it does not delete the window
-keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "Close buffer (safe)." })
+keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
