@@ -1,5 +1,10 @@
-local dap = require("dap")
-local dap_ui = require("dapui")
+local present1, dap = pcall(require, "dap")
+local present2, dapui = pcall(require, "dapui")
+local present3, dapvirtual = pcall(require, "nvim-dap-virtual-text")
+
+if not (present1 and present2 and present3) then
+  return
+end
 
 local map = function(lhs, rhs, desc)
   if desc then
@@ -9,43 +14,70 @@ local map = function(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { silent = true, desc = desc })
 end
 
+dapui.setup()
+-- shows current position of debugger in code
+dapvirtual.setup({
+  enabled_commands = false,
+  highlight_changed_variables = true,
+  highlight_new_as_changeod = true,
+  commented = false, -- prefix virtual text with comment string
+  show_stop_reason = true,
+})
+
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
 map("<F1>", dap.step_back, "step_back")
 map("<F2>", dap.step_into, "step_into")
 map("<F3>", dap.step_over, "step_over")
 map("<F4>", dap.step_out, "step_out")
 map("<F5>", dap.continue, "continue")
-map("<leader>b", dap.toggle_breakpoint, "toggle_breakpoint")
-
--- shows current position of debugger in code
-require("nvim-dap-virtual-text").setup({
-  enabled_commands = false,
-  highlight_changed_variables = true,
-  highlight_new_as_changeod = true,
-  -- prefix virtual text with comment sring
-  commented = false,
-  show_stop_reason = true,
-})
-
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dap_ui.open()
-end
-
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dap_ui.close()
-end
-
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dap_ui.close()
-end
+map("<leader>Db", dap.toggle_breakpoint, "toggle_breakpoint")
+map("<leader>Dc", dap.continue, "Start/Continue")
+map("<leader>Di", dap.step_into, "Step Into")
+map("<leader>Do", dap.step_over, "Step Over")
+map("<leader>DO", dap.step_out, "Step Out")
+map("<leader>Dr", dap.restart_frame, "Restart")
+map("<leader>Du", dapui.toggle, "Toggle Debugger UI")
 
 --------------------------------------------------------------------
 -- Debug adapter configuration
--- Note: rust-tools in other.lua also has builtin dap support.
 --------------------------------------------------------------------
+
+-- native debugger
+dap.adapters.lldb = {
+  type = "executable",
+  command = "/usr/bin/lldb-vscode",
+  name = "lldb",
+}
+
+-- Debug adapter configuration
 dap.adapters.firefox = {
   type = "executable",
   command = "node",
   args = { os.getenv("HOME") .. "/code/vscode-firefox-debug/dist/adapter.bundle.js" },
+}
+
+dap.configurations.rust = {
+  {
+    name = "Launch",
+    type = "lldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    showDisassembly = "never",
+    stopOnEntry = false,
+    args = {},
+  },
 }
 
 dap.configurations.typescriptreact = {
