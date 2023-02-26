@@ -19,10 +19,20 @@ M.project_files = function()
   end
 end
 
+-- Note: This does not include stuff like .env files since they are not tracked by git.
 vim.keymap.set("n", "ff", M.project_files, { desc = "Find files, if in git repo, all files in repo, otherwise cwd." })
+vim.keymap.set("n", "fs", builtin.lsp_document_symbols, { desc = "List AST symbols in current buffer." })
+vim.keymap.set("n", "ld", builtin.diagnostics, { desc = "List all diagnostics" })
 
--- list AST symbols in current buffer
-vim.keymap.set("n", "fs", builtin.lsp_document_symbols, { desc = "Search for symbols in current buffer." })
+vim.keymap.set("n", "fg", builtin.live_grep, { desc = "search words" })
+
+vim.keymap.set("n", "fG", function()
+  builtin.live_grep({
+    additional_args = function(args)
+      return vim.list_extend(args, { "--hidden", "--no-ignore" })
+    end,
+  })
+end, { desc = "Search words in all files" })
 
 local options = {
   defaults = {
