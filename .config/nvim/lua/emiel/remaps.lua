@@ -46,12 +46,14 @@ keymap.set("i", "<C-l>", "<Right>", { desc = "[NAV] Go to the right." })
 keymap.set("i", "<C-j>", "<Down>", { desc = "[NAV] Go down." })
 keymap.set("i", "<C-k>", "<Up>", { desc = "[NAV] Go up." })
 
--- Switch between buffers.
-keymap.set("n", "<leader>n", "<cmd> bn<CR>", { desc = "[BUFFER] Go to next buffer." })
-keymap.set("n", "<leader>p", "<cmd> bp<CR>", { desc = "[BUFFER] Go to previous buffer." })
+-- Navigate buffers (bufferline)
+keymap.set("n", "<leader>n", "<cmd>BufferLineCycleNext<CR>", { desc = "[BUFFER] next buffer tab." })
+keymap.set("n", "<leader>n", "<cmd>BufferLineCyclePrev<CR>", { desc = "[BUFFER] previous buffer tab." })
+keymap.set("n", "<leader>n", "<cmd>bnext<CR>", { desc = "[BUFFER] next buffer." })
+keymap.set("n", "<leader>p", "<cmd>bprevious<CR>", { desc = "[BUFFER] previous buffer." })
 
 -- Mind the capital B, Bdelete is from a separate plugin, it does not delete the window
-keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
+keymap.set("n", "<leader>c", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
