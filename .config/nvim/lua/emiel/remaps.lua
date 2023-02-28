@@ -1,20 +1,17 @@
 local keymap = vim.keymap
 
--- Show a short highlight flash on yank
-vim.cmd([[
-  augroup YankHighlight
-    autocmd!
-    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-  augroup end
-]])
-
+keymap.set("n", "<leader>Y", ":%y+ <CR>", { desc = "Yank entire file" })
 keymap.set("n", "<Esc>", "<cmd> nohlsearch <CR>", { desc = "Remove search highlight" })
 keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 keymap.set("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
 
--- Move selected lines
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- Move lines up and down
+keymap.set("v", "<A-j>", "<Esc>:m .+1<CR>==gi")
+keymap.set("v", "<A-k>", "<Esc>:m .+1<CR>==gi")
+keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
+keymap.set("i", "<A-k>", ":m '<Esc>:m .-2<CR>==gi")
+keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
+keymap.set("n", "<A-k>", ":m '<Esc>:m .-2<CR>==gi")
 
 -- Keep cursor centered when searching
 keymap.set("n", "n", "nzzzv")
