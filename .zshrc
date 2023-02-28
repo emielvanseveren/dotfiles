@@ -58,6 +58,23 @@ alias grep='rg'                                         # Use ripgrep as default
 alias sd="sudo shutdown now"
 alias rr="ranger"
 
+# human readable sizes
+alias du="du -h"
+alias df="df -h"
+
+# tmux
+alias tns="tmux new -s"
+alias ta="tmux at"
+alias tk="pkill tmux"
+alias tls="tmux ls"
+
+# git
+alias gd="git diff"
+alias gs="git status --short:m 'kjj:w
+"
+alias gdc="git diff --cached"
+
+
 ################################
 ###    Add paths to $PATH    ###
 ################################
@@ -81,8 +98,3 @@ source /usr/share/fzf/completion.zsh
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
-
-
-
-
-
