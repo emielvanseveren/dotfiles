@@ -26,6 +26,7 @@ opt.shiftwidth = 2 -- Tab shift
 opt.softtabstop = 2 -- 2 space tab
 opt.expandtab = true -- Use spaces for tabs
 opt.ignorecase = true -- ignore case when searching
+opt.swapfile = false -- Disable swap files
 
 -- ===============================================================
 -- # Gui Settings
@@ -68,14 +69,14 @@ g.vimtex_view_method = "zathura" -- Use zathura to view compiled pdfs
 g.vimtex_compiler_method = "latexmk"
 g.vimtex_complete_close_braces = 1
 g.vimtex_compiler_latexmk = {
-	options = {
-		"-pdf",
-		"-shell-escape",
-		"-verbose",
-		"-file-line-error",
-		"-synctex=1",
-		"-interaction=nonstopmode",
-	},
+  options = {
+    "-pdf",
+    "-shell-escape",
+    "-verbose",
+    "-file-line-error",
+    "-synctex=1",
+    "-interaction=nonstopmode",
+  },
 }
 
 -- Beacon
