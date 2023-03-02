@@ -4,6 +4,7 @@ local api = vim.api
 
 g.mapleader = "," -- Sets leader key to 'COMMA'
 
+opt.autowrite = true -- auto write after commands like :next and :previous
 opt.shell = "/usr/bin/zsh" -- Sets default shell to zsh
 opt.compatible = false -- don't try to be like vi.
 opt.completeopt = "menuone,noinsert,noselect"
@@ -12,6 +13,7 @@ opt.updatetime = 750 -- milliseconds nothing is typed the swap file will be writ
 opt.termguicolors = true -- Enable termguicolors
 opt.background = "dark" -- Try to use dark colors
 opt.clipboard = "unnamedplus" -- copy to system clipboard on yank
+opt.number = true -- show line numbers
 opt.relativenumber = true -- Show the line number relative to the line with the cursor
 opt.linebreak = true -- Break lines when max is reached
 opt.mouse = "a" -- Enable the mouse in all modes
@@ -19,6 +21,7 @@ opt.scrolloff = 5 -- Keep 5 lines below and above the cursor
 opt.joinspaces = false -- Combine >1 consecutive spaces
 opt.wrap = false -- No line wrapping
 opt.conceallevel = 0
+opt.showmode = false -- Don't show mode, we have a statusline for that
 opt.autochdir = true -- Vim will change the current working dir whenever you open a file / switch buffers
 opt.ruler = true -- Show the line and column number of the curser position
 opt.tabstop = 2 -- Number of spaces that a <TAB> in the file counts for
@@ -27,18 +30,19 @@ opt.softtabstop = 2 -- 2 space tab
 opt.expandtab = true -- Use spaces for tabs
 opt.ignorecase = true -- ignore case when searching
 opt.swapfile = false -- Disable swap files
-
--- ===============================================================
--- # Gui Settings
--- ===============================================================
+opt.laststatus = 3 -- global statusline
+opt.undolevels = 10000 -- maximum number of changes that can be undone.
 opt.backspace = "2" -- Backspace over newlines
 opt.foldenable = false -- Disable folding by default
-opt.number = true -- show line numbers
 opt.cursorline = true -- highlight current line
 
+if vim.fn.has("nvim-0.9.0") == 1 then
+  opt.splitkeep = "screen"
+end
+
 -- Show those damn hidden characters
+opt.list = true
 opt.listchars = "nbsp:¬,eol:¶,extends:»,precedes:«,trail:•,tab:»·"
-opt.laststatus = 3 -- global statusline
 
 -- ===============================================================
 -- # Language specific configuration.
