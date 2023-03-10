@@ -66,10 +66,11 @@ set $ws8 "8:discord"
 set $ws9 "9:spotify"
 
 # Automatically move these application to specific workspaces, cause that is were they belong >:(
-for_window [class="Firefox"] move to workspace $ws2
-for_window [class="Discord"] move to workspace $ws8
+# you can see the class string by running xprop in a terminal and point to window.
+for_window [class="firefox"] move to workspace $ws2
+for_window [class="discord"] move to workspace $ws8
 for_window [class="Spotify"] move to workspace $ws9
-for_window [class="Obsidian"] move to workspace $ws4
+for_window [class="obsidian"] move to workspace $ws4
 
 ###############################################################################
 ## Theme (dracula)                                                           ##
@@ -80,7 +81,6 @@ client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
 client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
 client.background       #F8F8F2
 
 ###############################################################################
