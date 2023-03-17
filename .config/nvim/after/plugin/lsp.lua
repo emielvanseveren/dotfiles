@@ -43,22 +43,33 @@ require("mason-lspconfig").setup({
 
 -- Disable inline diagnostic text messages
 vim.diagnostic.config({
-  virtual_text = false,
   signs = true,
-  underline = true,
   update_in_insert = false,
   severity_sort = false,
+  float = {
+    focusable = true,
+    style = "minimal",
+    border = "rounded",
+    source = "always",
+    header = "",
+    prefix = "",
+  },
+  -- only show underline for hints
+  underline = {
+    severity = { max = vim.diagnostic.severity.INFO },
+  },
+  -- only show errors and warnings in virtual text
+  virtual_text = {
+    severity = { min = vim.diagnostic.severity.ERROR },
+  },
 })
 
--- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts) -- Go to next/previous error.
 vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "<leader>le", "<cmd>Telescope diagnostics<CR>", opts) -- Open a list of all errors/warnings.
 vim.keymap.set("n", "<leader><Space>", vim.diagnostic.open_float, opts) -- Open a floating error/warning window.
 
 local on_attach = function(cl, bufnr) -- _=client
@@ -75,33 +86,9 @@ local on_attach = function(cl, bufnr) -- _=client
   vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, bufopts) -- Go to the symbols type definition.
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts) -- List all the references to the symbol under the cursor in the quickfix window.
   vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts) -- Displays information about the symbol under the cursor.
-  vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, bufopts) -- Displays the signature of the function under the cursor.
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts) -- Rename the symbol under the cursor (project wide).
+  vim.keymap.set("n", "<leader>K", vim.lsp.buf.signature_help, bufopts) -- Displays the signature of the function under the cursor.
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts) -- List of actions that can be taken on the current file.
-
-  -- `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-    if vim.lsp.buf.format then
-      vim.lsp.buf.format({
-        filter = function(client)
-          -- apply whatever logic you want
-          return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-      })
-    elseif vim.lsp.buf.formatting then
-      vim.lsp.buf.formatting()
-    end
-  end, { desc = "Format current buffer with LSP" })
-
-  vim.api.nvim_create_autocmd("BufWritePre", {
-    group = vim.api.nvim_create_augroup("formatOnSave", { clear = true }),
-    callback = function()
-      vim.api.nvim_command("Format")
-    end,
-  })
-
-  vim.keymap.set("n", "gq", "<cmd>Format<CR>")
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts) -- Rename the symbol under the cursor (project wide).
 end
 
 --------------------------------------------------------------------------------
@@ -119,11 +106,9 @@ end
 --------------------------------------------------------------------
 -- Custom LSP configuration
 --------------------------------------------------------------------
-
 lspconfig.rust_analyzer.setup({
   on_attach = on_attach,
   capabilities = capabilities,
-
   -- Use rustup to find the correct rust-analyzer binary
   cmd = {
     "rustup",
