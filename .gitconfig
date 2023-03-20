@@ -8,6 +8,10 @@
   pager = delta
   editor = nvim
 
+[alias]
+  # use git c to sign off commits
+	c = commit -s
+
 [github]
   user = emielvanseveren
 
@@ -43,5 +47,3 @@
 [gpg]
 	program = /usr/bin/gpg
 
-[format]
-  signoff = true
