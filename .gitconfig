@@ -16,10 +16,10 @@
 
 [commit]
   # Configure gpg to sign all commits
-  gpgsign = true      
+  gpgsign = true
 
 [push]
-  default = tracking        
+  default = tracking
   autoSetupRemote = true
 
 [pull]
