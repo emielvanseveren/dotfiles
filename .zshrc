@@ -79,6 +79,7 @@ alias gdc="git diff --cached"
 ###    Add paths to $PATH    ###
 ################################
 PATH=$PATH:~/.zsh_history_fix
+PATH=$PATH:~/.cargo/bin
 
 ################################
 ###       Completion stuff   ###
