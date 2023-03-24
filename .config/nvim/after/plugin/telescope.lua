@@ -13,7 +13,7 @@ local M = {}
 M.project_files = function()
   vim.fn.system("git rev-parse --is-inside-work-tree")
   if vim.v.shell_error == 0 then
-    builtin.git_files()
+    builtin.git_files({ show_untracked = true })
   else
     builtin.find_files()
   end
@@ -23,7 +23,7 @@ end
 vim.keymap.set("n", "ff", M.project_files, { desc = "Find files, if in git repo, all files in repo, otherwise cwd." })
 vim.keymap.set("n", "fs", builtin.lsp_document_symbols, { desc = "List AST symbols in current buffer." })
 vim.keymap.set("n", "ld", builtin.diagnostics, { desc = "List all diagnostics" })
-
+vim.keymap.set("n", "lb", builtin.buffers, { desc = "List all buffers" })
 vim.keymap.set("n", "fg", builtin.live_grep, { desc = "search words" })
 
 vim.keymap.set("n", "fG", function()
@@ -61,7 +61,8 @@ local options = {
       preview_cutoff = 120,
     },
     mappings = {
-      n = { -- normal mode
+      n = {
+        -- normal mode
         -- Follows same flow as search result hopping
         ["<C-n>"] = actions.move_selection_worse,
         ["<C-p>"] = actions.move_selection_better,
@@ -70,7 +71,8 @@ local options = {
         ["fh"] = builtin.help_tags,
         ["fb"] = builtin.buffers,
       },
-      i = { -- insertion mode
+      i = {
+        -- insertion mode
         ["<C-n>"] = actions.move_selection_worse,
         ["<C-p>"] = actions.move_selection_better,
         ["<Esc>"] = actions.close,
