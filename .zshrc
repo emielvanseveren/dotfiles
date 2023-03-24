@@ -1,5 +1,5 @@
 export NVM_LAZY_LOAD=true    # Enable Lazy load nvm
-export NVM_COMPLETION=true   # Autocomplete nvm commands
+export NVM_COMPLETION=false  # Autocomplete nvm commands
 
 # ZSH | oh-myzsh settings
 ZSH_THEME="theunraveler"                                # ZSH theme - See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -84,10 +84,7 @@ PATH=$PATH:~/.cargo/bin
 ################################
 ###       Completion stuff   ###
 ################################
-
-source <(kubectl completion zsh)
-source <(helm completion zsh)
-source <(npm completion)
+source ~/functions/*
 
 # completion for google cloud.
 if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/path.zsh.inc'; fi
@@ -99,3 +96,7 @@ source /usr/share/fzf/completion.zsh
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
+
+export WASMTIME_HOME="$HOME/.wasmtime"
+
+export PATH="$WASMTIME_HOME/bin:$PATH"
