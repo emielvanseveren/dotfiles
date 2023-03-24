@@ -6,9 +6,9 @@ tmux_sessions=$(tmux list-sessions -F "#{session_name}")
 tmux_switch_to_session() {
 	session="$1"
 	if echo "$tmux_sessions" | grep "^$session$" >/dev/null 2>&1; then
-	  tmux switch-client -t "$session"
+		tmux switch-client -t "$session"
 	fi
 }
 
-choice=$(sort -rfu <<< "$tmux_sessions" | fzf-tmux -w 80 -h 30 | tr -d '\n')
-tmux_switch_to_session $choice
+choice=$(sort -rfu <<<"$tmux_sessions" | fzf-tmux -w 80 -h 30 | tr -d '\n')
+tmux_switch_to_session "$choice"

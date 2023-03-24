@@ -17,7 +17,6 @@ if [ -z "$session" ]; then
 fi
 
 tmux new-session -d -c "$path" -s "$session" 2>/dev/null
-tmux send-keys -t "$session" nvim ENTER
 
 # Inside tmux
 if [[ -n $TMUX ]]; then
