@@ -9,7 +9,7 @@ gitsigns.setup({
     changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
   },
   signcolumn = true, -- show signs in column
-  current_line_blame_opts = true,
+  current_line_blame = true,
   linehl = true,
   numhl = false, -- highlight line number
   linehl = false, -- line highlighting
