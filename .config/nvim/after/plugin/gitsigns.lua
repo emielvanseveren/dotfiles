@@ -9,7 +9,9 @@ gitsigns.setup({
     changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
   },
   signcolumn = true, -- show signs in column
-  numhl = true, -- highlight line number
+  current_line_blame_opts = true,
+  linehl = true,
+  numhl = false, -- highlight line number
   linehl = false, -- line highlighting
   word_diff = false, -- highlight word diffs
   attach_to_untracked = true, -- attach to untracked files
