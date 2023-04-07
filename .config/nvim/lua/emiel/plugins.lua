@@ -18,15 +18,15 @@ local plugins = {
   -- # Themes
   -- ========================================
   { "RRethy/nvim-base16" },
-  { "dracula/vim", as = "dracula" },
+  { "dracula/vim" },
   { "danilamihailov/beacon.nvim" },
-  { "kyazdani42/nvim-web-devicons" },
+  { "kyazdani42/nvim-web-devicons", lazy = true },
 
   -- ========================================
   -- # Telescope
   -- ========================================
-  { "nvim-telescope/telescope.nvim", requires = { "nvim-lua/popup.nvim" } },
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+  { "nvim-telescope/telescope.nvim", dependencies = { "nvim-lua/popup.nvim" } },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   { "nvim-telescope/telescope-ui-select.nvim" },
   { "xiyaowong/telescope-emoji.nvim" },
 
@@ -51,23 +51,39 @@ local plugins = {
   -- ========================================
   -- # Git
   -- ========================================
-  { "TimUntersberger/neogit", requires = "nvim-lua/plenary.nvim" },
-  { "sindrets/diffview.nvim", requires = "nvim-lua/plenary.nvim" },
+  {
+    "TimUntersberger/neogit",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      local neogit = require("neogit")
+      neogit.setup({
+        integrations = {
+          diffview = true,
+        },
+      })
+      vim.keymap.set("n", "<leader>g", neogit.open)
+    end,
+  },
+  { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim" },
   { "lewis6991/gitsigns.nvim" },
 
   -- ========================================
   -- # DAP
   -- ========================================
   { "mfussenegger/nvim-dap" },
-  { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
   { "theHamsta/nvim-dap-virtual-text" },
 
   -- ========================================
   -- # Other
   -- ========================================
-  { "nvim-lualine/lualine.nvim", requires = { "kyazdani42/nvim-web-devicons" } },
-  { "kyazdani42/nvim-tree.lua", requires = { "kyazdani42/nvim-web-devicons" } },
-  { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+  },
+  { "kyazdani42/nvim-tree.lua", dependencies = { "kyazdani42/nvim-web-devicons" } },
+
   { "nvim-lua/plenary.nvim" },
   { "L3MON4D3/LuaSnip", version = "v1.*" },
   { "lewis6991/impatient.nvim" },
@@ -75,15 +91,44 @@ local plugins = {
   {
     "akinsho/nvim-bufferline.lua",
     version = "v3.*",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
   },
   { "github/copilot.vim" },
+  { "nathom/filetype.nvim" },
   { "andweeb/presence.nvim" },
   { "lervag/vimtex" },
-  { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate", event = { "BufReadPost", "BufNewFile" } },
+  { "nvim-treesitter/nvim-treesitter-textobjects", event = "InsertEnter" },
   { "nvim-treesitter/nvim-treesitter-context" },
-  { "stevearc/aerial.nvim" },
   { "famiu/bufdelete.nvim" },
+
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("indent_blankline").setup({
+        buftype_exclude = { "terminal" },
+        filetype_exclude = { "startify", "help", "dashboard", "Outline" },
+        indent_blankline_use_treesitter = true,
+        indent_blankline_show_current_context = true,
+      })
+    end,
+  },
+
+  {
+    "stevearc/aerial.nvim",
+    lazy = true,
+    config = function()
+      require("aerial").setup({
+        on_attach = function()
+          -- currently using `(` and `)` to navigate errors
+          -- vim.keymap.set("n", "(", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+          -- vim.keymap.set("n", ")", "<cmd>AerialNext<CR>", { buffer = bufnr })
+          vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle<CR>")
+        end,
+      })
+    end,
+  },
 
   {
     "j-hui/fidget.nvim",
@@ -95,13 +140,17 @@ local plugins = {
   {
     "numtoStr/Comment.nvim",
     config = function()
+      -- keymaps to remember:
+      -- comment current line: gcc
+      -- linewise comment visual selection -> gc
+      -- blockwise comment visual seleciton -> gb
       require("Comment").setup()
     end,
   },
 
   {
     "saecki/crates.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
+    dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("crates").setup()
     end,
@@ -109,7 +158,7 @@ local plugins = {
 
   {
     "iamcco/markdown-preview.nvim",
-    run = function()
+    config = function()
       vim.fn["mkdp#util#install"]()
     end,
   },
