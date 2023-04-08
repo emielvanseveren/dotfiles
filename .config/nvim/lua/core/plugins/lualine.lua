@@ -1,10 +1,9 @@
-local present, lualine = pcall(require, "lualine")
-
-if not present then
-  return
-end
-
-lualine.setup({
+return {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    dependencies = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+	    require "lualine".setup {
   options = {
     icons_enabled = true,
     theme = "auto",
@@ -18,5 +17,7 @@ lualine.setup({
     lualine_x = { "filetype" },
     lualine_y = { "fileformat" },
     lualine_z = { "location" },
-  },
-})
+  }
+  }
+    end
+  }

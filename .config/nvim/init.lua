@@ -3,13 +3,6 @@
 -- Email: emiel@vanseveren.dev
 -- Github: https://github.com/emielvanseveren
 
--- leader key -> ","
---
--- In general, it's a good idea to set this early in your config, otherwise
--- if you have any mappings set BEFORE this, they will be set to the OLD
--- leader
---
-
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -24,13 +17,22 @@ if nvim_ver ~= expected_ver then
   return
 end
 
-require("emiel.autocmd")
-require("emiel.keymaps")
-require("emiel.plugins")
-require("emiel.options")
-require("emiel.snippets.rust")
-require("emiel.snippets.typescript")
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-require("impatient")
+require("lazy").setup("core.plugins")
 
-vim.cmd.colorscheme("dracula")
+require("core.config.autocmd")
+require("core.config.keymaps")
+require("core.config.options")
