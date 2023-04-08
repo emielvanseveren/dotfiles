@@ -10,11 +10,16 @@ gitsigns.setup({
   },
   signcolumn = true, -- show signs in column
   current_line_blame = true,
-  linehl = true,
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = "eol",
+    delay = 1000,
+    ignore_whitespace = false,
+  },
+  linehl = false,
   numhl = false, -- highlight line number
-  linehl = false, -- line highlighting
   word_diff = false, -- highlight word diffs
-  attach_to_untracked = true, -- attach to untracked files
+  attach_to_untracked = true,
   watch_gitdir = {
     interval = 1000,
     follow_files = true,

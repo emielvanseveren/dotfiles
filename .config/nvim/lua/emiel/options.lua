@@ -3,7 +3,6 @@ local g = vim.g
 local api = vim.api
 
 g.mapleader = "," -- Sets leader key to 'COMMA'
-
 opt.autowrite = true -- auto write after commands like :next and :previous
 opt.shell = "/usr/bin/zsh" -- Sets default shell to zsh
 opt.compatible = false -- don't try to be like vi.

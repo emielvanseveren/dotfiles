@@ -6,12 +6,12 @@ keymap.set("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 keymap.set("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
 
 -- Move lines up and down
-keymap.set("v", "<A-j>", "<Esc>:m .+1<CR>==gi")
-keymap.set("v", "<A-k>", "<Esc>:m .+1<CR>==gi")
-keymap.set("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
-keymap.set("i", "<A-k>", ":m '<Esc>:m .-2<CR>==gi")
-keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==gi")
-keymap.set("n", "<A-k>", ":m '<Esc>:m .-2<CR>==gi")
+keymap.set("n", "<leader-j>", "<cmd>m .+1<CR>==", { desc = "Move down" })
+keymap.set("n", "<leader-k>", "<cmd>m .-2<CR>==", { desc = "Move up" })
+keymap.set("i", "<leader-j>", "<Esc><cmd> m .+1<CR>==gi", { desc = "Move down" })
+keymap.set("i", "<leader-k>", "<Esc><cmd> m .-2<CR>==gi", { desc = "Move up" })
+keymap.set("v", "<leader-k>", "<cmd>m '<-2<cr>gv=gv", { desc = "Move up" })
+keymap.set("v", "<leader-j>", "<cmd>m '>+1<cr>gv=gv", { desc = "Move down" })
 
 -- Keep cursor centered when searching
 keymap.set("n", "n", "nzzzv")
@@ -29,13 +29,14 @@ keymap.set("n", "<Down>", "<NOP>")
 keymap.set("n", "<Left>", "<NOP>")
 keymap.set("n", "<Right>", "<NOP>")
 
--- Better window navigation.
+-- windows
 keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "[NAV] Go to the window on the left." })
 keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "[NAV] Go to the window on the right." })
 keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "[NAV] Go to the window below." })
 keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "[NAV] Go to the window above." })
 keymap.set("n", "<leader>h", "<C-w>s", { desc = "[NAV] Split window horizontally." })
 keymap.set("n", "<leader>v", "<C-w>v", { desc = "[NAV] Split window vertically." })
+keymap.set("n", "<leader>cw", "<C-W>c", { desc = "[WINDOW] Close window." })
 
 -- Navigate within insertion mode.
 keymap.set("i", "<C-h>", "<Left>", { desc = "[NAV] Go to the left." })
@@ -43,14 +44,19 @@ keymap.set("i", "<C-l>", "<Right>", { desc = "[NAV] Go to the right." })
 keymap.set("i", "<C-j>", "<Down>", { desc = "[NAV] Go down." })
 keymap.set("i", "<C-k>", "<Up>", { desc = "[NAV] Go up." })
 
--- Navigate buffers (bufferline)
+-- buffers
 keymap.set("n", "<leader>n", "<cmd>BufferLineCycleNext<CR>", { desc = "[BUFFER] next buffer tab." })
-keymap.set("n", "<leader>n", "<cmd>BufferLineCyclePrev<CR>", { desc = "[BUFFER] previous buffer tab." })
-keymap.set("n", "<leader>n", "<cmd>bnext<CR>", { desc = "[BUFFER] next buffer." })
-keymap.set("n", "<leader>p", "<cmd>bprevious<CR>", { desc = "[BUFFER] previous buffer." })
-
+keymap.set("n", "<leader>p", "<cmd>BufferLineCyclePrev<CR>", { desc = "[BUFFER] previous buffer tab." })
 -- Mind the capital B, Bdelete is from a separate plugin, it does not delete the window
-keymap.set("n", "<leader>c", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
+keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
+
+-- -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>

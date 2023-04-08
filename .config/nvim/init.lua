@@ -14,7 +14,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- check if we have the latest stable version of nvim
-local expected_ver = "0.8.3"
+local expected_ver = "0.9.0"
 local v = vim.version()
 local nvim_ver = string.format("%d.%d.%d", v.major, v.minor, v.patch)
 
@@ -25,7 +25,7 @@ if nvim_ver ~= expected_ver then
 end
 
 require("emiel.autocmd")
-require("emiel.remaps")
+require("emiel.keymaps")
 require("emiel.plugins")
 require("emiel.options")
 require("emiel.snippets.rust")

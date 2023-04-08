@@ -27,8 +27,8 @@ local completionMappings = {
   ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), modes),
   ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), modes),
   -- C-j and C-k are bound to moving in insertion
-  ["<C-n>"] = cmp.mapping(cmp.mapping.select_next_item(), modes),
-  ["<C-p>"] = cmp.mapping(cmp.mapping.select_prev_item(), modes),
+  ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), modes),
+  ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), modes),
   -- Intellij like mapping
   -- If no completion is selected, insert the first one in the list,
   -- If a completion is selected insert this one.
@@ -68,7 +68,8 @@ cmp.setup({
       side_padding = 0,
       border = border("CmpBorder"),
     },
-    documentation = { -- no border, native-style scrollbar
+    documentation = {
+      -- no border, native-style scrollbar
       border = nil,
       scrollbar = "",
     },
