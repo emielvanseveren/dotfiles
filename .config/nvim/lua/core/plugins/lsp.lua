@@ -11,6 +11,7 @@ local lsp_servers = {
   "lua_ls",
   "clangd",
   "cmake",
+  "gopls",
 }
 
 -- Some tools can be installed with mason, but are not language servers.
@@ -54,6 +55,7 @@ return {
     config = function()
       local lspconfig = require("lspconfig")
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      local on_attach_wrapper = require("core.utils").on_attach
 
       local opts = { noremap = true, silent = true }
       vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts) -- Go to next/previous error.
@@ -84,7 +86,7 @@ return {
       --------------------------------------------------------------------------------
       for _, lsp in pairs(lsp_servers) do
         lspconfig[lsp].setup({
-          on_attach = require("core.utils").on_attach(on_attach),
+          on_attach = on_attach_wrapper(on_attach),
           capabilities = capabilities,
         })
       end
@@ -93,7 +95,7 @@ return {
       -- Custom LSP configuration
       --------------------------------------------------------------------
       lspconfig.rust_analyzer.setup({
-        on_attach = require("core.utils").on_attach(on_attach),
+        on_attach = on_attach_wrapper(on_attach),
         capabilities = capabilities,
         -- Use rustup to find the correct rust-analyzer binary
         cmd = {
@@ -121,7 +123,7 @@ return {
 
       -- required to manually install the lua-language-server
       lspconfig.lua_ls.setup({
-        on_attach = require("core.utils").on_attach(on_attach),
+        on_attach = on_attach_wrapper(on_attach),
         capabilities = capabilities,
         settings = {
           Lua = {
@@ -138,7 +140,7 @@ return {
 
       -- https://dev.languagetool.org/finding-errors-using-n-gram-data.html
       lspconfig.ltex.setup({
-        on_attach = require("core.utils").on_attach(on_attach),
+        on_attach = on_attach_wrapper(on_attach),
         capabilities = capabilities,
         settings = {
           ltex = {

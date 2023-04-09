@@ -1,8 +1,13 @@
+local Util = require("core.utils")
+
 return {
   {
     "kyazdani42/nvim-tree.lua",
     dependencies = { "kyazdani42/nvim-web-devicons" },
-    event = "VeryLazy",
+    keys = {
+      { "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", desc = "Move cursor in tree to [f]ile of current buffer." },
+      { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", desc = "[t]oggle file explorer treeview." },
+    },
     config = function()
       require("nvim-tree").setup({
         disable_netrw = true,
@@ -31,8 +36,6 @@ return {
           },
         },
       })
-      vim.keymap.set("n", "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", { desc = "[t]oggle file explorer treeview." })
-      vim.keymap.set("n", "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", { desc = "Move cursor in tree to [f]ile of current buffer." })
     end,
   },
 
@@ -75,101 +78,107 @@ return {
 
   {
     "stevearc/aerial.nvim",
-    event = "VeryLazy",
+    keys = {
+      { "<leader><leader>a", "<cmd>AerialToggle<CR>" },
+    },
     config = function()
       require("aerial").setup()
-      vim.keymap.set("n", "<leader><leader>a", "<cmd>AerialToggle<CR>")
     end,
   },
 
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+    cond = function()
+      return vim.fn.executable("make") == 1
+    end,
+  },
+
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/popup.nvim", "nvim-telescope/telescope-ui-select.nvim", "xiyaowong/telescope-emoji.nvim" },
-    config = function()
-      local actions = require("telescope.actions")
-      local builtin = require("telescope.builtin")
-
-      -- First search in git repo, if not in repo, search from curr_dir
-      local project_files = function()
-        vim.fn.system("git rev-parse --is-inside-work-tree")
-        if vim.v.shell_error == 0 then
-          builtin.git_files({ show_untracked = true })
-        else
-          builtin.find_files()
-        end
-      end
-
-      -- Note: This does not include stuff like .env files since they are not tracked by git.
-      vim.keymap.set("n", "ff", project_files, { desc = "Find files, if in git repo, all files in repo, otherwise cwd." })
-      vim.keymap.set("n", "fs", builtin.lsp_document_symbols, { desc = "List AST symbols in current buffer." })
-      vim.keymap.set("n", "ld", builtin.diagnostics, { desc = "List all diagnostics" })
-      vim.keymap.set("n", "lb", builtin.buffers, { desc = "List all buffers" })
-      vim.keymap.set("n", "fg", builtin.live_grep, { desc = "search words" })
-      vim.keymap.set("n", "fG", function()
-        builtin.live_grep({
-          additional_args = function(args)
-            return vim.list_extend(args, { "--hidden", "--no-ignore" })
-          end,
-        })
-      end, { desc = "Search words in all files" })
-
-      local options = {
-        defaults = {
-          prompt_prefix = "   ",
-          selection_caret = "  ",
-          entry_prefix = "  ",
-          initial_mode = "insert",
-          selection_strategy = "reset",
-          sorting_strategy = "ascending",
-          layout_strategy = "horizontal",
-          border = {},
-          borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-          file_ignore_patterns = { "node_modules" },
-          path_display = { "truncate" },
-          layout_config = {
-            horizontal = {
-              prompt_position = "top",
-              preview_width = 0.55,
-              results_width = 0.8,
-            },
-            vertical = {
-              mirror = false,
-            },
-            width = 0.87,
-            height = 0.80,
-            preview_cutoff = 120,
+    version = false, -- telescope did only one release, so use HEAD for now
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {
+      -- search
+      { "fg", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
+      { "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      -- list
+      { "lb", "<cmd>Telescope buffers<cr>", desc = "List all buffers" },
+      { "ld", "<cmd>Telescope diagnostics<cr>", desc = "List all diagnostics" },
+      {
+        "ls",
+        Util.telescope("lsp_document_symbols", {
+          symbols = {
+            "Class",
+            "Function",
+            "Method",
+            "Constructor",
+            "Interface",
+            "Module",
+            "Struct",
+            "Trait",
+            "Field",
+            "Property",
           },
-          mappings = {
-            n = {
-              -- normal mode
-              -- Follows same flow as search result hopping
-              ["<C-n>"] = actions.move_selection_worse,
-              ["<C-p>"] = actions.move_selection_better,
-              ["<Esc>"] = actions.close,
-              ["fg"] = builtin.livegrep,
-              ["fh"] = builtin.help_tags,
-              ["fb"] = builtin.buffers,
-            },
-            i = {
-              -- insertion mode
-              ["<C-n>"] = actions.move_selection_worse,
-              ["<C-p>"] = actions.move_selection_better,
-              ["<Esc>"] = actions.close,
-            },
+        }),
+        desc = "List Symbol",
+      },
+    },
+    opts = {
+      defaults = {
+        prompt_prefix = "   ",
+        selection_caret = "  ",
+        entry_prefix = "  ",
+        initial_mode = "insert",
+        selection_strategy = "reset",
+        sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
+        border = {},
+        borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+        file_ignore_patterns = { "node_modules" },
+        path_display = { "truncate" },
+        layout_config = {
+          horizontal = {
+            prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
+          },
+          vertical = {
+            mirror = false,
+          },
+          width = 0.87,
+          height = 0.80,
+          preview_cutoff = 120,
+        },
+        mappings = {
+          n = {
+            -- normal mode
+            -- Follows same flow as search result hopping
+            ["<C-n>"] = function(...)
+              require("telescope.actions").move_selection_worse(...)
+            end,
+            ["<C-p>"] = function(...)
+              require("telescope.actions").move_selection_better(...)
+            end,
+            ["<Esc>"] = function(...)
+              require("telescope.actions").close(...)
+            end,
+          },
+          i = {
+            -- insertion mode
+            ["<C-n>"] = function(...)
+              require("telescope.actions").move_selection_worse(...)
+            end,
+            ["<C-p>"] = function(...)
+              require("telescope.actions").move_selection_better(...)
+            end,
+            ["<Esc>"] = function(...)
+              require("telescope.actions").close(...)
+            end,
           },
         },
-        extensions_list = { "emoji", "terms", "ui-select", "neoclip", "harpoon" },
-      }
-
-      require("telescope").setup(options)
-
-      -- load extensions
-      pcall(function()
-        for _, ext in ipairs(options.extensions_list) do
-          require("telescope").load_extension(ext)
-        end
-      end)
-    end,
+      },
+    },
   },
 }

@@ -52,19 +52,6 @@ g.termdebugger = "rust-gdb" -- Set debugger to rust-gdb
 g.termdebug_wide = 1 -- Set debugger to use wide terminal
 
 g.tex_flavor = "latex"
-g.vimtex_view_method = "zathura"
-g.vimtex_compiler_method = "latexmk"
-g.vimtex_complete_close_braces = 1
-g.vimtex_compiler_latexmk = {
-  options = {
-    "-pdf",
-    "-shell-escape",
-    "-verbose",
-    "-file-line-error",
-    "-synctex=1",
-    "-interaction=nonstopmode",
-  },
-}
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0

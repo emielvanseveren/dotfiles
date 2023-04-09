@@ -73,3 +73,12 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+-- detect go templates
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewfile" }, {
+  callback = function()
+    if vim.bo.filetype == "html" and vim.fn.search("{{") ~= 0 then
+      vim.bo.filetype = "gohtmltmpl"
+    end
+  end,
+})

@@ -1,5 +1,6 @@
 return {
   "hrsh7th/nvim-cmp",
+  -- not sure what the event here should be, we cant use insertEnter because we also use it in the command line
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-path",
@@ -12,6 +13,7 @@ return {
     version = "v1.*",
     "onsails/lspkind.nvim",
   },
+  event = { "InsertEnter", "CmdlineEnter" },
   config = function()
     local cmp = require("cmp")
     local modes = { "i", "s", "c" }
@@ -27,7 +29,6 @@ return {
         { "│", hl_name },
       }
     end
-
     local mappings = {
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),

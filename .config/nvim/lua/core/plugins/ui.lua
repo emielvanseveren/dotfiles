@@ -8,10 +8,9 @@ return {
       "kyazdani42/nvim-web-devicons",
       {
         "famiu/bufdelete.nvim",
-        lazy = true,
-        config = function()
-          vim.keymap.set("n", "<leader>cb", ":Bdelete<CR>:bp<CR>", { desc = "[BUFFER] Close buffer (safe)." })
-        end,
+        keys = {
+          { "<leader>cb", ":Bdelete<CR>:bp<CR>", desc = "[BUFFER] Close buffer (safe)." },
+        },
       },
     },
     config = function()
