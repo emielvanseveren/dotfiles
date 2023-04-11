@@ -5,7 +5,7 @@ return {
     {
       "lervag/vimtex",
       ft = "tex",
-      config = function()
+      init = function()
         vim.g.vimtex_compiler_method = "latexmk"
         vim.g.vimtex_view_method = "zathura"
         vim.g.vimtex_complete_close_braces = 1
@@ -37,11 +37,10 @@ return {
       vim.g.startuptime_tries = 10
     end,
   },
-
   {
     "github/copilot.vim",
-    lazy = "bufEnter",
-    config = function()
+    lazy = "vimEnter",
+    init = function()
       -- Github copilot
       vim.g.completion_enable_auto_popup = 1 -- Auto popup
       vim.g.copilot_no_tab_map = 1 -- Don't use <Tab> but <C-J> to accept the suggestion. Tab is already used for cmp.
