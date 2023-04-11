@@ -2,27 +2,27 @@ return {
   { "nvim-lua/plenary.nvim", event = "VeryLazy" },
   { "andweeb/presence.nvim", event = "VeryLazy" },
   {
-    {
-      "lervag/vimtex",
-      ft = "tex",
-      init = function()
-        vim.g.vimtex_compiler_method = "latexmk"
-        vim.g.vimtex_view_method = "zathura"
-        vim.g.vimtex_complete_close_braces = 1
-        vim.g.vimtex_compiler_latexmk = {
-          options = {
-            "-pdf",
-            "-shell-escape",
-            "-verbose",
-            "-file-line-error",
-            "-synctex=1",
-            "-interaction=nonstopmode",
-          },
-        }
-      end,
-    },
+    "lervag/vimtex",
+    ft = "tex",
+    init = function()
+      vim.g.vimtex_compiler_method = "latexmk"
+      vim.g.vimtex_view_method = "zathura"
+      vim.g.vimtex_complete_close_braces = 1
+      vim.g.vimtex_compiler_latexmk = {
+        options = {
+          "-pdf",
+          "-shell-escape",
+          "-verbose",
+          "-file-line-error",
+          "-synctex=1",
+          "-interaction=nonstopmode",
+        },
+      }
+    end,
+  },
+  {
     "iamcco/markdown-preview.nvim",
-    filetype = "markdown",
+    ft = "markdown",
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
