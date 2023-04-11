@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/zsh
+
 #
-source_help() {
+function source_helm {
 	source <(helm completion zsh)
 }

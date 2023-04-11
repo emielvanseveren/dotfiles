@@ -1,5 +1,6 @@
-#!/bin/bash
-dcrb() {
+#!/bin/zsh
+
+function dcrb {
 	if [ -z "$1" ]; then
 		compose_file="docker-compose.yml"
 	else
