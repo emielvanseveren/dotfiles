@@ -42,8 +42,8 @@ return {
     lazy = "vimEnter",
     init = function()
       -- Github copilot
-      vim.g.completion_enable_auto_popup = 1 -- Auto popup
-      vim.g.copilot_no_tab_map = 1 -- Don't use <Tab> but <C-J> to accept the suggestion. Tab is already used for cmp.
+      vim.g.completion_enable_auto_popup = 1    -- Auto popup
+      vim.g.copilot_no_tab_map = 1              -- Don't use <Tab> but <C-J> to accept the suggestion. Tab is already used for cmp.
       vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
       vim.g.completion_matching_ingore_case = 1 -- While in popup ignore caps.
     end,
@@ -52,6 +52,11 @@ return {
   {
     "fatih/vim-go",
     build = ":GoInstallBinaries",
+  },
+
+  {
+    "mfussenegger/nvim-ansible",
+    ft = "yaml",
   },
 
   -- git
