@@ -16,7 +16,9 @@ font pango: JetBrainsMono Bold Nerd Font Mono Regular 20
 hide_edge_borders smart
 
 # Move focus on activation.
-focus_on_window_activation focus
+focus_on_window_activation urgent
+# enable smart popup during fullscreen
+popup_during_fullscreen smart
 
 # Align titles in center.
 title_align center
@@ -45,9 +47,6 @@ for_window [window_type="menu"]         floating enable
 for_window [title="Preferences$"]       floating enable
 for_window [title="Event Tester"]       floating enable
 for_window [class="Youtube-dl-gui"]     floating enable
-
-# enable smart popup during fullscreen
-popup_during_fullscreen smart
 
 ###############################################################################
 ## Variables                                                                 ##

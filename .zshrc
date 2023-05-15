@@ -24,28 +24,27 @@ fi
 
 zplug load                                                # Should generate the plugins=(...) part. Add --verbose to see the output.
 
-# plugin settings
-unsetopt cdablevars
-setopt PROMPT_SUBST                                       # The prompt string is first subjected to parameter expansion, command substitution and arithmetic expansion.
-setopt PATH_DIRS                                          # Perform path search even on command names with slashes
-setopt AUTO_LIST                                          # Automatically list choices on ambiguous completion.
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive matching
 
 ################################
 ###         EXPORTS          ###
 ################################
-export OH_MY_ZSH_FOLDER="${HOME}/.oh-my-zsh"                        # path to your oh-my-zsh installation
-export VISUAL=nvim                                                  # Use nvim as default editor (Some programs rely on $VISUAL instead of $EDITOR)
-export EDITOR="$VISUAL"                                             # Use nvim as default editor
-export UPDATE_ZSH_DAYS=7                                            # auto-update every 7 days.
-export DOCKER_BUILDKIT=1                                            # Enable rewrite docker build (faster but currently still behind feature flag)
-export GPG_TTY=$(tty)                                               # Make gpg-key available
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"                   # Set bat as default manpage pager
-export GTEST_COLOR=1                                                # Enables colors while running gtests.
-export NO_AT_BRIDGE=1                                               # Silence the stupid "AT bridge not available" dbus messages.
+export OH_MY_ZSH_FOLDER="${HOME}/.oh-my-zsh"              # path to your oh-my-zsh installation
+source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh                     # IMPORTANT: should stay above the sets
+export VISUAL=nvim                                        # Use nvim as default editor (Some programs rely on $VISUAL instead of $EDITOR)
+export EDITOR="$VISUAL"                                   # Use nvim as default editor
+export UPDATE_ZSH_DAYS=7                                  # auto-update every 7 days.
+export DOCKER_BUILDKIT=1                                  # Enable rewrite docker build (faster but currently still behind feature flag)
+export GPG_TTY=$(tty)                                     # Make gpg-key available
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"         # Set bat as default manpage pager
+export GTEST_COLOR=1                                      # Enables colors while running gtests.
+export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
 
-
-source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh                     # Reload config from oh-my-zsh
+unsetopt cdablevars
+unsetopt complete_aliases                                 # Don't expand aliases _before_ completion has finished (src: https://stackoverflow.com/questions/14307086/tab-completion-for-aliased-sub-commands-in-zsh-alias-gco-git-checkout)
+setopt PROMPT_SUBST                                       # The prompt string is first subjected to parameter expansion, command substitution and arithmetic expansion.
+setopt PATH_DIRS                                          # Perform path search even on command names with slashes
+setopt AUTO_LIST                                          # Automatically list choices on ambiguous completion.
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive matching
 
 ################################
 ###         ALIASES          ###
@@ -81,10 +80,28 @@ alias gdc="git diff --cached"
 PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
 
-################################
+##################################################
+###    Add functions to special functions path ###
+##################################################
+FPATH=$FPATH:~/.config/zshfunctions
+
+# functions need to be initialized before they can be run
+autoload dcrb
+autoload dcr
+autoload dive
+autoload jwtd
+autoload randomstring
+autoload source_helm
+autoload source_kubectl
+autoload wtr
+
+autoload -Uz compinit
+compinit
+
+
+###############################
 ###       Completion stuff   ###
 ################################
-source ~/functions/*
 
 # completion for google cloud.
 if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/path.zsh.inc'; fi
@@ -98,5 +115,4 @@ bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
 
 export WASMTIME_HOME="$HOME/.wasmtime"
-
 export PATH="$WASMTIME_HOME/bin:$PATH"
