@@ -12,6 +12,7 @@ local lsp_servers = {
   "clangd",
   "cmake",
   "gopls",
+  "ansiblels",
 }
 
 -- Some tools can be installed with mason, but are not language servers.
@@ -58,7 +59,7 @@ return {
       local on_attach_wrapper = require("core.utils").on_attach
 
       local opts = { noremap = true, silent = true }
-      vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts) -- Go to next/previous error.
+      vim.keymap.set("n", "<leader>dk", vim.diagnostic.goto_prev, opts)       -- Go to next/previous error.
       vim.keymap.set("n", "<leader>dj", vim.diagnostic.goto_next, opts)
       vim.keymap.set("n", "<leader><Space>", vim.diagnostic.open_float, opts) -- Open a floating error/warning window.
 
@@ -68,16 +69,16 @@ return {
 
         local bufopts = { noremap = true, silent = true, buffer = bufnr }
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts) -- Go the symbols declaration.
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts) -- Go to the symbols defintion.
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)      -- Go the symbols declaration.
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)       -- Go to the symbols defintion.
         vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, bufopts) -- Go to the symbols type definition.
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts) -- List all the references to the symbol under the cursor in the quickfix window.
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)       -- List all the references to the symbol under the cursor in the quickfix window.
 
         -- Note, whel done twice it will enter the window, can't close with escape, gotta use q.
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts) -- Displays information about the symbol under the cursor.
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)                  -- Displays information about the symbol under the cursor.
         vim.keymap.set("n", "<leader>k", vim.lsp.buf.signature_help, bufopts) -- Displays the signature of the function under the cursor.
-        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts) -- List of actions that can be taken on the current file.
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts) -- Rename the symbol under the cursor (project wide).
+        vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)   -- List of actions that can be taken on the current file.
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)        -- Rename the symbol under the cursor (project wide).
       end
       --------------------------------------------------------------------------------
       -- Default LSP servers
@@ -116,6 +117,39 @@ return {
                 "--all-targets",
                 "--all-features",
               },
+            },
+          },
+        },
+      })
+
+      -- by default the language server has ansible-lint enabled
+      -- This is just too strict
+      lspconfig.ansiblels.setup({
+        on_attach = on_attach_wrapper(on_attach),
+        capabilities = capabilities,
+        settings = {
+          validation = {
+            enabled = true,
+            lint = {
+              enabled = false,
+            },
+          },
+        },
+      })
+
+      -- For some reason keyOrdering is enabled by default by the
+      -- language server, which requires the keys to be alphabetically ordered.
+      -- Will be disabled in a later version
+      lspconfig.yamlls.setup({
+        on_attach = on_attach_wrapper(on_attach),
+        capabilities = capabilities,
+        settings = {
+          yaml = {
+            keyOrdering = false,
+          },
+          redhat = {
+            telemetry = {
+              enabled = false,
             },
           },
         },
