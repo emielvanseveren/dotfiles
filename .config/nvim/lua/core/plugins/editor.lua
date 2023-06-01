@@ -12,6 +12,7 @@ return {
       require("nvim-tree").setup({
         disable_netrw = true,
         hijack_netrw = true,
+
         hijack_unnamed_buffer_when_opening = false,
         sync_root_with_cwd = true,
         diagnostics = {
@@ -26,6 +27,9 @@ return {
         },
         filters = {
           dotfiles = true,
+        },
+        update_focused_file = {
+          enable = true,
         },
         renderer = {
           highlight_git = true,
