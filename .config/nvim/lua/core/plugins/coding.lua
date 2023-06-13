@@ -38,6 +38,8 @@ return {
     end,
   },
   {
+    -- NOTE: in case copilot does not show suggestions try to remove the extension and reinstall it.
+    -- should be in ~/.local/share/nvim/lazy/copilot.vim/
     "github/copilot.vim",
     init = function()
       vim.g.copilot_no_tab_map = true -- Don't use <Tab> but <C-J> to accept the suggestion. Tab is already used for cmp.
