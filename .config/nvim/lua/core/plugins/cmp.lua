@@ -33,9 +33,15 @@ return {
       ["<C-d>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), modes),
-      ["<C-e>"] = cmp.mapping(cmp.mapping.abort(), modes),
+      ["<C-e>"] = cmp.mapping({
+        i = cmp.mapping.abort(),
+        c = cmp.mapping.close(),
+      }),
       ["<C-j>"] = cmp.mapping(cmp.mapping.select_next_item(), modes),
       ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), modes),
+
+      -- https://github.com/hrsh7th/nvim-cmp/commit/93cf84f7deb2bdb640ffbb1d2f8d6d412a7aa558
+      ["<c-y>"] = cmp.config.disable,
       -- Intellij like mapping
       -- If no completion is selected, insert the first one in the list,
       -- If a completion is selected insert this one.
@@ -52,7 +58,6 @@ return {
         end
       end, modes),
     }
-
     cmp.setup({
       snippet = {
         expand = function(args)
