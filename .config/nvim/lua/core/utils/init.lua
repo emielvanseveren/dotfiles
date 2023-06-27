@@ -25,6 +25,17 @@ function M.telescope(builtin, opts)
         builtin = "find_files"
       end
     end
+    if opts.cwd and opts.cwd ~= vim.loop.cwd() then
+      opts.attach_mappings = function(_, map)
+        map("i", "<a-c>", function()
+          local action_state = require("telescope.actions.state")
+          local line = action_state.get_current_line()
+          M.telescope(params.builtin, vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
+        end)
+        return true
+      end
+    end
+
     require("telescope.builtin")[builtin](opts)
   end
 end
@@ -33,6 +44,17 @@ function M.get_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
+
+  -- if no buffer is open, use git root or cwd
+  if path == nil then
+    local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+    if vim.v.shell_error == 0 and git_root ~= "" then
+      return git_root
+    else
+      return vim.loop.cwd()
+    end
+  end
+
   ---@type string[]
   local roots = {}
   if path then
