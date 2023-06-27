@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+function wtr {
+  local location="${1:-deinze}"
+	curl wttr.in/$location
+}
