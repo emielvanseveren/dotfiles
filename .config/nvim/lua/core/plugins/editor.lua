@@ -113,10 +113,10 @@ return {
       { "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
       { "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       -- list
-      { "lb", "<cmd>Telescope buffers<cr>", desc = "List all buffers" },
-      { "ld", "<cmd>Telescope diagnostics<cr>", desc = "List all diagnostics" },
+      { "tb", "<cmd>Telescope buffers<cr>", desc = "List all buffers" },
+      { "td", "<cmd>Telescope diagnostics<cr>", desc = "List all diagnostics" },
       {
-        "ls",
+        "ts",
         Util.telescope("lsp_document_symbols", {
           symbols = {
             "Class",
