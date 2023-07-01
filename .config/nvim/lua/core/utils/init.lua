@@ -45,6 +45,16 @@ function M.get_root()
   local path = vim.api.nvim_buf_get_name(0)
   path = path ~= "" and vim.loop.fs_realpath(path) or nil
 
+  if path ~= nil then
+    local dir = vim.fn.fnamemodify(path, ":h")
+    local git_root = vim.fn.systemlist("cd " .. dir .. " && git rev-parse --show-toplevel")[1]
+    if vim.v.shell_error == 0 and git_root ~= "" then
+      return git_root
+    else
+      return dir
+    end
+  end
+
   -- if no buffer is open, use git root or cwd
   if path == nil then
     local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
