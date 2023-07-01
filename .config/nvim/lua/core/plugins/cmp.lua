@@ -14,7 +14,8 @@ return {
     "onsails/lspkind.nvim",
   },
   event = { "InsertEnter", "CmdlineEnter" },
-  config = function()
+  opts = function()
+    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require("cmp")
     local modes = { "i", "s", "c" }
     local function border(hl_name)
@@ -76,6 +77,11 @@ return {
         format = require("lspkind").cmp_format({
           mode = "symbol_text",
         }),
+      },
+      experimental = {
+        ghost_text = {
+          hl_group = "CmpGhostText",
+        },
       },
       window = {
         completion = {

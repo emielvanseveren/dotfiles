@@ -9,8 +9,10 @@ map("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
 -- Move lines up and down
 map("n", "<leader><leader>j", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<leader><leader>k", "<cmd>m .-2<cr>==", { desc = "Move up" })
+
 map("i", "<leader><leader>j", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<leader><leader>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
+
 map("v", "<leader><leader>j", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<leader><leader>k", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
