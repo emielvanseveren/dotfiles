@@ -5,6 +5,7 @@ font:
   normal:
     family: JetBrainsMono Nerd Font
     style: Regular
+    size: 16
   bold:
     family: JetBrainsMono Nerd Font
     style: Bold
@@ -20,18 +21,12 @@ font:
 # any items in the `env` entry below will be added as environment variables.
 # Some entries may override variables set by alacritty itself.
 env:
-  WINIT_X11_SCALE_FACTOR: "1.33"
+  WINIT_X11_SCALE_FACTOR: "1"
 
 # If 'true', bold text is drawn using the bright color variant.
 draw_bold_text_with_bright_colors: true
 
 window:
-  # Specified in number of columns/lines, not pixels.
-  # If both are '0', this setting is ingored.
-  dimensions:
-    columns: 0
-    lines: 0
-
   # Blank space added around the window in pixels. This padding is not scaled by DPI and
   # the specified value is always added at both opposing sides.
   padding:
@@ -44,7 +39,7 @@ window:
   # Values for decoration:
   #   - Full: Borders and title bar.
   #   - None: Neither borders nor title bar.
-  decorations: None
+  decorations: none
   startup_mode: Windowed
 
 scrolling:
@@ -65,15 +60,17 @@ mouse:
 cursor:
   # Values for 'style':
   # Block, Underline, Beam
-  style: Beam
+  style:
+    shape: Beam
+    blinking: On
+  vi_mode_style:
+    shape: Beam
 
   # Values for `Blinking`
   #   - Never: Prevent the cursor from ever blinking.
   #   - Off: Disable blinking by default.
   #   - On: Enable blinking by default.
   #   - Always: Force the cursor to always blink.
-  blinking: On
-  vi_mode_style: Beam
   blink_interval: 750
 
   # If set to 'true', the cursor will be rendered as a hollow box when the window is not focused.
@@ -90,7 +87,6 @@ debug:
   log_level: Warn
   persistent_logging: true
   print_events: false
-  ref_test: false
 
 key_bindings:
   # Spawn new instance in the same directory with CTRL+SHIFT+ENTER
