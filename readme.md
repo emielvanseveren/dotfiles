@@ -1,4 +1,5 @@
 # Dotfiles
 
-- dependencies:
-  dotenv
+### dependencies:
+
+- direnv
