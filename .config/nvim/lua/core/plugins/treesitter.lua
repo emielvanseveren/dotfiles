@@ -20,7 +20,7 @@ return {
       { "<bs>", desc = "Decrement selection", mode = "x" },
     },
     opts = {
-      highlight = { enable = true },
+      highlight = { enable = true, disable = { "latex" } },
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = "all",
