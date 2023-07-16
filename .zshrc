@@ -98,6 +98,8 @@ autoload wtr
 autoload -Uz compinit
 compinit
 
+# hook direnv into zsh
+eval "$(direnv hook zsh)"
 
 ###############################
 ###       Completion stuff   ###
@@ -116,3 +118,4 @@ bindkey '^R' fzf-history-widget
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
+export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
