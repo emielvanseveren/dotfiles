@@ -61,17 +61,10 @@ return {
 
   -- git
   {
-    "TimUntersberger/neogit",
-    keys = {
-      {
-        "<leader>g",
-        function()
-          require("neogit").open()
-        end,
-      },
-    },
+    "neogitorg/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
+      use_telescope = true,
       integrations = {
         diffview = true,
       },
