@@ -23,9 +23,9 @@ return {
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
+    lazy = true,
+    cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install && git reset --hard",
   },
 
   {
@@ -51,6 +51,8 @@ return {
 
   {
     "fatih/vim-go",
+    lazy = true,
+    ft = "go",
     build = ":GoInstallBinaries",
   },
 
@@ -64,11 +66,14 @@ return {
     "neogitorg/neogit",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
+      disable_commit_confirmation = true,
       use_telescope = true,
       integrations = {
         diffview = true,
       },
     },
+    cmd = { "Neogit" },
+    keys = { { "<leader>gs", "<cmd>Neogit<CR>", desc = "neogit" } },
   },
 
   { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },

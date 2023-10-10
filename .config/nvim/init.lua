@@ -7,7 +7,7 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- check if we have the latest stable version of nvim
-local expected_ver = "0.9.1"
+local expected_ver = "0.9.2"
 local v = vim.version()
 local nvim_ver = string.format("%d.%d.%d", v.major, v.minor, v.patch)
 
@@ -32,7 +32,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("core.plugins")
-
 require("core.config.autocmd")
 require("core.config.keymaps")
 require("core.config.options")

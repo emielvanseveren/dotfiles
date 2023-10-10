@@ -39,7 +39,7 @@ opt.cursorline = true -- highlight current line
 opt.list = true
 opt.listchars = "nbsp:¬,eol:¶,extends:»,precedes:«,trail:•,tab:»·"
 
-if vim.fn.has("nvim-0.9.0") == 1 then
+if vim.fn.has("nvim-0.9.2") == 1 then
   opt.splitkeep = "screen"
   opt.shortmess:append({ C = true })
 end
@@ -50,8 +50,6 @@ end
 vim.cmd("packadd termdebug") -- Add termdebug
 g.termdebugger = "rust-gdb" -- Set debugger to rust-gdb
 g.termdebug_wide = 1 -- Set debugger to use wide terminal
-
+g.editorconfig = true -- Enable editorconfig
 g.tex_flavor = "latex"
-
--- Fix markdown indentation settings
-vim.g.markdown_recommended_style = 0
+vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings

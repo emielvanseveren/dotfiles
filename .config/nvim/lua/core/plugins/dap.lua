@@ -29,6 +29,7 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       opts = {},
     },
+
     -- This is the actual node debugger
     {
       "microsoft/vscode-js-debug",
@@ -60,80 +61,17 @@ return {
       name = "lldb",
     }
 
-    dap.adapters["pwa-node"] = {
-      type = "server",
-      host = "localhost",
-      port = "${port}",
-      executable = {
-        command = "node",
-        args = { os.getenv("HOME") .. "/.local/share/nvim/lazy/vscode-js-debug/out/src/vsDebugServer.js", "${port}" },
-      },
-    }
-
-    local ts_file_types = {
-      "typescriptreact",
-      "typescript",
-      "javascript",
-      "javascriptreact",
-    }
-
-    -- TODO: this is not working yet
-    -- So added the configurations below manually (I think it is monorepo related)
-
-    -- use .vscode/launch.json to setup debug configurations
-    require("dap.ext.vscode").load_launchjs("~/launch.json", { ["pwa-node"] = ts_file_types })
-
-    -- FIX: pwa-node is currently not working correctly.
-    -- I think it is related to issue: https://github.com/mfussenegger/nvim-dap/issues/762
-    -- I can start the debugger see the output in the terminal but the breakpoints are not hit
-    dap.configurations.typescript = {
-      {
-        type = "pwa-node",
-        request = "attach",
-        name = "api",
-        skipFiles = { "<node_internals>/**" },
-        address = "127.0.0.1",
-        port = 12001,
-        localRoot = "${workspaceFolder}/packages/app-api",
-        remoteRoot = "/app/packages/app-api",
-        outFiles = {
-          "${workspaceFolder}/packages/lib-http/**/*.js",
-          "${workspaceFolder}/packages/lib-queues/**/*.js",
-          "${workspaceFolder}/packages/lib-util/**/*.js",
-          "${workspaceFolder}/packages/lib-gameserver/**/*.js",
-          "${workspaceFolder}/packages/**/dist/*.js",
-        },
-      },
-      {
-        type = "pwa-node",
-        request = "attach",
-        name = "vmm",
-        skipFiles = { "<node_internals>/**" },
-        address = "127.0.0.1",
-        port = 12002,
-        localRoot = "${workspaceFolder}/packages/app-vmm",
-        remoteRoot = "/app/packages/app-vmm",
-        restart = true,
-        outFiles = {
-          "${workspaceFolder}/packages/lib-http/**/*.js",
-          "${workspaceFolder}/packages/lib-queues/**/*.js",
-          "${workspaceFolder}/packages/**/dist/*.js",
-        },
-      },
-    }
-
     dap.configurations.rust = {
       {
         name = "Launch",
         type = "lldb",
         request = "launch",
         program = function()
-          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
         end,
         cwd = "${workspaceFolder}",
         showDisassembly = "never",
         stopOnEntry = false,
-        args = {},
       },
     }
 
