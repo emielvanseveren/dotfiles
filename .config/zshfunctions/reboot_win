@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+function reboot_win {
+  sudo grub-reboot 'Windows Boot Manager (on /dev/nvme0n1p2)' 
+  sudo reboot
+}

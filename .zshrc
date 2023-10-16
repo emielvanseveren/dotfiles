@@ -69,10 +69,10 @@ alias tls="tmux ls"
 
 # git
 alias gd="git diff"
-alias gs="git status --short:m 'kjj:w
-"
+alias gs="git status --short:m 'kjj:w'"
 alias gdc="git diff --cached"
 
+alias lzd="lazydocker"                                  # Alias for lazydocker
 
 ################################
 ###    Add paths to $PATH    ###
@@ -94,6 +94,7 @@ autoload randomstring
 autoload source_helm
 autoload source_kubectl
 autoload wtr
+autoload reboot_win
 
 autoload -Uz compinit
 compinit
