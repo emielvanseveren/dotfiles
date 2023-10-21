@@ -73,7 +73,6 @@ for_window [class="firefox"] move to workspace $ws2
 for_window [class="discord"] move to workspace $ws8
 for_window [class="Spotify"] move to workspace $ws9
 for_window [class="obsidian"] move to workspace $ws4
-for_window [title="Playwright Test"] move to workspace $ws1
 
 ###############################################################################
 ## Theme (dracula)                                                           ##
@@ -96,6 +95,8 @@ bindsym $mod+Return exec /usr/bin/alacritty
 bindsym $mod+q kill
 # Execute Rofi
 bindsym $mod+d exec --no-startup-id "rofi -show drun"
+# lock screen
+bindsym $mod+l exec --no-startup-id "slock"
 # Focus the parent container
 bindsym $mod+a focus parent
 # Focus the child container (new application that you open).
@@ -238,7 +239,7 @@ bindsym --release $mod+Shift+s exec "flameshot gui"
 ###############################################################################
 
 # background image
-exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpapers_nsfw/*"
+exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/i3/wallpapers/*"
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
 
 # boot on start
