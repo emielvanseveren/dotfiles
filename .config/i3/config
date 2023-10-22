@@ -96,7 +96,7 @@ bindsym $mod+q kill
 # Execute Rofi
 bindsym $mod+d exec --no-startup-id "rofi -show drun"
 # lock screen
-bindsym $mod+l exec --no-startup-id "slock"
+bindsym $mod+o exec --no-startup-id "slock"
 # Focus the parent container
 bindsym $mod+a focus parent
 # Focus the child container (new application that you open).
