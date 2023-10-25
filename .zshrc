@@ -56,6 +56,7 @@ alias tf='terraform'                                    # Alias for terraform
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
 alias rr="ranger"
+alias vim="nvim"
 
 # human readable sizes
 alias du="du -h"
@@ -116,6 +117,11 @@ source /usr/share/fzf/completion.zsh
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
+
+# add keybindings as in tmux
+bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
+bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
+
 
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
