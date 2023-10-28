@@ -1,5 +1,4 @@
 local map = vim.keymap.set
-local Util = require("lazyvim.util")
 
 map("n", "<leader>Y", ":%y+ <CR>", { desc = "Yank entire file" })
 map("n", "<Esc>", "<cmd> nohlsearch <CR>", { desc = "Remove search highlight" })
@@ -60,23 +59,6 @@ map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result
 map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-
--- floating terminal
-map("n", "<leader>ft", function()
-  Util.float_term(nil, { cwd = Util.get_root() })
-end, { desc = "Terminal (root dir)" })
-map("n", "<leader>fT", function()
-  Util.float_term()
-end, { desc = "Terminal (cwd)" })
-map("t", "<esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-
--- lazygit
-map("n", "<leader>gg", function()
-  Util.float_term({ "lazygit" }, { cwd = Util.get_root() })
-end, { desc = "Lazygit (root dir)" })
-map("n", "<leader>gG", function()
-  Util.float_term({ "lazygit" })
-end, { desc = "Lazygit (cwd)" })
 
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>

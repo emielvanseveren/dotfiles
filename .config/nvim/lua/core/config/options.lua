@@ -34,15 +34,28 @@ opt.swapfile = false -- Disable swap files
 opt.laststatus = 3 -- global statusline
 opt.undolevels = 10000 -- maximum number of changes that can be undone.
 opt.backspace = "2" -- Backspace over newlines
-opt.foldenable = false -- Disable folding by default
+opt.foldenable = true -- Disable folding by default
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 opt.cursorline = true -- highlight current line
+opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.list = true
 opt.listchars = "nbsp:¬,eol:¶,extends:»,precedes:«,trail:•,tab:»·"
+opt.splitkeep = "screen"
+opt.shortmess:append({ C = true })
 
-if vim.fn.has("nvim-0.9.2") == 1 then
-  opt.splitkeep = "screen"
-  opt.shortmess:append({ C = true })
-end
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  -- fold = "⸱",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
+
+-- Colorscheme
+vim.cmd([[colorscheme tokyonight]])
 
 -- ===============================================================
 -- # Built-in debugger
