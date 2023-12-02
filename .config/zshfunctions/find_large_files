@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+# Function to find large files in a specified directory
+# Usage
+# To find files larger than 50MB in the current directory:
+# find_large_files
+#
+# To find files larger than 100MB in /home/user/Documents:
+# find_large_files /home/user/Documents 100
+find_large_files() {
+    local target_directory="${1:-.}"  # Default to current directory if no directory is provided
+    local size_threshold="${2:-50}"   # Default to 50MB if no size is provided
+
+    # Find files larger than the specified size threshold
+    echo "Finding files larger than ${size_threshold}MB in ${target_directory}"
+    find ${target_directory} -type f -size +${size_threshold}M -exec ls -lh {} \; | awk '{ print $NF ": " $5 }'
+}

@@ -14,6 +14,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untrac
 source ~/.zplug/init.zsh                                # initialize plugins
 zplug "lukechilds/zsh-nvm"                              # lazy loaded managed nvmm because that thing is soooo slow it is insane
 
+
+
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -23,7 +25,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load                                                # Should generate the plugins=(...) part. Add --verbose to see the output.
-
 
 ################################
 ###         EXPORTS          ###
@@ -62,6 +63,10 @@ alias vim="nvim"
 alias du="du -h"
 alias df="df -h"
 
+alias k="kubectl"                                       # Alias for kubectl
+alias kx="kubectx"                                      # Tool to swtich betwen contexts (clusters) on kubectl faster
+alias kb="kubens"                                       # Tool to switch between kubernetes namespaces 
+
 # tmux
 alias tns="tmux new -s"
 alias ta="tmux at"
@@ -70,6 +75,7 @@ alias tls="tmux ls"
 
 # git
 alias gd="git diff"
+alias gds="git diff --staged"
 alias gs="git status --short:m 'kjj:w'"
 alias gdc="git diff --cached"
 
@@ -80,6 +86,10 @@ alias lzd="lazydocker"                                  # Alias for lazydocker
 ################################
 PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
+PATH="/home/emiel/.fly/bin:$PATH"
+WASMTIME_HOME="$HOME/.wasmtime"
+PATH="$WASMTIME_HOME/bin:$PATH"
+PICO_SDK_PATH=$HOME/code/pico/pico-sdk
 
 ##################################################
 ###    Add functions to special functions path ###
@@ -96,6 +106,7 @@ autoload source_helm
 autoload source_kubectl
 autoload wtr
 autoload reboot_win
+autoload find_large_files
 
 autoload -Uz compinit
 compinit
@@ -122,7 +133,3 @@ bindkey '^R' fzf-history-widget
 bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
 bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
 
-
-export WASMTIME_HOME="$HOME/.wasmtime"
-export PATH="$WASMTIME_HOME/bin:$PATH"
-export PICO_SDK_PATH=$HOME/code/pico/pico-sdk
