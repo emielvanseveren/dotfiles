@@ -42,6 +42,12 @@ map("n", "<C-h>", "<C-w><C-h>", { desc = "[NAV] Go to the window on the left." }
 map("n", "<C-l>", "<C-w><C-l>", { desc = "[NAV] Go to the window on the right." })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "[NAV] Go to the window below." })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "[NAV] Go to the window above." })
+
+map("n", "<C-left>", "1<C-w><C-left>>", { desc = "[NAV] Resize to left" })
+map("n", "<C-right>", "1<C-w><C-right><", { desc = "[NAV] Resize to right" })
+map("n", "<C-up>", "1<C-w><C-up>+", { desc = "[NAV] Resize to up" })
+map("n", "<C-down>", "1<C-w><C-down>-", { desc = "[NAV] Resize to down" })
+
 map("n", "<leader>h", "<C-w>s", { desc = "[NAV] Split window horizontally." })
 map("n", "<leader>v", "<C-w>v", { desc = "[NAV] Split window vertically." })
 map("n", "<leader>cw", "<C-W>c", { desc = "[WINDOW] Close window." })

@@ -48,7 +48,7 @@ return {
       vim.g.completion_matching_ingore_case = 1 -- While in popup ignore caps.
     end,
   },
-
+  { "folke/neodev.nvim", opts = {} },
   {
     "fatih/vim-go",
     lazy = true,

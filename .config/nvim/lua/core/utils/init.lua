@@ -36,6 +36,9 @@ function M.telescope(builtin, opts)
       end
     end
 
+    -- show hidden files
+    opts.hidden = true
+
     require("telescope.builtin")[builtin](opts)
   end
 end
