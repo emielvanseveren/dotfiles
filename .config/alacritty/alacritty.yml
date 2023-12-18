@@ -9,17 +9,12 @@ font:
     family: MonaSpace Neon
     style: Bold
   italic:
-    family: MonaSpace Radon
+    family: MonaSpace Krypton
     style: Italic
   bold_italic:
     family: MonaSpace Neon
     style: Bold italic
   size: 15
-
-# any items in the `env` entry below will be added as environment variables.
-# Some entries may override variables set by alacritty itself.
-env:
-  WINIT_X11_SCALE_FACTOR: "1"
 
 # If 'true', bold text is drawn using the bright color variant.
 draw_bold_text_with_bright_colors: true
