@@ -1,8 +1,8 @@
 [user]
   name = Emiel Van Severen
-  email = 35073890+emielvanseveren@users.noreply.github.com
+  email = github@vanseveren.dev
   username = emielvanseveren
-  signinkey = CBF6D963
+  signinkey = 78AD00F003030B8B
 
 [core]
   pager = delta
