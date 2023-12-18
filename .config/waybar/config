@@ -1,0 +1,40 @@
+{
+  "layer":  "top",
+  "margin": "5px 10px 0px 10px",
+  "modules-left": [ "hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory", "custom/mem",  "tray", ],
+  "height": "44px",
+
+  //***************************
+  //*  Modules configuration  *
+  //***************************
+
+  "hyprland/workspaces": {
+    "format": "{name}",
+    "on-click": "activate",
+    "sort": "id",
+  },
+
+  "cpu": {
+    "format": "󰻠 {usage}%",
+    "on-click": "",
+    "tooltip": false
+  },
+  "memory": {
+    "format": "󰍛 {used:0.1f}GiB / {total:0.1f}GiB",
+    "on-click": "",
+    "tooltip": false
+  },
+
+  "clock": {
+    "interval": 1,
+    "format": "{:󰥔 %H:%M:%S}",
+    "format-alt": "{:󰣆 %A, %B %d | 󰥔 %I:%M %p}",
+  },
+
+  "tray": {
+    "icon-size": 20,
+    "spacing": 0
+  },
+}
