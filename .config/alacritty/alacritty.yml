@@ -14,7 +14,7 @@ font:
   bold_italic:
     family: MonaSpace Neon
     style: Bold italic
-  size: 15
+  size: 16
 
 # If 'true', bold text is drawn using the bright color variant.
 draw_bold_text_with_bright_colors: true
