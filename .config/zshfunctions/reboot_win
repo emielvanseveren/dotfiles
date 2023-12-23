@@ -1,6 +1,7 @@
 #!/bin/zsh
 
+# get entries: awk -F\' '/menuentry / {print $2}' /boot/grub/grub.cfg 
 function reboot_win {
-  sudo grub-reboot 'Windows Boot Manager (on /dev/nvme0n1p2)' 
+  sudo grub-reboot 'Windows Boot Manager (on /dev/nvme0n1p1)'
   sudo reboot
 }
