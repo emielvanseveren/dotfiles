@@ -12,7 +12,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untrac
 ###   PLUGINS   ###
 ###################
 source ~/.zplug/init.zsh                                # initialize plugins
-zplug "lukechilds/zsh-nvm"                              # lazy loaded managed nvmm because that thing is soooo slow it is insane
+zplug "lukechilds/zsh-nvm"                              # lazy loaded managed nvm because that thing is soooo slow it is insane
 
 
 
@@ -132,4 +132,3 @@ bindkey '^R' fzf-history-widget
 # add keybindings as in tmux
 bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
 bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
-
