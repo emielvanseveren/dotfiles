@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+function wlog {
+
+  # Ensure the function is called with an argument
+  if [ $# -eq 0 ]; then
+      echo "Error: No arguments provided."
+      return 1
+  fi
+
+  # Use local variables
+  local WORKLOG_DIRECTORY=$HOME/worklog
+  local WORKLOG_FILE=$WORKLOG_DIRECTORY/$(date +%Y-%m-%d).txt
+  mkdir -p $WORKLOG_DIRECTORY
+
+  CURRENT_TIME=$(date -u +"%H:%M:%SZ")
+
+  echo ""
+  echo "$CURRENT_TIME - $@" | tee -a $WORKLOG_FILE
+  echo ""
+  echo ""
+
+  echo "--------"
+  echo "Currently logged:"
+  echo "--------"
+  cat $WORKLOG_FILE
+}

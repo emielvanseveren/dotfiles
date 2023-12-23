@@ -106,6 +106,7 @@ autoload randomstring
 autoload source_helm
 autoload source_kubectl
 autoload wtr
+autoload wlog
 autoload reboot_win
 autoload find_large_files
 
