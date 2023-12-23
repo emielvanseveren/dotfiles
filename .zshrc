@@ -99,6 +99,7 @@ FPATH=$FPATH:~/.config/zshfunctions
 # functions need to be initialized before they can be run
 autoload dcrb
 autoload dcr
+autoload dcrc
 autoload dive
 autoload jwtd
 autoload randomstring

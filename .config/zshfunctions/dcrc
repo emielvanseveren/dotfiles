@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+function dcrc {
+  docker image prune --force -a --filter "until=240h"
+  docker container prune --force --filter "until=24h"
+}
+
