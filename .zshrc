@@ -56,8 +56,9 @@ alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatical
 alias tf='terraform'                                    # Alias for terraform
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
-alias rr="ranger"
 alias vim="nvim"
+
+alias record='wf-recorder -g "$(slurp)" -F fps=30 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
 
 # human readable sizes
 alias du="du -h"
