@@ -6,7 +6,8 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
       { "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", desc = "Move cursor in tree to [f]ile of current buffer." },
-      { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", desc = "[t]oggle file explorer treeview." },
+      { "<leader>t",         "<cmd>NvimTreeFocus<CR>",    desc = "[F]ocus file explorer. Usefull when multiple windows are open" },
+      { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>",   desc = "[t]oggle file explorer treeview." },
     },
     opts = {
       disable_netrw = true,
@@ -61,7 +62,7 @@ return {
         ignore_whitespace = false,
       },
       linehl = false,
-      numhl = false, -- highlight line number
+      numhl = false,     -- highlight line number
       word_diff = false, -- highlight word diffs
       attach_to_untracked = true,
       watch_gitdir = {
@@ -120,12 +121,12 @@ return {
     cmd = "Telescope",
     keys = {
       -- search
-      { "fg", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
-      { "ff", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "fg", Util.telescope("live_grep"),              desc = "Find in Files (Grep)" },
+      { "ff", Util.telescope("files"),                  desc = "Find Files (root dir)" },
       { "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
       -- list
-      { "tb", "<cmd>Telescope buffers<cr>", desc = "List all buffers" },
-      { "td", "<cmd>Telescope diagnostics<cr>", desc = "List all diagnostics" },
+      { "tb", "<cmd>Telescope buffers<cr>",             desc = "List all buffers" },
+      { "td", "<cmd>Telescope diagnostics<cr>",         desc = "List all diagnostics" },
       {
         "ts",
         Util.telescope("lsp_document_symbols", {
