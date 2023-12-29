@@ -1,0 +1,128 @@
+import = ["./dracula.toml"]
+live_config_reload = true
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[cursor]
+blink_interval = 750
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "On"
+shape = "Beam"
+
+[cursor.vi_mode_style]
+shape = "Beam"
+
+[debug]
+log_level = "Warn"
+persistent_logging = true
+print_events = false
+render_timer = false
+
+[font]
+size = 16
+
+[font.bold]
+family = "MonaSpace Neon"
+style = "Bold"
+
+[font.bold_italic]
+family = "MonaSpace Neon"
+style = "Bold italic"
+
+[font.italic]
+family = "MonaSpace Krypton"
+style = "Italic"
+
+[font.normal]
+family = "MonaSpace Neon"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "Return"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "None"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 10000
+multiplier = 2
+
+[shell]
+program = "/usr/bin/zsh"
+
+[window]
+decorations = "none"
+dynamic_padding = false
+dynamic_title = true
+startup_mode = "Windowed"
+
+[window.padding]
+x = 0
+y = 0
