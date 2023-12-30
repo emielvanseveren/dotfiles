@@ -1,4 +1,4 @@
-export NVM_LAZY_LOAD=true    # Enable Lazy load nvm
+export NVM_LAZY_LOAD=false # Enable Lazy load nvm
 export NVM_COMPLETION=false  # Autocomplete nvm commands
 
 # ZSH | oh-myzsh settings
@@ -71,7 +71,9 @@ alias kb="kubens"                                       # Tool to switch between
 # tmux
 alias tns="tmux new -s"
 alias ta="tmux at"
+alias tas="tmux attach -t"
 alias tk="pkill tmux"
+alias td="tmux detach"
 alias tls="tmux ls"
 
 # git
