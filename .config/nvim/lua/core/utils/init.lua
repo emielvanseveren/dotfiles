@@ -1,13 +1,5 @@
 local M = {}
 
-function M.on_attach(on_attach)
-  vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-      on_attach(vim.lsp.get_client_by_id(args.data.client_id), args.buf)
-    end,
-  })
-end
-
 -- cwd will default to lazyvim.util.get_root
 -- this will return a function that calls telescope.
 -- for `files`, git_files or find_files will be chosen depending on .git
@@ -30,7 +22,8 @@ function M.telescope(builtin, opts)
         map("i", "<a-c>", function()
           local action_state = require("telescope.actions.state")
           local line = action_state.get_current_line()
-          M.telescope(params.builtin, vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
+          M.telescope(params.builtin,
+            vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line }))()
         end)
         return true
       end
