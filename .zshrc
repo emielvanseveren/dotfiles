@@ -14,8 +14,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untrac
 source ~/.zplug/init.zsh                                # initialize plugins
 zplug "lukechilds/zsh-nvm"                              # lazy loaded managed nvm because that thing is soooo slow it is insane
 
-
-
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
     printf "Install? [y/N]: "
@@ -70,6 +68,7 @@ alias kb="kubens"                                       # Tool to switch between
 
 # tmux
 alias tns="tmux new -s"
+alias tm="~/.local/bin/tmux/tmux-sessionizer"           # create tmux session starting selected folder
 alias ta="tmux at"
 alias tas="tmux attach -t"
 alias tk="pkill tmux"
