@@ -1,0 +1,22 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "Local Takaro Database",
+            "Group": "Takaro",
+            "Port": 13100,
+            "Username": "takaro",
+            "Host": "localhost",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        },
+        "2": {
+         "Name": "Local Test Database",
+            "Group": "Test",
+            "Port": 5432,
+            "Username": "emiel",
+            "Host": "postgresql",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+    }
+  }
+}

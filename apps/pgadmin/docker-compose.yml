@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:8.1
+    network_mode: host
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      PGADMIN_LISTEN_PORT: '15000'
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+      - ./servers.json:/pgadmin4/servers.json
+      - ./ssh:/ssh
+    restart: always  
+  postgresql:
+    image: postgres:15
+    restart: always
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - 127.0.0.1:5432:5432
+    environment:
+      POSTGRES_USER: emiel
+      POSTGRES_PASSWORD: postgres_password
+volumes:
+  pgadmin:
+  postgres:
