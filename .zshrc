@@ -56,7 +56,7 @@ alias grep='rg'                                         # Use ripgrep as default
 alias sd="sudo shutdown now"
 alias vim="nvim"
 
-alias record='wf-recorder -g "$(slurp)" -F fps=30 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
+alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
 
 # human readable sizes
 alias du="du -h"
