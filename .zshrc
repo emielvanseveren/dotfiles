@@ -80,7 +80,7 @@ alias gd="git diff"
 alias gds="git diff --staged"
 alias gs="git status --short:m 'kjj:w'"
 alias gdc="git diff --cached"
-
+alias takaro="cd ~/code/takaro && tmux"                 # Open tmux session in takaro folder
 alias lzd="lazydocker"                                  # Alias for lazydocker
 
 ################################
