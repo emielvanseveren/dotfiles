@@ -8,6 +8,12 @@ HYPHEN_INSENSITIVE="true"                               # while completing '_' a
 COMPLETION_WAITING_DOTS="true"                          # Red dots whilst waiting for completion.
 DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untracked files (great for large repos)
 
+# Start hyprland on default tty
+set TTY1 (tty)
+if [ "$TTY1" = "/dev/tty1" ]; then
+    exec Hyprland
+fi
+
 ###################
 ###   PLUGINS   ###
 ###################
