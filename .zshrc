@@ -9,10 +9,11 @@ COMPLETION_WAITING_DOTS="true"                          # Red dots whilst waitin
 DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untracked files (great for large repos)
 
 # Start hyprland on default tty
-set TTY1 (tty)
+TTY1=$(tty)
 if [ "$TTY1" = "/dev/tty1" ]; then
     exec Hyprland
 fi
+
 
 ###################
 ###   PLUGINS   ###
