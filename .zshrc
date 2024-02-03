@@ -82,6 +82,9 @@ alias tk="pkill tmux"
 alias td="tmux detach"
 alias tls="tmux ls"
 
+alias venv="source .venv/bin/activate"                  # Activate python virtual environment
+alias pipr="python3 -m pip install -r requirements.txt" # Install python requirements from requirements.txt
+
 # git
 alias gd="git diff"
 alias gds="git diff --staged"
