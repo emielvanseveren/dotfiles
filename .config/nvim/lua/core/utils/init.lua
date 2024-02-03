@@ -9,6 +9,7 @@ function M.telescope(builtin, opts)
     builtin = params.builtin
     opts = params.opts
     opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
+
     if builtin == "files" then
       if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
         opts.show_untracked = true
@@ -31,7 +32,6 @@ function M.telescope(builtin, opts)
 
     -- show hidden files
     opts.hidden = true
-
     require("telescope.builtin")[builtin](opts)
   end
 end

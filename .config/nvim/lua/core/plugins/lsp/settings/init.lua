@@ -29,7 +29,7 @@ M.on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)        -- Rename the symbol under the cursor (project wide).
 
   if client.name == "tsserver" then
-    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentFormattingProvider = true
   end
 
   if client.name == "lua_ls" then

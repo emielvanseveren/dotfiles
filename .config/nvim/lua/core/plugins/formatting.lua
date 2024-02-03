@@ -1,6 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "BufReadPre"},
   dependencies = { "mason.nvim" },
   lazy = true,
   cmd = "ConformInfo",
@@ -26,9 +26,14 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       sh = { "shfmt" },
+      python = { "isort", "black" },
       javascript = { { "prettierd", "prettier" } },
+      javascriptreact = { { "prettierd", "prettier" } },
+      typescript = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
       terraform = { "terraform_fmt" },
       rust = { "rustfmt" },
+
     },
   },
 }

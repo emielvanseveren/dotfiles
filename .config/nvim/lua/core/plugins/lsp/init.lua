@@ -36,7 +36,7 @@ return {
     "williamboman/mason.nvim",
     cmd = "Mason",
     opts = {
-      ensure_installed = { "stylua", "luacheck", "shellcheck", "eslint_d", "prettierd"},
+      ensure_installed = { "stylua", "luacheck", "shellcheck", "eslint_d", "prettierd", "terraform_fmt", "rustfmt", "black", "isort" },
       automatic_installation = true,
     },
   },

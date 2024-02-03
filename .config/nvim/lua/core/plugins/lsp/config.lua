@@ -2,7 +2,6 @@ return function()
   require("neodev").setup()
   local lspconfig = require("lspconfig")
   local mason_lspconfig = require("mason-lspconfig")
-  local mason = require("mason")
 
   local lsp_conf = require("core.plugins.lsp.settings")
 
