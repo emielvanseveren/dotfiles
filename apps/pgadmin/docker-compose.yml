@@ -3,6 +3,7 @@ version: '3.1'
 services:
   pgadmin:
     image: dpage/pgadmin4:8.1
+    user: root
     network_mode: host
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
@@ -12,8 +13,8 @@ services:
     volumes:
       - pgadmin:/var/lib/pgadmin
       - ./servers.json:/pgadmin4/servers.json
-      - ./ssh:/ssh
-    restart: always  
+      - ~/.ssh:/var/lib/pgadmin/storage/postgres_local.host/.ssh
+    restart: unless-stopped
   postgresql:
     image: postgres:15
     restart: always
