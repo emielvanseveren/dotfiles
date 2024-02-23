@@ -17,11 +17,20 @@
 - zathura (this is just the document viewer and requires different package for each filetype)
 - zathura-pdf-mupdf
 - texlive-basic
+- texlive-
 - texlive-meta
 - wl-clipboard (system clipboard handler, required to copy between system and nvim)
 
 ### optional
 - VLC
+
+### Systemd
+
+```bash
+## Enable 
+systemctl enable --user ssh-agent.service
+
+```
 
 
 ### Windows Dual boot
