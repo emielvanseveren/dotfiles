@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+function ngrok {
+    docker run --rm -it -v ~/.ngrok2/ngrok.yml:/etc/ngrok.yml:ro -e NGROK_CONFIG=/etc/ngrok.yml --network host ngrok/ngrok "$@"
+}

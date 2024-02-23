@@ -121,6 +121,7 @@ autoload wtr
 autoload wlog
 autoload reboot_win
 autoload find_large_files
+autoload ngrok
 
 autoload -Uz compinit
 compinit
