@@ -11,6 +11,7 @@ return function()
     pyright = {},
     clangd = {},
     texlab = {},
+    slint_lsp = {},
     ltex = lsp_conf.latex,
     gopls = lsp_conf.go,
     lua_ls = lsp_conf.lua,

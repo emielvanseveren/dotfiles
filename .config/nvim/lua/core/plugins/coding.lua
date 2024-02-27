@@ -57,6 +57,10 @@ return {
   },
 
   {
+    "slint-ui/vim-slint",
+    ft = "slint"
+  },
+  {
     "mfussenegger/nvim-ansible",
     ft = "yaml",
   },
