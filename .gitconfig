@@ -5,12 +5,14 @@
   signinkey = 78AD00F003030B8B
 
 [core]
-  pager = delta
+  pager = delta # binary is delta but package is git-delta
   editor = nvim
 
+[interactive]
+  diffFilter = delta --color-only
+
 [alias]
-  # use git c to sign off commits
-	c = commit -s
+  c = commit -s # use git c to sign off commits
 
 [github]
   user = emielvanseveren
@@ -19,8 +21,7 @@
   helper = cache
 
 [commit]
-  # Configure gpg to sign all commits
-  gpgsign = true
+  gpgsign = true # Configure gpg to sign all commits
 
 [push]
   default = tracking

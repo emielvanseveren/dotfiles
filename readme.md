@@ -20,6 +20,7 @@
 - texlive-
 - texlive-meta
 - wl-clipboard (system clipboard handler, required to copy between system and nvim)
+- git-delta (git pager)
 
 ### optional
 - VLC
