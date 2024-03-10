@@ -6,7 +6,6 @@
 - kubectx and kubens 
 - MonaSpace font
 - dunst
-- swaylock
 - ripgrep
 - fd
 - nerdfonts
@@ -21,6 +20,7 @@
 - texlive-meta
 - wl-clipboard (system clipboard handler, required to copy between system and nvim)
 - git-delta (git pager)
+- hyprland, hypridle, hyprlock
 
 ### optional
 - VLC
