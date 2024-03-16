@@ -39,6 +39,9 @@
 [includeIf "gitdir:~/code/uni/uni_projects"]
   path = ~/.gitconfig-uni
 
+[includeIf "gitdir:~/code/work"] 
+  path = ~/.gitconfig-work
+ 
 [mergetool "nvimdiff4"]
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [merge]
