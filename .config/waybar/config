@@ -3,7 +3,7 @@
   "margin": "5px 10px 0px 10px",
   "modules-left": [ "hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "custom/mem",  "tray", ],
+  "modules-right": ["cpu", "memory", "custom/mem",  "tray"],
   "height": "44px",
 
   //***************************
@@ -31,8 +31,8 @@
 
   "clock": {
     "interval": 1,
-    "format": "{:󰥔 %H:%M:%S}",
-    "format-alt": "{:󰣆 %A, %B %d | 󰥔 %H:%M:%S}",
+    "format": "{:%H:%M:%S}",
+    "format-alt": "{:%A, %B %d | :%H:%M:%S}",
   },
 
   "tray": {
