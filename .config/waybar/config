@@ -1,20 +1,14 @@
 {
   "layer":  "top",
   "margin": "5px 10px 0px 10px",
-  "modules-left": [ "hyprland/workspaces"],
+  "modules-left": [ "sway/workspaces", "sway/mode"],
   "modules-center": ["clock"],
-  "modules-right": ["cpu", "memory", "custom/mem",  "tray"],
+  "modules-right": [ "battery","cpu", "memory" ],
   "height": "44px",
 
   //***************************
   //*  Modules configuration  *
   //***************************
-
-  "hyprland/workspaces": {
-    "format": "{name}",
-    "on-click": "activate",
-    "sort": "id",
-  },
 
   "cpu": {
     "interval": 1,

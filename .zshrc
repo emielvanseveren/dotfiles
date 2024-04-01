@@ -91,6 +91,7 @@ alias gds="git diff --staged"
 alias gs="git status --short:m 'kjj:w'"
 alias gdc="git diff --cached"
 alias takaro="cd ~/code/takaro && tmux new -s takaro"   # Open tmux session in takaro folder
+alias otiv3="cd ~/code/otiv3 && tmux new -s otiv3"      # Open tmux session in otiv session
 alias lzd="lazydocker"                                  # Alias for lazydocker
 
 ################################
@@ -138,8 +139,12 @@ if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/googl
 if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/completion.zsh.inc'; fi
 
 # completion for fzf
-source /usr/share/fzf/key-bindings.zsh
-source /usr/share/fzf/completion.zsh
+
+# arch
+if [ -f '/usr/share/fzf/key-bindings.zsh' ]; then . '/usr/share/emiel/fzf/key-bindings.zsh'; fi
+if [ -f '/usr/share/fzf/completion.zsh' ]; then . '/usr/share/emiel/fzf/completion.zsh'; fi
+# ubuntu
+if [ -f '/home/emiel/.fzf.zsh' ]; then .  '/home/emiel/.fzf.zsh'; fi
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
@@ -147,3 +152,4 @@ bindkey '^R' fzf-history-widget
 # add keybindings as in tmux
 bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
 bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
+

@@ -118,7 +118,6 @@ multiplier = 2
 program = "/usr/bin/zsh"
 
 [window]
-decorations = "none"
 dynamic_padding = false
 dynamic_title = true
 startup_mode = "Windowed"
