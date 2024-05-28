@@ -141,8 +141,8 @@ if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel
 # completion for fzf
 
 # arch
-if [ -f '/usr/share/fzf/key-bindings.zsh' ]; then . '/usr/share/emiel/fzf/key-bindings.zsh'; fi
-if [ -f '/usr/share/fzf/completion.zsh' ]; then . '/usr/share/emiel/fzf/completion.zsh'; fi
+if [ -f '/usr/share/fzf/key-bindings.zsh' ]; then . '/usr/share/fzf/key-bindings.zsh'; fi
+if [ -f '/usr/share/fzf/completion.zsh' ]; then . '/usr/share/fzf/completion.zsh'; fi
 # ubuntu
 if [ -f '/home/emiel/.fzf.zsh' ]; then .  '/home/emiel/.fzf.zsh'; fi
 
