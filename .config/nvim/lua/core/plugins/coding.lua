@@ -25,7 +25,7 @@ return {
     ft = "markdown",
     lazy = true,
     cmd = { "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install && git reset --hard",
+    build = function() vim.fn["mkdp#util#install"]() end,
   },
 
   {

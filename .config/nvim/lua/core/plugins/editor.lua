@@ -26,7 +26,8 @@ return {
         enable = true,
       },
       filters = {
-        dotfiles = true,
+        dotfiles = false,
+        custom = {'^.git$'}
       },
       update_focused_file = {
         enable = true,

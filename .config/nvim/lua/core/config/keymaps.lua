@@ -15,6 +15,8 @@ map("i", "<leader><leader>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<leader><leader>j", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<leader><leader>k", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
+map("n", "<leader>H", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
