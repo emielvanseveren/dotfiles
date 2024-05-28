@@ -220,6 +220,10 @@ mode "move" {
     bindsym $mod+m mode "default"
 }
 
+bar {
+     swaybar_command waybar
+}
+
 # Only enable outer gaps when there is exactly one container
 # smart_gaps inverse_outer
 
@@ -227,21 +231,21 @@ gaps inner 3
 # When there is only 1 window
 gaps top 0
 
-# Take a screenshot with flameshot by pressing <Mod+Shift+s>
-bindsym --release $mod+Shift+s exec "grimshot copy output"
-
 ###############################################################################
 ## Startup Application                                                       ##
 ###############################################################################
 
+# Take a screenshot with flameshot by pressing <Mod+Shift+s>
+bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
+
 # background image
-exec_always --no-startup-id "feh --randomize --bg-scale $HOME/.config/sway/wallpapers/*"
-exec_always --no-startup-id "waybar"
+output * bg $HOME/.config/sway/wallpapers/background_01.jpg fill
+
 
 # fix for gtk applications taking long time to start 
 exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-
 # boot on start
 exec --no-startup-id /home/emiel/.cargo/bin/alacritty
+exec --no-startup-id /snap/bin/slack
 exec --no-startup-id /usr/bin/firefox
