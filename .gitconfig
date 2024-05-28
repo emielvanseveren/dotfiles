@@ -49,5 +49,6 @@
   prompt = false
 
 [gpg]
-	program = /usr/bin/gpg
-
+  program = /usr/bin/gpg
+[maintenance]
+  repo = /home/emiel/code/work/otiv3
