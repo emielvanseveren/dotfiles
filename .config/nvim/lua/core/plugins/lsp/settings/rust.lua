@@ -2,6 +2,9 @@ return {
   ["rust-analyzer"] = {
     procMacro = { enable = true },
     cargo = { AllFeatures = true },
+
+
+
     checkOnSave = {
       allTargets = false,
       extraArgs = {
@@ -9,6 +12,7 @@ return {
       }
     },
     check = {
+
       command = "clippy",
       extraArgs = { "--no-deps" }
     }

@@ -24,21 +24,21 @@ render_timer = false
 [font]
 size = 16
 
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
 [font.bold]
-family = "MonaSpace Neon"
+family = "JetBrainsMono Nerd Font"
 style = "Bold"
 
 [font.bold_italic]
-family = "MonaSpace Neon"
+family = "JetBrainsMono Nerd Font"
 style = "Bold italic"
 
 [font.italic]
-family = "MonaSpace Krypton"
+family = "JetBrainsMono Nerd Font"
 style = "Italic"
-
-[font.normal]
-family = "MonaSpace Neon"
-style = "Regular"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"

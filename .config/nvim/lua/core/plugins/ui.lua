@@ -1,8 +1,9 @@
 return {
-  { "kyazdani42/nvim-web-devicons", lazy = true },
+  { "kyazdani42/nvim-web-devicons", 
+    lazy = true,
+  },
   {
     "akinsho/nvim-bufferline.lua",
-    version = "v3.*",
     event = "VeryLazy",
     dependencies = {
       "kyazdani42/nvim-web-devicons",
@@ -19,7 +20,6 @@ return {
           mode = "buffers",
           separator_style = "slant", -- Space between tabs
           enforce_regular_tabs = true, -- Allow to extend tab size when name is longer than tab_size
-          show_buffer_default_icon = true, -- Show file icon
           show_buffer_close_icons = false, -- Show close icon
           always_show_bufferline = true, -- Only show bufferline when more than 1 tab
           diagnostics = "nvim_lsp", -- Change color of filename when file has an error
