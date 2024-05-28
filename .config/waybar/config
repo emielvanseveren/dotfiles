@@ -25,8 +25,8 @@
 
   "clock": {
     "interval": 1,
-    "format": "{:󰥔 %H:%M:%S}",
-    "format-alt": "{:󰣆 %A, %B %d | 󰥔 %H:%M:%S}",
+    "format": "{:%H:%M:%S}",
+    "format-alt": "{:%A, %B %d | :%H:%M:%S}",
   },
 
   "tray": {
