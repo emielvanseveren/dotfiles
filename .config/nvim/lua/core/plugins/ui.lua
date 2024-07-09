@@ -89,31 +89,43 @@ return {
     end,
   },
 
-  -- indent guides
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
+ {
+    "echasnovski/mini.indentscope",
+    version = false,
+    event = { "BufReadPost", "BufWritePost", "BufNewFile"},
     opts = {
-      scope = { show_start = false, show_end = false },
-      exclude = {
-        buftypes = {
-          "nofile",
-          "terminal",
-        },
-        filetypes = {
-          "help",
-          "startify",
-          "aerial",
+      symbol = "│",
+      options = { try_as_border = true },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = {
           "alpha",
           "dashboard",
+          "fzf",
+          "help",
           "lazy",
-          "neogitstatus",
-          "NvimTree",
+          "lazyterm",
+          "mason",
           "neo-tree",
+          "notify",
+          "toggleterm",
           "Trouble",
+          "trouble",
         },
-      },
+        callback = function()
+          vim.b.miniindentscope_disable = true
+        end,
+      })
+    end,
+  },
+
+  -- indent guides
+ {
+    "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufWritePost", "BufNewFile"},
+    opts = {
+      scope = { enabled = false },
     },
-    event = { "BufReadPost", "BufNewFile" },
   },
 }
