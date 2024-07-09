@@ -101,11 +101,10 @@ PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.local/bin                                 # Mainly because pip installs binaries here
 PATH="/home/emiel/.fly/bin:$PATH"
+PATH="$PATH:/opt/nvim-linux64/bin"			# Neovim install from binary is put in this location
 WASMTIME_HOME="$HOME/.wasmtime"
 PATH="$WASMTIME_HOME/bin:$PATH"
 PICO_SDK_PATH=$HOME/code/pico/pico-sdk
-
-
 
 ##################################################
 ###    Add functions to special functions path ###

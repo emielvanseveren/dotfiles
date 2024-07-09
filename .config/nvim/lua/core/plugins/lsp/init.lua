@@ -7,6 +7,7 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "folke/neodev.nvim",
       "RRethy/vim-illuminate",
+      "b0o/schemastore.nvim"
     },
     opts = {
       inlay_hints = {

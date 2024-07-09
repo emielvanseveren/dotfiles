@@ -19,6 +19,7 @@ return function()
     tsserver = lsp_conf.ts,
     rust_analyzer = lsp_conf.rust,
     html = { filetypes = { "html", "hbs" } },
+    jsonls = lsp_conf.json,
     terraformls = { filetypes = { "terraform", "tf" } },
   }
 
