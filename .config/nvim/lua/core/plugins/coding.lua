@@ -38,16 +38,26 @@ return {
     end,
   },
   {
-    -- NOTE: in case copilot does not show suggestions try to remove the extension and reinstall it.
-    -- should be in ~/.local/share/nvim/lazy/copilot.vim/
-    "github/copilot.vim",
-    init = function()
-      vim.g.copilot_no_tab_map = true -- Don't use <Tab> but <C-J> to accept the suggestion. Tab is already used for cmp.
-      vim.g.copilot_assume_mapped = true
-      vim.api.nvim_set_keymap("i", "<C-Y>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-      vim.g.completion_matching_ingore_case = 1 -- While in popup ignore caps.
-    end,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    build = ":Copilot auth",
+    opts = {
+      suggestion = {
+        enabled = true,
+        keymap = {
+          accept = "<C-Y>"
+        }
+      },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        yaml = true,
+        help = true,
+      }
+
+    }
   },
+
   { "folke/neodev.nvim", opts = {} },
   {
     "fatih/vim-go",
