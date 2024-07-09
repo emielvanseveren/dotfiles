@@ -34,10 +34,6 @@ return {
         codelens = {
           enabled = true
         },
-        -- only show underline for info diagnostics
-        underline = {
-          severity = { max = vim.diagnostic.severity.INFO },
-        },
         -- only show errors and warnings in virtual text
         virtual_text = {
           spacing = 4,
