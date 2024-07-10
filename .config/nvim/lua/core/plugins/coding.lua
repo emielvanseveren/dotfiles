@@ -54,7 +54,6 @@ return {
         yaml = true,
         help = true,
       }
-
     }
   },
 
