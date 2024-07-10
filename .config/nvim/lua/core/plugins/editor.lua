@@ -91,12 +91,20 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
       signs = {
-        add = { text = "│", },
-        change = { text = "│", },
-        delete = { text = "_", },
-        topdelete = { text = "‾"},
-        changedelete = { text = "~"},
+        add = { text = "A", },
+        change = { text = "C", },
+        delete = { text = "D", },
+        topdelete = { text = "TD"},
+        changedelete = { text = "CD"},
       },
+      signs_staged = {
+        add = { text = "SA" },
+        change = { text = "SC"},
+        delete = { text = "SD", },
+        topdelete = { text = "STD"},
+        changedelete = { text = "SCD"},
+      },
+      signs_staged_enable = true,
       signcolumn = true, -- show signs in column
       current_line_blame = true,
       current_line_blame_opts = {
@@ -105,9 +113,9 @@ return {
         delay = 1000,
         ignore_whitespace = false,
       },
-      linehl = false,
-      numhl = false,     -- highlight line number
-      word_diff = false, -- highlight word diffs
+      linehl = true,
+      numhl = true,     -- highlight line number
+      word_diff = true , -- highlight words or letters that changed in changed line.
       attach_to_untracked = true,
       watch_gitdir = {
         interval = 1000,
@@ -119,10 +127,12 @@ return {
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
-        map("n", "gj", gs.next_hunk, "Next git hunk")
-        map("n", "gk", gs.prev_hunk, "Previous git hunk")
-        map("n", "gl", gs.blame_line, "View git blame")
-        map("n", "gp", gs.preview_hunk, "Preview Git hunk")
+        map("n", "ghj", gs.next_hunk, "Next git hunk")
+        map("n", "ghk", gs.prev_hunk, "Previous git hunk")
+        map("n", "ghp", gs.preview_hunk, "Preview Git hunk")
+        map("n", "ghs", gs.stage_hunk, "Preview Git hunk")
+        map("n", "ghr", gs.reset_hunk, "Preview Git hunk")
+        map("n", "ghS", gs.undo_stage_hunk, "Preview Git hunk")
       end,
     },
   },
