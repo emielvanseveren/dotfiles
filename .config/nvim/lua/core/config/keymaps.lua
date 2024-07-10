@@ -6,8 +6,8 @@ map("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
 
 -- Move lines up and down
-map("n", "<leader><leader>j", "<cmd>m .+1<cr>==", { desc = "Move down" })
 map("n", "<leader><leader>k", "<cmd>m .-2<cr>==", { desc = "Move up" })
+map("n", "<leader><leader>j", "<cmd>m .+1<cr>==", { desc = "Move down" })
 
 map("i", "<leader><leader>j", "<esc><cmd>m .+1<cr>==gi", { desc = "Move down" })
 map("i", "<leader><leader>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
@@ -15,7 +15,7 @@ map("i", "<leader><leader>k", "<esc><cmd>m .-2<cr>==gi", { desc = "Move up" })
 map("v", "<leader><leader>j", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<leader><leader>k", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
-map("n", "<leader>H", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end)
+map("n", "<leader>H", function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end)
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
@@ -25,13 +25,14 @@ map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
--- I don't like joining two lines
-map("n", "J", "<nop>")
-
 -- Add undo break-points
 map("i", ",", ",<c-g>u")
 map("i", ".", ".<c-g>u")
 map("i", ";", ";<c-g>u")
+
+-- better indenting
+map("v", "<", "<gv")
+map("v", ">", ">gv")
 
 -- Disable arrow keys, break the bad habbit.
 map("n", "<Up>", "<NOP>")
