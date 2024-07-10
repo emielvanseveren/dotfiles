@@ -23,7 +23,6 @@ return {
           show_buffer_close_icons = false, -- Show close icon
           always_show_bufferline = true, -- Only show bufferline when more than 1 tab
           diagnostics = "nvim_lsp", -- Change color of filename when file has an error
-          diagnostics_update_in_insert = true,
           numbers = "none", -- Don't show numbers on tab
           diagnostics_indicator = function(count, level)
             local icon = level:match("error") and " " or " "
