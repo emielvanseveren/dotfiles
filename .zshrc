@@ -1,4 +1,4 @@
-export NVM_LAZY_LOAD=false # Enable Lazy load nvm
+export NVM_LAZY_LOAD=true # Enable Lazy load nvm
 export NVM_COMPLETION=false  # Autocomplete nvm commands
 
 # ZSH | oh-myzsh settings
@@ -62,7 +62,7 @@ alias tf='terraform'                                    # Alias for terraform
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
 alias vim="nvim"
-
+alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
 
 # human readable sizes
