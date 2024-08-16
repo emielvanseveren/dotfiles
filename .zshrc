@@ -44,6 +44,7 @@ export GPG_TTY=$(tty)                                     # Make gpg-key availab
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"         # Set bat as default manpage pager
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
+export PATH=$PATH:/usr/local/go/bin                       # go bin
 
 unsetopt cdablevars
 unsetopt complete_aliases                                 # Don't expand aliases _before_ completion has finished (src: https://stackoverflow.com/questions/14307086/tab-completion-for-aliased-sub-commands-in-zsh-alias-gco-git-checkout)
@@ -64,7 +65,7 @@ alias sd="sudo shutdown now"
 alias vim="nvim"
 alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
-alias grrb='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
+alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
 
 # human readable sizes
 alias du="du -h"
