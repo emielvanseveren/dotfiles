@@ -8,13 +8,13 @@ return {
     name = "catppuccin",
     opts = {
       integrations = {
+        aerial = true,
         alpha = true,
         cmp = true,
         flash = true,
         gitsigns = true,
         illuminate = true,
         indent_blankline = { enabled = true },
-        lsp_trouble = true,
         mason = true,
         mini = true,
         native_lsp = {
@@ -28,9 +28,7 @@ return {
         },
         navic = { enabled = true, custom_bg = "lualine" },
         neotest = true,
-        noice = true,
         notify = true,
-        neotree = true,
         semantic_tokens = true,
         telescope = true,
         treesitter = true,
