@@ -243,7 +243,7 @@ output * bg $HOME/.config/sway/wallpapers/background_01.jpg fill
 
 
 # fix for gtk applications taking long time to start 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # boot on start
 exec --no-startup-id /home/emiel/.cargo/bin/alacritty
