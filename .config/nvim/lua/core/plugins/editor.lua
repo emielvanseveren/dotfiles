@@ -6,7 +6,6 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
       { "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", desc = "Move cursor in tree to [f]ile of current buffer." },
-      { "<leader>t",         "<cmd>NvimTreeFocus<CR>",    desc = "[F]ocus file explorer. Usefull when multiple windows are open" },
       { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>",   desc = "[t]oggle file explorer treeview." },
     },
     opts = {
@@ -153,19 +152,7 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    },
-  },
-
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    cond = function()
-      return vim.fn.executable("make") == 1
-    end,
+    opts = {},
   },
   {
     "utilyre/barbecue.nvim",
@@ -217,16 +204,25 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     version = false, -- telescope did only one release, so use HEAD for now
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make",
+      cond = function()
+        return vim.fn.executable("make") == 1
+      end,
+      },
+    },
     cmd = "Telescope",
     keys = {
       -- search
-      { "fg", Util.telescope("live_grep"),              desc = "Find in Files (Grep)" },
-      { "ff", Util.telescope("files"),                  desc = "Find Files (root dir)" },
-      { "fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      { "<leader>fg", Util.telescope("live_grep"),              desc = "Find in Files (Grep)" },
+      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
+      { "<leader>fF", Util.telescope("files", { cwd = true }), desc = "Find Files (cwd)" },
       -- list
-      { "tb", "<cmd>Telescope buffers<cr>",             desc = "List all buffers" },
-      { "td", "<cmd>Telescope diagnostics<cr>",         desc = "List all diagnostics" },
+      { "<leader>tb", "<cmd>Telescope buffers<cr>",             desc = "List all buffers" },
+      { "<leader>td", "<cmd>Telescope diagnostics<cr>",         desc = "List all diagnostics" },
       {
         "ts",
         Util.telescope("lsp_document_symbols", {
