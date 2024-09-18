@@ -34,7 +34,7 @@ map("i", ";", ";<c-g>u")
 map("v", "<", "<gv")
 map("v", ">", ">gv")
 
--- Disable arrow keys, break the bad habbit.
+-- Disable arrow keys, break the bad habit.
 map("n", "<Up>", "<NOP>")
 map("n", "<Down>", "<NOP>")
 map("n", "<Left>", "<NOP>")

@@ -74,6 +74,8 @@ return {
         { name = "path" },
       }),
       formatting = {
+        expandable_indicator = true,
+        fields = {'abbr', 'kind', 'menu'},
         format = require("lspkind").cmp_format({
           mode = "symbol_text",
         }),

@@ -18,7 +18,7 @@ M.on_attach = function(client, bufnr)
   local bufopts = { noremap = true, silent = true, buffer = bufnr }
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)      -- Go the symbols declaration.
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)       -- Go to the symbols defintion.
+  vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)       -- Go to the symbols definition.
   vim.keymap.set("n", "gtd", vim.lsp.buf.type_definition, bufopts) -- Go to the symbols type definition.
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)       -- List all the references to the symbol under the cursor in the quickfix window.
 

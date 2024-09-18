@@ -6,7 +6,7 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     keys = {
       { "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", desc = "Move cursor in tree to [f]ile of current buffer." },
-      { "<leader>t",         "<cmd>NvimTreeFocus<CR>",    desc = "[F]ocus file explorer. Usefull when multiple windows are open" },
+      { "<leader>t",         "<cmd>NvimTreeFocus<CR>",    desc = "[F]ocus file explorer. Useful when multiple windows are open" },
       { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>",   desc = "[t]oggle file explorer treeview." },
     },
     opts = {

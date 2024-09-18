@@ -1,4 +1,3 @@
-local load_textobjects = false
 
 return {
   {
@@ -9,9 +8,6 @@ return {
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
-        init = function()
-          load_textobjects = true
-        end,
       },
     },
     cmd = { "TSUpdateSync" },
