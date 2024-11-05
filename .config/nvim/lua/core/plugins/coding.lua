@@ -40,6 +40,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    event = "InsertEnter",
     build = ":Copilot auth",
     opts = {
       suggestion = {
@@ -52,6 +53,7 @@ return {
       filetypes = {
         markdown = true,
         yaml = true,
+        gitcommit = true,
         help = true,
       }
     }
