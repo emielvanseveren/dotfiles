@@ -1,6 +1,4 @@
 return {
-  { "nvim-lua/plenary.nvim", event = "VeryLazy" },
-  { "andweeb/presence.nvim", event = "VeryLazy" },
   {
     "lervag/vimtex",
     ft = "tex",
@@ -29,15 +27,6 @@ return {
   },
 
   {
-    "dstein64/vim-startuptime",
-    -- lazy-load on a command
-    cmd = "StartupTime",
-    -- init is called during startup. Configuration for vim plugins typically should be set in an init function
-    init = function()
-      vim.g.startuptime_tries = 10
-    end,
-  },
-  {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     event = "InsertEnter",
@@ -45,6 +34,8 @@ return {
     opts = {
       suggestion = {
         enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
         keymap = {
           accept = "<C-Y>"
         }
@@ -59,36 +50,19 @@ return {
     }
   },
 
-  { "folke/neodev.nvim", opts = {} },
   {
-    "fatih/vim-go",
-    lazy = true,
-    ft = "go",
-    build = ":GoInstallBinaries",
+    "folke/lazydev.nvim",
+    ft = "lua",
   },
 
   {
     "slint-ui/vim-slint",
     ft = "slint"
   },
+
   {
     "mfussenegger/nvim-ansible",
     ft = "yaml",
-  },
-
-  -- git
-  {
-    "neogitorg/neogit",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {
-      disable_commit_confirmation = true,
-      use_telescope = true,
-      integrations = {
-        diffview = true,
-      },
-    },
-    cmd = { "Neogit" },
-    keys = { { "<leader>gs", "<cmd>Neogit<CR>", desc = "neogit" } },
   },
 
   { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },

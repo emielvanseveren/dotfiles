@@ -60,7 +60,7 @@ opt.fillchars = {
 }
 
 -- Colorscheme
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- ===============================================================
 -- # Built-in debugger
@@ -70,7 +70,8 @@ g.termdebugger = "rust-gdb"          -- Set debugger to rust-gdb
 g.termdebug_wide = 1                 -- Set debugger to use wide terminal
 g.editorconfig = true                -- Enable editorconfig
 g.tex_flavor = "latex"
-vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+g.deprecation_warnings = true
 
 
 vim.lsp.inlay_hint.enable(true) -- Enable inlay hints by default

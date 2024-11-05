@@ -1,5 +1,4 @@
 return function()
-  require("neodev").setup()
   local lspconfig = require("lspconfig")
   local mason_lspconfig = require("mason-lspconfig")
 

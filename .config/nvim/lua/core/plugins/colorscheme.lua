@@ -1,10 +1,10 @@
 return {
-  { "folke/tokyonight.nvim", lazy = false, opts = { style = "night" }, priority = 1000 }, -- make sure to load this before all the other start plugins},
+  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 }, -- make sure to load this before all the other start plugins},
 
-  -- catppuccin
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
     name = "catppuccin",
     opts = {
       integrations = {
@@ -36,5 +36,4 @@ return {
       },
     },
   },
-  { "dracula/vim", lazy = true },
 }

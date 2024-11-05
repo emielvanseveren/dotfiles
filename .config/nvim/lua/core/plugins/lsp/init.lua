@@ -5,13 +5,13 @@ return {
     dependencies = {
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "folke/neodev.nvim",
+      "folke/lazydev.nvim",
       "RRethy/vim-illuminate",
       "b0o/schemastore.nvim"
     },
     opts = {
       inlay_hints = {
-        enabled = true
+        enabled = false
       },
       -- @type vim.diagnostic.Opts
       diagnostics = {
