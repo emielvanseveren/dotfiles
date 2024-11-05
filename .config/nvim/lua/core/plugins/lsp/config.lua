@@ -16,7 +16,7 @@ return function()
     gopls = lsp_conf.go,
     lua_ls = lsp_conf.lua,
     yamlls = lsp_conf.yaml,
-    tsserver = lsp_conf.ts,
+    ts_ls = lsp_conf.ts,
     rust_analyzer = lsp_conf.rust,
     html = { filetypes = { "html", "hbs" } },
     jsonls = lsp_conf.json,
