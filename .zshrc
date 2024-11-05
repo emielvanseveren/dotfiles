@@ -91,9 +91,11 @@ alias pipr="python3 -m pip install -r requirements.txt" # Install python require
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gs="git status --short:m 'kjj:w'"
-alias gdc="git diff --cached"
+alias glg="git log --oneline --decorate --graph"
+
 alias takaro="cd ~/code/takaro && tmux new -s takaro"   # Open tmux session in takaro folder
-alias otiv3="cd ~/code/otiv3 && tmux new -s otiv3"      # Open tmux session in otiv session
+alias otiv3="cd ~/code/work/three && tmux new -s otiv3" # Open tmux session in otiv 3 repo
+alias otiv1="cd ~/code/work/one && tmux new -s otiv1"   # Open tmux session in otiv 1 repo
 alias lzd="lazydocker"                                  # Alias for lazydocker
 
 ################################
@@ -103,7 +105,7 @@ PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.local/bin                                 # Mainly because pip installs binaries here
 PATH="/home/emiel/.fly/bin:$PATH"
-PATH="$PATH:/opt/nvim-linux64/bin"			# Neovim install from binary is put in this location
+PATH="$PATH:/opt/nvim-linux64/bin"                      # Neovim install from binary is put in this location
 WASMTIME_HOME="$HOME/.wasmtime"
 PATH="$WASMTIME_HOME/bin:$PATH"
 PICO_SDK_PATH=$HOME/code/pico/pico-sdk
