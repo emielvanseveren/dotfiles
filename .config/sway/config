@@ -131,6 +131,8 @@ bindsym $mod+Shift+l move right
 # Move focused workspace to other monitor
 bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
+bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+k move workspace to output up
 
 # Change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+n layout stacking
