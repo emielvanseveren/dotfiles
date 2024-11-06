@@ -1,3 +1,4 @@
+local builtin_telescope = require("telescope.builtin")
 local Util = require("core.utils")
 
 return {
@@ -194,30 +195,12 @@ return {
     cmd = "Telescope",
     keys = {
       -- search
-      { "<leader>fg", Util.telescope("live_grep"),              desc = "Files [G]rep" },
-      { "<leader>ff", Util.telescope("files", { cwd = true }), desc = "[f]ind [f]iles (cwd)" },
-      { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "[f]ind [F]iles (root)" },
+      { "<leader>fg", Util.live_grep_from_project_git_root, desc = "Files [G]rep" },
+      { "<leader>ff", Util.find_files_from_project_git_root, desc = "[f]ind [f]iles (repo)" },
       -- list
-      { "<leader>lb", "<cmd>Telescope buffers<cr>",             desc = "[l]ist all [b]uffers" },
-      { "<leader>ld", "<cmd>Telescope diagnostics<cr>",         desc = "[l]ist all [d]iagnostics" },
-      {
-        "ts",
-        Util.telescope("lsp_document_symbols", {
-          symbols = {
-            "Class",
-            "Function",
-            "Method",
-            "Constructor",
-            "Interface",
-            "Module",
-            "Struct",
-            "Trait",
-            "Field",
-            "Property",
-          },
-        }),
-        desc = "List Symbol",
-      },
+      { "<leader>lb", builtin_telescope.buffers, desc = "[l]ist all [b]uffers" },
+      { "<leader>ld", builtin_telescope.diagnostics, desc = "[l]ist all [d]iagnostics" },
+      { "<leader>qf", builtin_telescope.quickfix, desc = "Toggle [q]uick [f]ix"},
     },
     opts = {
       defaults = {
