@@ -6,7 +6,7 @@ opt.shell = "/usr/bin/zsh"    -- Sets default shell to zsh
 opt.compatible = false        -- don't try to be like vi.
 opt.completeopt = "menuone,noinsert,noselect"
 opt.cmdheight = 1             -- Height of command line
-opt.updatetime = 750          -- milliseconds nothing is typed the swap file will be written to disk
+opt.updatetime = 250          -- milliseconds nothing is typed the swap file will be written to disk
 opt.termguicolors = true      -- Enable termguicolors
 opt.background = "dark"       -- Try to use dark colors
 opt.clipboard = "unnamedplus" -- Always copy everything to the system clipboard
@@ -17,6 +17,7 @@ opt.mouse = "a"               -- Enable the mouse in all modes
 opt.scrolloff = 5             -- Keep 5 lines below and above the cursor
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.joinspaces = false        -- Combine >1 consecutive spaces
+opt.undofile = true           -- Save undo history
 
 opt.wrap = false              -- No line wrapping
 opt.conceallevel = 0
