@@ -1,3 +1,4 @@
+[general]
 import = ["./dracula.toml"]
 live_config_reload = true
 
@@ -114,7 +115,7 @@ hide_when_typing = true
 history = 10000
 multiplier = 2
 
-[shell]
+[terminal.shell]
 program = "/usr/bin/zsh"
 
 [window]
