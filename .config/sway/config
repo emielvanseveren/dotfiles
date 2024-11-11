@@ -131,6 +131,8 @@ bindsym $mod+Shift+l move right
 # Move focused workspace to other monitor
 bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
+bindsym $mod+Ctrl+j move workspace to output down
+bindsym $mod+Ctrl+k move workspace to output up
 
 # Change container layout (stacked, tabbed, toggle split)
 #bindsym $mod+n layout stacking
@@ -243,7 +245,7 @@ output * bg $HOME/.config/sway/wallpapers/background_01.jpg fill
 
 
 # fix for gtk applications taking long time to start 
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # boot on start
 exec --no-startup-id /home/emiel/.cargo/bin/alacritty

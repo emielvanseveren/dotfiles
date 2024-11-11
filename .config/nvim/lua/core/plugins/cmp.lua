@@ -8,8 +8,6 @@ return {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp-signature-help",
-    "saadparwaiz1/cmp_luasnip",
-    "L3MON4D3/LuaSnip",
     version = "v1.*",
     "onsails/lspkind.nvim",
   },
@@ -60,11 +58,6 @@ return {
       end, modes),
     }
     cmp.setup({
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-        end,
-      },
       mapping = cmp.mapping.preset.insert(mappings),
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
@@ -74,6 +67,8 @@ return {
         { name = "path" },
       }),
       formatting = {
+        expandable_indicator = true,
+        fields = {'abbr', 'kind', 'menu'},
         format = require("lspkind").cmp_format({
           mode = "symbol_text",
         }),

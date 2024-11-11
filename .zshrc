@@ -44,6 +44,7 @@ export GPG_TTY=$(tty)                                     # Make gpg-key availab
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"         # Set bat as default manpage pager
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
+export PATH=$PATH:/usr/local/go/bin                       # go bin
 
 unsetopt cdablevars
 unsetopt complete_aliases                                 # Don't expand aliases _before_ completion has finished (src: https://stackoverflow.com/questions/14307086/tab-completion-for-aliased-sub-commands-in-zsh-alias-gco-git-checkout)
@@ -64,7 +65,7 @@ alias sd="sudo shutdown now"
 alias vim="nvim"
 alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
-alias grrb='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
+alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
 
 # human readable sizes
 alias du="du -h"
@@ -90,9 +91,11 @@ alias pipr="python3 -m pip install -r requirements.txt" # Install python require
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gs="git status --short:m 'kjj:w'"
-alias gdc="git diff --cached"
+alias glg="git log --oneline --decorate --graph"
+
 alias takaro="cd ~/code/takaro && tmux new -s takaro"   # Open tmux session in takaro folder
-alias otiv3="cd ~/code/otiv3 && tmux new -s otiv3"      # Open tmux session in otiv session
+alias otiv3="cd ~/code/work/three && tmux new -s otiv3" # Open tmux session in otiv 3 repo
+alias otiv1="cd ~/code/work/one && tmux new -s otiv1"   # Open tmux session in otiv 1 repo
 alias lzd="lazydocker"                                  # Alias for lazydocker
 
 ################################
@@ -102,7 +105,7 @@ PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.local/bin                                 # Mainly because pip installs binaries here
 PATH="/home/emiel/.fly/bin:$PATH"
-PATH="$PATH:/opt/nvim-linux64/bin"			# Neovim install from binary is put in this location
+PATH="$PATH:/opt/nvim-linux64/bin"                      # Neovim install from binary is put in this location
 WASMTIME_HOME="$HOME/.wasmtime"
 PATH="$WASMTIME_HOME/bin:$PATH"
 PICO_SDK_PATH=$HOME/code/pico/pico-sdk

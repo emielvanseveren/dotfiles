@@ -52,14 +52,13 @@ return {
       save_on_toggle = true,
     },
   },
-  keys = function()
-    local keys = {
+  keys = {
       {
         "<leader><leader>H",
         function()
           require("harpoon"):list():add()
         end,
-        desc = "Harpoon File",
+        desc = "[H]arpoon File",
       },
       {
         "<leader><leader>h",
@@ -67,23 +66,10 @@ return {
           local harpoon = require("harpoon")
           harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
-        desc = "Harpoon Quick Menu",
+        desc = "[h]arpoon Quick Menu",
       },
     }
-
-    for i = 1, 5 do
-      table.insert(keys, {
-        "<leader>" .. i,
-        function()
-          require("harpoon"):list():select(i)
-        end,
-        desc = "Harpoon to File " .. i,
-      })
-    end
-    return keys
-  end,
 },
-
 
   {
     "lewis6991/gitsigns.nvim",
@@ -144,15 +130,6 @@ return {
     config = function()
       require("aerial").setup()
     end,
-  },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
-    opts = {},
   },
   {
     "utilyre/barbecue.nvim",
@@ -217,12 +194,12 @@ return {
     cmd = "Telescope",
     keys = {
       -- search
-      { "<leader>fg", Util.telescope("live_grep"),              desc = "Find in Files (Grep)" },
-      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (root dir)" },
-      { "<leader>fF", Util.telescope("files", { cwd = true }), desc = "Find Files (cwd)" },
+      { "<leader>fg", Util.telescope("live_grep"),              desc = "Files [G]rep" },
+      { "<leader>ff", Util.telescope("files", { cwd = true }), desc = "[f]ind [f]iles (cwd)" },
+      { "<leader>fF", Util.telescope("files", { cwd = false }), desc = "[f]ind [F]iles (root)" },
       -- list
-      { "<leader>tb", "<cmd>Telescope buffers<cr>",             desc = "List all buffers" },
-      { "<leader>td", "<cmd>Telescope diagnostics<cr>",         desc = "List all diagnostics" },
+      { "<leader>lb", "<cmd>Telescope buffers<cr>",             desc = "[l]ist all [b]uffers" },
+      { "<leader>ld", "<cmd>Telescope diagnostics<cr>",         desc = "[l]ist all [d]iagnostics" },
       {
         "ts",
         Util.telescope("lsp_document_symbols", {

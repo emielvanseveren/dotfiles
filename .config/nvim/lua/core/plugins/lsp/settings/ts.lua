@@ -13,12 +13,12 @@ return {
   },
   typescript = {
     inlayHints = {
-      includeInlayEnumMemberValueHints = true,
-      includeInlayFunctionLikeReturnTypeHints = true,
+      includeInlayEnumMemberValueHints =  false,
+      includeInlayFunctionLikeReturnTypeHints = false,
       includeInlayFunctionParameterTypeHints = true,
-      includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-      includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-      includeInlayPropertyDeclarationTypeHints = true,
+      includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all';
+      includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+      includeInlayPropertyDeclarationTypeHints = false,
       includeInlayVariableTypeHints = true,
     },
   },

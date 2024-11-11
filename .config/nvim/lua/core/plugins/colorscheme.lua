@@ -1,20 +1,20 @@
 return {
-  { "folke/tokyonight.nvim", lazy = false, opts = { style = "night" }, priority = 1000 }, -- make sure to load this before all the other start plugins},
+  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 }, -- make sure to load this before all the other start plugins},
 
-  -- catppuccin
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
+    priority = 1000,
     name = "catppuccin",
     opts = {
       integrations = {
+        aerial = true,
         alpha = true,
         cmp = true,
         flash = true,
         gitsigns = true,
         illuminate = true,
         indent_blankline = { enabled = true },
-        lsp_trouble = true,
         mason = true,
         mini = true,
         native_lsp = {
@@ -28,9 +28,7 @@ return {
         },
         navic = { enabled = true, custom_bg = "lualine" },
         neotest = true,
-        noice = true,
         notify = true,
-        neotree = true,
         semantic_tokens = true,
         telescope = true,
         treesitter = true,
@@ -38,5 +36,4 @@ return {
       },
     },
   },
-  { "dracula/vim", lazy = true },
 }

@@ -1,5 +1,5 @@
 return {
-  { "kyazdani42/nvim-web-devicons", 
+  { "kyazdani42/nvim-web-devicons",
     lazy = true,
   },
   {
@@ -64,7 +64,6 @@ return {
 
   {
     "j-hui/fidget.nvim",
-    tag = "legacy",
     config = function()
       require("fidget").setup()
     end,
@@ -88,39 +87,7 @@ return {
     end,
   },
 
- {
-    "echasnovski/mini.indentscope",
-    version = false,
-    event = { "BufReadPost", "BufWritePost", "BufNewFile"},
-    opts = {
-      symbol = "│",
-      options = { try_as_border = true },
-    },
-    init = function()
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = {
-          "alpha",
-          "dashboard",
-          "fzf",
-          "help",
-          "lazy",
-          "lazyterm",
-          "mason",
-          "neo-tree",
-          "notify",
-          "toggleterm",
-          "Trouble",
-          "trouble",
-        },
-        callback = function()
-          vim.b.miniindentscope_disable = true
-        end,
-      })
-    end,
-  },
-
-  -- indent guides
- {
+  {
     "lukas-reineke/indent-blankline.nvim",
     event = { "BufReadPost", "BufWritePost", "BufNewFile"},
     main = "ibl",

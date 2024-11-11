@@ -22,7 +22,7 @@ opt.wrap = false              -- No line wrapping
 opt.conceallevel = 0
 opt.showmode = false          -- Don't show mode, we have a statusline for that
 opt.autochdir = true          -- Vim will change the current working dir whenever you open a file / switch buffers
-opt.ruler = true              -- Show the line and column number of the curser position
+opt.ruler = true              -- Show the line and column number of the cursor position
 opt.spelllang = { "en" }
 opt.tabstop = 2               -- Number of spaces that a <TAB> in the file counts for
 opt.shiftwidth = 2            -- Tab shift
@@ -60,7 +60,7 @@ opt.fillchars = {
 }
 
 -- Colorscheme
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[colorscheme catppuccin-mocha]])
 
 -- ===============================================================
 -- # Built-in debugger
@@ -70,7 +70,8 @@ g.termdebugger = "rust-gdb"          -- Set debugger to rust-gdb
 g.termdebug_wide = 1                 -- Set debugger to use wide terminal
 g.editorconfig = true                -- Enable editorconfig
 g.tex_flavor = "latex"
-vim.g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+g.markdown_recommended_style = 0 -- Fix markdown indentation settings
+g.deprecation_warnings = true
 
 
 vim.lsp.inlay_hint.enable(true) -- Enable inlay hints by default
