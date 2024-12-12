@@ -1,10 +1,10 @@
 {
   "layer":  "top",
   "margin": "5px 10px 0px 10px",
-  "modules-left": [ "sway/workspaces", "sway/mode"],
+  "modules-left": [ "sway/workspaces", "sway/mode", "hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [ "battery","cpu", "memory" ],
-  "height": "44px",
+  "height": "30px",
 
   //***************************
   //*  Modules configuration  *
@@ -18,10 +18,20 @@
   },
   "memory": {
     "interval": 1,
-    "format": "󰍛 {used:0.1f}GiB / {total:0.1f}GiB",
+    "format": "󰍛 {used:0.1f}/{total:0.1f}GiB",
     "on-click": "",
     "tooltip": false
   },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+     },
 
   "clock": {
     "interval": 1,
