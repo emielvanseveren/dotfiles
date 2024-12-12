@@ -1,12 +1,12 @@
 return {
   "stevearc/conform.nvim",
-  event = { "BufReadPre"},
+  event = { "BufWritePre"},
+  cmd = { "ConformInfo" },
   dependencies = { "mason.nvim" },
   lazy = true,
-  cmd = "ConformInfo",
   keys = {
     {
-      "<leader>cF",
+      "<leader>f",
       function()
         require("conform").format({ formatters = { "injected" } })
       end,
@@ -33,7 +33,6 @@ return {
       typescriptreact = { { "prettierd", "prettier" } },
       terraform = { "terraform_fmt" },
       rust = { "rustfmt" },
-
     },
   },
 }
