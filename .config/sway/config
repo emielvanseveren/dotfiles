@@ -241,7 +241,7 @@ gaps top 0
 bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 
 # background image
-output * bg $HOME/.config/sway/wallpapers/background_01.jpg fill
+output * bg $HOME/.config/sway/wallpapers/background_otiv.png fill
 
 
 # fix for gtk applications taking long time to start 
