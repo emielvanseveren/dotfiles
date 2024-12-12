@@ -1,3 +1,7 @@
+@define-color background rgb (20,20,20);
+@define-color text rgb (200,200,200);
+@define-color textActive rgb (255,255,255);
+
 * {
     border: none;
     border-radius: 0;
@@ -19,7 +23,7 @@ window#waybar.hidden {
     margin-left: 8px;
     border-radius: 10px;
     transition: none;
-    background: #383c4a;
+    background: @background;
 }
 
 #workspaces button {
@@ -38,16 +42,11 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    transition: none;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    border-radius: inherit;
-    color: #383c4a;
-    background: #383c4a;
+    color: @textActive;
 }
 
 #workspaces button.focused {
-    color: white;
+    color: @textActive;
 }
 
 #clock {
@@ -55,29 +54,30 @@ window#waybar.hidden {
     padding-right: 16px;
     border-radius: 10px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @background;
 }
 
 #cpu {
-  color: #ffffff;
-  background: #383c4a;
-  border-radius: 10px 0 0 10px;
+  color: @text;
+  background: @background;
   padding-left: 16px;
   padding-right: 8px;
 }
 
 #memory {
-  color: #ffffff;
-  background: #383c4a;
-  border-radius: 0 10px 10px 0;
+  color: @text;
+  background: @background;
   padding-right: 16px;
   padding-left: 16px;
 }
 
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+#battery {
+  background: @background;
+  color: @text;
+  border-radius: 10px 0 0 10px;
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 #tray {
@@ -87,7 +87,7 @@ window#waybar.hidden {
     margin-left: 8px;
     margin-right: 8px;
     transition: none;
-    color: #ffffff;
-    background: #383c4a;
+    color: @text;
+    background: @background;
 }
 
