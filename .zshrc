@@ -68,6 +68,7 @@ alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
 alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
 
+
 # human readable sizes
 alias du="du -h"
 alias df="df -h"
@@ -131,8 +132,8 @@ autoload toggle_delta_side_by_side
 autoload -Uz compinit
 compinit
 
-# hook direnv into zsh
-eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)" # hook direnv into zsh
+eval $(keychain --eval my_key) # make sure ssh-agent is running on every terminal session
 
 ###############################
 ###       Completion stuff   ###

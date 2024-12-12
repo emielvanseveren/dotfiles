@@ -27,6 +27,7 @@
 - neovim
 - curl
 - wget
+- keychain
 
 ### optional
 - VLC
