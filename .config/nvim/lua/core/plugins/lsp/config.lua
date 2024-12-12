@@ -20,6 +20,7 @@ return function()
     html = { filetypes = { "html", "hbs" } },
     jsonls = lsp_conf.json,
     terraformls = { filetypes = { "terraform", "tf" } },
+    bashls = {}
   }
 
 
