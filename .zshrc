@@ -41,7 +41,7 @@ export EDITOR="$VISUAL"                                   # Use nvim as default 
 export UPDATE_ZSH_DAYS=7                                  # auto-update every 7 days.
 export DOCKER_BUILDKIT=1                                  # Enable rewrite docker build (faster but currently still behind feature flag)
 export GPG_TTY=$(tty)                                     # Make gpg-key available
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"         # Set bat as default manpage pager
+export MANPAGER=less                                      # Set bat as default manpage pager
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
 export PATH=$PATH:/usr/local/go/bin                       # go bin
@@ -132,8 +132,8 @@ autoload toggle_delta_side_by_side
 autoload -Uz compinit
 compinit
 
-eval "$(direnv hook zsh)" # hook direnv into zsh
-eval $(keychain) &> /dev/null # make sure ssh-agent is running on every terminal session
+eval "$(direnv hook zsh)"      # hook direnv into zsh
+eval $(keychain &> /dev/null)  # make sure ssh-agent is running on every terminal session
 
 ###############################
 ###       Completion stuff   ###
