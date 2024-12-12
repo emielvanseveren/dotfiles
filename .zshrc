@@ -133,7 +133,7 @@ autoload -Uz compinit
 compinit
 
 eval "$(direnv hook zsh)" # hook direnv into zsh
-eval $(keychain --eval my_key) # make sure ssh-agent is running on every terminal session
+eval $(keychain) &> /dev/null # make sure ssh-agent is running on every terminal session
 
 ###############################
 ###       Completion stuff   ###
