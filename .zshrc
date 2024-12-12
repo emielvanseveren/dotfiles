@@ -45,6 +45,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"         # Set bat as default m
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
 export PATH=$PATH:/usr/local/go/bin                       # go bin
+export DELTA_FEATURES="+side-by-side"                     # Set default `(git-)delta` features
 
 unsetopt cdablevars
 unsetopt complete_aliases                                 # Don't expand aliases _before_ completion has finished (src: https://stackoverflow.com/questions/14307086/tab-completion-for-aliased-sub-commands-in-zsh-alias-gco-git-checkout)
@@ -59,7 +60,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive mat
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias reload='source ~/.zshrc'                          # reload zsh config with 'reload'
 alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatically open vault when logging in. instead of 2 steps >:(
-alias tf='terraform'                                    # Alias for terraform
+alias tf='tofu'                                         # Alias for open-source terraform (tofu)
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
 alias vim="nvim"
@@ -104,11 +105,7 @@ alias lzd="lazydocker"                                  # Alias for lazydocker
 PATH=$PATH:~/.zsh_history_fix
 PATH=$PATH:~/.cargo/bin
 PATH=$PATH:~/.local/bin                                 # Mainly because pip installs binaries here
-PATH="/home/emiel/.fly/bin:$PATH"
 PATH="$PATH:/opt/nvim-linux64/bin"                      # Neovim install from binary is put in this location
-WASMTIME_HOME="$HOME/.wasmtime"
-PATH="$WASMTIME_HOME/bin:$PATH"
-PICO_SDK_PATH=$HOME/code/pico/pico-sdk
 
 ##################################################
 ###    Add functions to special functions path ###
@@ -129,6 +126,7 @@ autoload wlog
 autoload reboot_win
 autoload find_large_files
 autoload ngrok
+autoload toggle_delta_side_by_side
 
 autoload -Uz compinit
 compinit
@@ -158,4 +156,3 @@ bindkey '^R' fzf-history-widget
 # add keybindings as in tmux
 bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
 bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
-
