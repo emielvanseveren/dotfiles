@@ -59,7 +59,7 @@ return {
         function()
           require("harpoon"):list():add()
         end,
-        desc = "[H]arpoon File",
+        desc = "[H]arpoon the file",
       },
       {
         "<leader><leader>h",
@@ -113,12 +113,12 @@ return {
         local function map(mode, l, r, desc)
           vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
         end
-        map("n", "ghj", gs.next_hunk, "Next git hunk")
-        map("n", "ghk", gs.prev_hunk, "Previous git hunk")
-        map("n", "ghp", gs.preview_hunk, "Preview Git hunk")
-        map("n", "ghs", gs.stage_hunk, "Preview Git hunk")
-        map("n", "ghr", gs.reset_hunk, "Preview Git hunk")
-        map("n", "ghS", gs.undo_stage_hunk, "Preview Git hunk")
+        map("n", "ghj", gs.next_hunk, "[g]it [h]unk down[j]")
+        map("n", "ghk", gs.prev_hunk, "[g]it [h]unk up[k]")
+        map("n", "ghp", gs.preview_hunk, "[g]it [h]nk [p]review")
+        map("n", "ghs", gs.stage_hunk, "[g]it [h]unk [s]tage")
+        map("n", "ghS", gs.undo_stage_hunk, "[g]it [h]unk un[S]tage")
+        map("n", "ghr", gs.reset_hunk, "[g]it [h]unk [r]eset")
       end,
     },
   },
@@ -126,7 +126,7 @@ return {
   {
     "stevearc/aerial.nvim",
     keys = {
-      { "<leader><leader>a", "<cmd>AerialToggle<CR>" },
+      { "<leader>ta", "<cmd>AerialToggle<CR>", desc = "[t]oggle [a]erial"},
     },
     config = function()
       require("aerial").setup()
@@ -141,11 +141,11 @@ return {
     },
     keys = {
       {
-        "<leader>bt",
+        "<leader>tb",
         function()
           require("barbecue.ui").toggle()
         end,
-        desc = "Toggle Barbecue",
+        desc = "[t]oggle [b]arbecue",
       },
     },
     opts = {

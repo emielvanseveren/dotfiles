@@ -10,7 +10,7 @@ return {
       {
         "famiu/bufdelete.nvim",
         keys = {
-          { "<leader>cb", ":Bdelete<CR>:bp<CR>", desc = "[BUFFER] Close buffer (safe)." },
+          { "<leader>cb", ":Bdelete<CR>:bp<CR>", desc = "[BUFFER] [c]lose [b]uffer (safe)." },
         },
       },
     },
@@ -35,8 +35,8 @@ return {
         },
       })
       -- buffers
-      vim.keymap.set("n", "<leader>n", "<cmd>BufferLineCycleNext<CR>", { desc = "[BUFFER] next buffer tab." })
-      vim.keymap.set("n", "<leader>p", "<cmd>BufferLineCyclePrev<CR>", { desc = "[BUFFER] previous buffer tab." })
+      vim.keymap.set("n", "<leader>n", "<cmd>BufferLineCycleNext<CR>", { desc = "[BUFFER] [n]ext buffer tab." })
+      vim.keymap.set("n", "<leader>p", "<cmd>BufferLineCyclePrev<CR>", { desc = "[BUFFER] [p]revious buffer tab." })
     end,
   },
   {
