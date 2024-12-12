@@ -1,5 +1,5 @@
 [general]
-import = ["./dracula.toml"]
+import = ["./theme.toml"]
 live_config_reload = true
 
 [colors]
