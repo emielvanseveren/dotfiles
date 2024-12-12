@@ -1,9 +1,16 @@
 return {
-  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 }, -- make sure to load this before all the other start plugins},
+  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 }, 
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    enabled = true,
+    priority = 1000
+  },
 
   {
     "catppuccin/nvim",
     lazy = false,
+    enabled = false,
     priority = 1000,
     name = "catppuccin",
     opts = {

@@ -61,7 +61,7 @@ opt.fillchars = {
 }
 
 -- Colorscheme
-vim.cmd([[colorscheme catppuccin-mocha]])
+vim.cmd([[colorscheme carbonfox]])
 
 -- ===============================================================
 -- # Built-in debugger
