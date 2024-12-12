@@ -11,6 +11,12 @@
 [interactive]
   diffFilter = delta --color-only
 
+[delta]
+  navigate = true # use n and N to move between diff sections
+  dark = true
+  line-numbers = true
+  true-color = always
+
 [alias]
   c = commit -s # use git c to sign off commits
 
@@ -46,3 +52,5 @@
   program = /usr/bin/gpg
 [maintenance]
   repo = /home/emiel/code/work/otiv3
+[color]
+	ui = auto
