@@ -12,6 +12,9 @@ return {
     check = {
       command = "clippy",
       extraArgs = { "--no-deps" }
+    },
+    rustfmt = {
+      extraArgs = {"+nightly"},
     }
   },
 }
