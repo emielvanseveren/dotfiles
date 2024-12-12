@@ -1,0 +1,121 @@
+
+configuration {
+  show-icons: true;
+  icons: "Papyrus";
+	font:	"JetBrainsMono Nerd Font 10";
+  terminal: "alacritty";
+}
+
+@import "globals.rasi"
+
+window {
+  transparency:     "real";
+  background-color: @background;
+  text-color:       @foreground;
+  border:           0px;
+  border-color:     @accent;
+  border-radius:    10px;
+  width:            550px;
+}
+
+prompt {
+  enabled:            true;
+  padding:            10px;
+  background-color:   @background;
+  text-color:         @accent;
+  font:               "JetBrainsMono Nerd Font 10";
+}
+
+entry {
+    background-color:   @background;
+    text-color:         @accent;
+    placeholder-color:  @foreground;
+    expand:             true;
+    horizontal-align:   0;
+    padding:            10px 10px 10px 0px;
+    border-radius:      0px;
+}
+
+inputbar {
+  children:           [ prompt, entry ];
+  background-color:   @background;
+  text-color:         @foreground;
+  expand:             false;
+  border:             1px 1px 1px 1px;
+  border-radius:      12px;
+  border-color:       @backgroundalt;
+  spacing:            0px;
+}
+
+listview {
+    background-color: @background;
+    padding:          5px;
+    columns:          1;
+    lines:            8;
+    border:           0px;
+    border-color:     @backgroundalt;
+    spacing:          3px;
+    margin:           5px 0px 0px 0px;
+    cycle:            true;
+    dynamic:          true;
+    layout:           vertical;
+}
+
+mainbox {
+  children:           [ inputbar, listview ];
+  background-color:   @background;
+  border:             0px;
+  border-radius:      0px;
+  border-color:       @test;
+  padding:            10px 10px 10px 10px;
+}
+
+element {
+    text-color:      @foreground;
+    background-color: @background;
+    orientation:     horizontal;
+    border-radius:   12px;
+    padding:         8px;
+    margin:          0px 2px 0px 2px;
+    border-color:    @backgroundalt;
+    border:          0px;
+}
+
+element.normal.normal {
+    background-color: @background;
+    text-color:       @foreground;
+}
+element.normal.active {
+    background-color: @background;
+    text-color:       @accent;
+}
+
+element.selected.normal {
+    background-color: @accent;
+    text-color:       @backgroundalt;
+}
+
+element.alternate.normal {
+    background-color: @background;
+    text-color:       @foreground;
+}
+element.alternate.active {
+    background-color: @background;
+    text-color:       @accent;
+}
+
+element-icon {
+  background-color:  transparent;
+  text-color:        inherit;
+  size:              24px;
+  border:            0px;
+}
+
+element-text {
+    background-color:  transparent;
+    text-color:        inherit;
+    expand:            true;
+    horizontal-align:  0;
+    vertical-align:    0.5;
+    margin:            0px 2.5px 0px 2.5px;
+}

@@ -1,0 +1,8 @@
+* {
+  background:   #000000;
+  backgroundalt: #202020;
+  foreground:   #ffffff;
+  foregroundalt: #666666;
+  accent:   #ffffff;
+  test: #ff0000;
+  }
