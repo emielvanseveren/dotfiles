@@ -68,15 +68,18 @@ for_window [class="discord"] move window to workspace $ws8
 for_window [class="Spotify"] move window to workspace $ws9
 
 ###############################################################################
-## Theme (dracula)                                                           ##
+## Theme (black-ish)                                                         ##
 ###############################################################################
 
-default_border pixel 2
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+default_border pixel 1
+
+# class                 border    bg       text      indicator  child_border
+client.focused          #FF00FF   #000000  #ffffff   #0000ff    #ffffff
+client.focused_inactive #44475A   #000000  #ffffff   #44475A    #44475A
+client.unfocused        #282A36   #000000  #ffffff   #282A36    #202020
+client.urgent           #44475A   #000000  #ffffff   #FF5555    #FF5555
+client.placeholder      #282A36   #000000  #ffffff   #282A36    #282A36
+
 client.background       #F8F8F2
 
 ###############################################################################
