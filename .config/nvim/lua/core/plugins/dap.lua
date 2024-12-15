@@ -29,13 +29,6 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       opts = {},
     },
-
-    -- This is the actual node debugger
-    {
-      "microsoft/vscode-js-debug",
-      build = "npm install --legacy-peer-deps && npx gulp vsDebugServerBundle && mv dist out",
-      lazy = true,
-    },
   },
   config = function()
     -- shows current position of debugger in code
