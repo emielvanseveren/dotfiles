@@ -5,7 +5,6 @@ return function()
   local lsp_conf = require("core.plugins.lsp.settings")
 
   local servers = {
-    prismals = {},
     dockerls = {},
     pyright = {},
     clangd = {},
@@ -20,10 +19,8 @@ return function()
     html = { filetypes = { "html", "hbs" } },
     jsonls = lsp_conf.json,
     terraformls = { filetypes = { "terraform", "tf" } },
-    bashls = {}
+    bashls = {},
   }
-
-
 
   mason_lspconfig.setup({
     ensure_installed = vim.tbl_keys(servers),
