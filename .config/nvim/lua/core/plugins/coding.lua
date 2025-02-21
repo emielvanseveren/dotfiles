@@ -19,6 +19,9 @@ return {
     end,
   },
   {
+    "grafana/vim-alloy"
+  },
+  {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     lazy = true,
