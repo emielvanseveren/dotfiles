@@ -70,6 +70,7 @@ alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk 
 alias gitwho='git config --show-origin --get user.email'
 alias testgpg="echo \"test\" | gpg --clearsign"
 alias killgpg="gpgconf --kill gpg-agent"
+alias cdr="cd $(git rev-parse --show-toplevel)"
 
 # human readable sizes
 alias du="du -h"

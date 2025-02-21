@@ -29,6 +29,11 @@ return function()
 
   mason_lspconfig.setup_handlers({
     function(server_name)
+      -- https://github.com/neovim/nvim-lspconfig/pull/3232
+      if server_name == "tsserver" then
+        server_name = 'ts_ls'
+      end
+
       lspconfig[server_name].setup({
         on_attach = lsp_conf.on_attach,
         capabilities = lsp_conf.capabilities,
