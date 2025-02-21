@@ -1,8 +1,9 @@
+[init]
+  defaultBranch = main
+
 [user]
   name = Emiel Van Severen
-  email = github@vanseveren.dev
-  username = emielvanseveren
-  signinkey = 78AD00F003030B8B
+  useConfigOnly = true
 
 [core]
   pager = delta # binary is delta but package is git-delta
@@ -20,9 +21,6 @@
 [alias]
   c = commit -s # use git c to sign off commits
 
-[github]
-  user = emielvanseveren
-
 [credential]
   helper = cache
 
@@ -36,8 +34,14 @@
 [pull]
   rebase = false
 
-[includeIf "gitdir:~/code/work"] 
+[include]
+  path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/code/work/"] 
   path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/code/personal/"] 
+  path = ~/.gitconfig-personal
  
 [mergetool "nvimdiff4"]
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
