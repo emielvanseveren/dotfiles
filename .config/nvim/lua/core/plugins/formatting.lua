@@ -16,21 +16,21 @@ return {
   },
   opts = {
     format = {
-      timeout_ms = 3000,
+      timeout_ms = 500,
       async = false,
       quiet = false,
     },
-    format_after_save = {
-      lsp_fallback = true,
+    format_on_save = {
+      lsp_format = "fallback"
     },
     formatters_by_ft = {
       lua = { "stylua" },
       sh = { "shfmt" },
-      python = { "isort", "black" },
-      javascript = { { "prettierd", "prettier" } },
-      javascriptreact = { { "prettierd", "prettier" } },
-      typescript = { { "prettierd", "prettier" } },
-      typescriptreact = { { "prettierd", "prettier" } },
+      python = { "isort", "black", stop_after_first = true },
+      javascript = {  "prettierd", "prettier", stop_after_first = true  },
+      javascriptreact = {  "prettierd", "prettier", stop_after_first = true  },
+      typescript = {  "prettierd", "prettier", stop_after_first = true  },
+      typescriptreact = { "prettierd", "prettier", stop_after_first = true },
       terraform = { "terraform_fmt" },
       rust = { "rustfmt" },
     },
