@@ -1,9 +1,12 @@
 return {
-  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 }, 
+  { "folke/tokyonight.nvim", enabled = false, lazy = false, opts = { style = "night" }, priority = 1000 },
+
+  { "rose-pine/neovim", name = "rose-pine", enabled = true, lazy = false },
+
   {
     "EdenEast/nightfox.nvim",
     lazy = false,
-    enabled = true,
+    enabled = false,
     priority = 1000
   },
 
