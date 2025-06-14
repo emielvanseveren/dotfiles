@@ -1,6 +1,12 @@
 [init]
   defaultBranch = main
 
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
 [user]
   name = Emiel Van Severen
   useConfigOnly = true
@@ -11,6 +17,12 @@
 
 [interactive]
   diffFilter = delta --color-only
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
 
 [delta]
   navigate = true # use n and N to move between diff sections
@@ -27,12 +39,36 @@
 [commit]
   gpgsign = true # Configure gpg to sign all commits
 
+[column]
+  ui = auto
+
 [push]
   default = tracking
   autoSetupRemote = true
+  followTags = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[help]
+  autocorrect = prompt
+
+[commit]
+  verbose = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
 
 [pull]
-  rebase = false
+  rebase = true
+
+[rebase]
+  autoSquash = true
+  autoStash = true
+  updateRefs = true
 
 [include]
   path = ~/.gitconfig-personal
@@ -42,6 +78,9 @@
 
 [includeIf "gitdir:~/code/personal/"] 
   path = ~/.gitconfig-personal
+
+[merge]
+  conflictstyle = zdiff3
  
 [mergetool "nvimdiff4"]
   cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
