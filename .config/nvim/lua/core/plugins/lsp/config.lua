@@ -1,56 +1,59 @@
 return function()
-  local lspconfig = require("lspconfig")
-  local mason_lspconfig = require("mason-lspconfig")
+  local lsp_server_configs = require("core.plugins.lsp.configs")
 
-  local lsp_conf = require("core.plugins.lsp.settings")
-
+  -- Ensure that the keys match LSP servers listed in mason.nvim
   local servers = {
     dockerls = {},
     pyright = {},
     clangd = {},
     texlab = {},
     slint_lsp = {},
-    ltex = lsp_conf.latex,
-    gopls = lsp_conf.go,
-    lua_ls = lsp_conf.lua,
-    yamlls = lsp_conf.yaml,
-    ts_ls = lsp_conf.ts,
-    rust_analyzer = lsp_conf.rust,
+    ltex = lsp_server_configs.latex,
+    gopls = lsp_server_configs.go,
+    lua_ls = lsp_server_configs.lua,
+    yamlls = lsp_server_configs.yaml,
+    ts_ls = lsp_server_configs.typescript,
+    rust_analyzer = lsp_server_configs.rust,
     html = { filetypes = { "html", "hbs" } },
-    jsonls = lsp_conf.json,
+    jsonls = lsp_server_configs.json,
     terraformls = { filetypes = { "terraform", "tf" } },
     bashls = {},
   }
 
-  mason_lspconfig.setup({
-    ensure_installed = vim.tbl_keys(servers),
-    automatic_installation = true
-  })
 
-  mason_lspconfig.setup_handlers({
-    function(server_name)
-      -- https://github.com/neovim/nvim-lspconfig/pull/3232
-      if server_name == "tsserver" then
-        server_name = 'ts_ls'
-      end
+  -- custom capabilities
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = true,
+    lineFoldingOnly = true,
+  }
+  capabilities.textDocument.semanticTokens.multilineTokenSupport = true
 
-      lspconfig[server_name].setup({
-        on_attach = lsp_conf.on_attach,
-        capabilities = lsp_conf.capabilities,
-        cmd = (servers[server_name] or {}).cmd,
-        settings = servers[server_name],
-        filetypes = (servers[server_name] or {}).filetypes,
-      })
-    end,
-  })
 
-  require("illuminate").configure({
-    delay = 200,
-    large_file_cutoff = 2000,
-    large_file_overrides = {
-      providers = { "lsp" },
+  for server_name, server_settings in pairs(servers) do
+    vim.lsp.enable(server_name, true)
+    vim.lsp.config(server_name, {
+      --capabilities = capabilities,
+      settings = server_settings
+    })
+  end
+
+
+
+
+
+  -- custom LSP handlers
+  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = true,
+    underline = true,
+    severity = {
+      min = vim.diagnostic.severity.WARN
     },
+    virtual_text = {
+      spacing = 5,
+    },
+    update_in_insert = false,
   })
-
-  require("core.plugins.lsp.handlers").setup()
 end

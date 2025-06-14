@@ -1,4 +1,3 @@
-
 return {
   {
     "nvim-treesitter/nvim-treesitter",
@@ -12,7 +11,7 @@ return {
     cmd = { "TSUpdateSync" },
     keys = {
       { "<leader>s", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
+      { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
     opts = {
       highlight = { enable = true, disable = { "latex" } },

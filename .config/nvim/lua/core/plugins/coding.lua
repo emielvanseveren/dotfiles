@@ -18,9 +18,7 @@ return {
       }
     end,
   },
-  {
-    "grafana/vim-alloy"
-  },
+
   {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
@@ -63,10 +61,4 @@ return {
     ft = "slint"
   },
 
-  {
-    "mfussenegger/nvim-ansible",
-    ft = "yaml",
-  },
-
-  { "sindrets/diffview.nvim", dependencies = "nvim-lua/plenary.nvim", event = "VeryLazy" },
 }

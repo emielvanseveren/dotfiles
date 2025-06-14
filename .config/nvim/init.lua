@@ -24,4 +24,5 @@ require("lazy").setup("core.plugins")
 require("core.config.autocmd")
 require("core.config.keymaps")
 require("core.config.options")
+require("core.config.diagnostics")
 

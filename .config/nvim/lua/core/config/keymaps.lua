@@ -76,3 +76,14 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 -- also don't use g[j|k] when in operator pending mode, so it doesn't alter d, y or c behaviour
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
+
+-- Go to next/previous open buffer
+map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "[B]uffer [N]ext" })
+map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "[B]uffer [P]revious" })
+
+-- Diagnostic keymaps
+map("n", "<leader>dj", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Go to [d]iagnostic next [j]" })
+map("n", "<leader>dk", vim.diagnostic.goto_prev,
+  { noremap = true, silent = true, desc = "Go to [d]iagnostic previous [k]" })
+map("n", "<leader><Space>", vim.diagnostic.open_float,
+  { noremap = true, silent = true, desc = "Open [d]iagnostic float" })

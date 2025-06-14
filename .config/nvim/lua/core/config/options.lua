@@ -61,7 +61,7 @@ opt.fillchars = {
 }
 
 -- Colorscheme
-vim.cmd([[colorscheme rose-pine-moon]])
+vim.cmd([[colorscheme rose-pine-dawn]])
 
 -- ===============================================================
 -- # Built-in debugger

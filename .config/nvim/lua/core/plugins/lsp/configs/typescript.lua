@@ -1,4 +1,3 @@
--- TODO: single quote
 return {
   javascript = {
     inlayHints = {

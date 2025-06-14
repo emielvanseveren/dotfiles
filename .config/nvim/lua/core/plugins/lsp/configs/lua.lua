@@ -4,6 +4,6 @@ return {
     telemetry = { enable = false },
     diagnostics = { globals = { "vim" } },
     workspace = { checkThirdParty = false },
-    runtime = { version = "LuaJIT" }
+    runtime = { version = "LuaJIT" },
   },
 }

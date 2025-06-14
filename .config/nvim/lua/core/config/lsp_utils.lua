@@ -1,15 +1,6 @@
 local M = {}
 
-M.ts = require("core.plugins.lsp.settings.ts")
-M.go = require("core.plugins.lsp.settings.go")
-M.lua = require("core.plugins.lsp.settings.lua")
-M.yaml = require("core.plugins.lsp.settings.yaml")
-M.rust = require("core.plugins.lsp.settings.rust")
-M.latex = require("core.plugins.lsp.settings.latex")
-M.json = require("core.plugins.lsp.settings.json")
-
 M.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 
 M.on_attach = function(client, bufnr)
   client.server_capabilities.document_formatting = true
@@ -35,8 +26,6 @@ M.on_attach = function(client, bufnr)
   if client.name == "lua_ls" then
     client.server_capabilities.documentFormattingProvider = false
   end
-
-  require("illuminate").on_attach(client)
 end
 
 return M

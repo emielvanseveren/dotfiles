@@ -4,16 +4,13 @@ return {
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     dependencies = {
       "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
       "folke/lazydev.nvim",
-      "RRethy/vim-illuminate",
       "b0o/schemastore.nvim"
     },
     opts = {
       inlay_hints = {
         enabled = false
       },
-      -- @type vim.diagnostic.Opts
       diagnostics = {
         signs = true,
         update_in_insert = false,
@@ -45,12 +42,7 @@ return {
     },
     config = require("core.plugins.lsp.config"),
   },
-  {
-    "williamboman/mason.nvim",
-    cmd = "Mason",
-    opts = {
-      ensure_installed = { "stylua", "luacheck", "shellcheck", "eslint_d", "prettierd", "terraform_fmt", "rustfmt", "black", "isort", "bashls", "tsserver" },
-      automatic_installation = true,
-    },
-  },
 }
+
+
+

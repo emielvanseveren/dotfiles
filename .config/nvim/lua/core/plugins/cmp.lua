@@ -6,9 +6,8 @@ return {
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-nvim-lsp-signature-help",
-    version = "v1.*",
+    --version = "v1.*",
     "onsails/lspkind.nvim",
   },
   event = { "InsertEnter", "CmdlineEnter" },
@@ -68,7 +67,7 @@ return {
       }),
       formatting = {
         expandable_indicator = true,
-        fields = {'abbr', 'kind', 'menu'},
+        fields = { 'abbr', 'kind', 'menu' },
         format = require("lspkind").cmp_format({
           mode = "symbol_text",
         }),
