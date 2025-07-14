@@ -77,9 +77,12 @@ map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result
 map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 
--- Go to next/previous open buffer
+-- Buffer keymaps
 map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "[B]uffer [N]ext" })
 map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "[B]uffer [P]revious" })
+map("n", "[b", "<cmd> bprevious <CR>", { desc = "[b] Go to previous buffer" })
+map("n", "]b", "<cmd> bnext <CR>", { desc = "[b] Go to next buffer" })
+map("n", "<leader>bc", "<cmd> bclose <CR>", { desc = "[B]uffer [C]lose" })
 
 -- Diagnostic keymaps
 map("n", "<leader>dj", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Go to [d]iagnostic next [j]" })
