@@ -35,7 +35,7 @@ return {
       "shellcheck",
       "eslint_d",
       "prettierd",
-      "terraform_fmt",
+      "tofu_fmt",
       "rustfmt",
       "black",
       "isort",
