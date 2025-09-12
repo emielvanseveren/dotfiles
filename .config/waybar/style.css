@@ -80,6 +80,13 @@ window#waybar.hidden {
   padding-left: 16px;
 }
 
+#battery.critical {
+  background: red;
+}
+#battery.warning {
+  background: orange;
+}
+
 #tray {
     padding-left: 16px;
     padding-right: 16px;
