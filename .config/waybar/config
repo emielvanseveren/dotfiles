@@ -1,7 +1,7 @@
 {
   "layer":  "top",
   "margin": "5px 10px 0px 10px",
-  "modules-left": [ "sway/workspaces", "sway/mode", "hyprland/workspaces"],
+  "modules-left": [ "sway/workspaces", "hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": [ "battery","cpu", "memory" ],
   "height": "30px",
