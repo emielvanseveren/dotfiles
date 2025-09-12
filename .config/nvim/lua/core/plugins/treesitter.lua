@@ -18,6 +18,8 @@ return {
       indent = { enable = true },
       context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = "all",
+      sync_install = false,
+      auto_install = true,
       incremental_selection = {
         enable = true,
         keymaps = {
