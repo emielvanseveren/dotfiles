@@ -1,9 +1,8 @@
 return {
-  "kyazdani42/nvim-tree.lua",
+  "nvim-tree/nvim-tree.lua",
   dependencies = { "kyazdani42/nvim-web-devicons" },
   keys = {
-    { "<leader><leader>f", "<cmd>NvimTreeFindFile<CR>", desc = "Move cursor in tree to [f]ile of current buffer." },
-    { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>",   desc = "[t]oggle file explorer treeview." },
+    { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", desc = "[t]oggle file explorer treeview." },
   },
   opts = {
     disable_netrw = true,
