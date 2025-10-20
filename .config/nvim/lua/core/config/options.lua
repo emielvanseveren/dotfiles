@@ -22,7 +22,6 @@ opt.undofile = true                                                       -- Sav
 opt.wrap = false                                                          -- No line wrapping
 opt.conceallevel = 0
 opt.showmode = false                                                      -- Don't show mode, we have a statusline for that
-opt.autochdir = true                                                      -- Vim will change the current working dir whenever you open a file / switch buffers
 opt.ruler = true                                                          -- Show the line and column number of the cursor position
 opt.spelllang = { "en" }
 opt.tabstop = 2                                                           -- Number of spaces that a <TAB> in the file counts for
