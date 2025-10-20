@@ -38,7 +38,7 @@ autocmd("ModeChanged", {
 
 autocmd("ModeChanged", {
   group = group,
-  pattern = "i:n",
+  pattern = { "i:n", "s:n", "v:n" },
   desc = "Enable diagnostics in normal mode",
   callback = function(e) vim.diagnostic.enable(true, { bufnr = e.buf }) end
 })
