@@ -4,6 +4,7 @@ map("n", "<leader>Y", ":%y+ <CR>", { desc = "Yank entire file" })
 map("n", "<Esc>", "<cmd> nohlsearch <CR>", { desc = "Remove search highlight" })
 map("n", "<C-s>", "<cmd> w <CR>", { desc = "Save file" })
 map("n", "<F1>", "<NOP>") -- I can type :help on my own, thanks :)
+map("v", "p", '"_dP', { desc = "Paste without yanking" })
 
 -- Move lines up and down
 map("n", "<leader><leader>k", "<cmd>m .-2<cr>==", { desc = "Move up" })
@@ -46,10 +47,10 @@ map("n", "<C-l>", "<C-w><C-l>", { desc = "[NAV] Go to the window on the right." 
 map("n", "<C-j>", "<C-w><C-j>", { desc = "[NAV] Go to the window below." })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "[NAV] Go to the window above." })
 
-map("n", "<C-left>", "1<C-w><C-left>>", { desc = "[NAV] Resize to left" })
-map("n", "<C-right>", "1<C-w><C-right><", { desc = "[NAV] Resize to right" })
-map("n", "<C-up>", "1<C-w><C-up>+", { desc = "[NAV] Resize to up" })
-map("n", "<C-down>", "1<C-w><C-down>-", { desc = "[NAV] Resize to down" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "[NAV] Resize to left" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "[NAV] Resize to right" })
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "[NAV] Resize to up" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "[NAV] Resize to down" })
 
 map("n", "<leader>h", "<C-w>s", { desc = "[NAV] Split window horizontally." })
 map("n", "<leader>v", "<C-w>v", { desc = "[NAV] Split window vertically." })
@@ -61,6 +62,10 @@ map("i", "<C-l>", "<Right>", { desc = "[NAV] Go to the right." })
 map("i", "<C-j>", "<Down>", { desc = "[NAV] Go down." })
 map("i", "<C-k>", "<Up>", { desc = "[NAV] Go up." })
 
+-- Quickfix navigation
+map("n", "[q", "<cmd> cprevious <CR>", { desc = "Go to previous [q]uickfix item" })
+map("n", "]q", "<cmd> cnext <CR>", { desc = "Go to next [q]uickfix item" })
+
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -70,8 +75,6 @@ map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 
 -- Buffer keymaps
-map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "[b]uffer [n]ext" })
-map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "[b]uffer [p]revious" })
 map("n", "[b", "<cmd> bprevious <CR>", { desc = "[b] Go to previous buffer" })
 map("n", "]b", "<cmd> bnext <CR>", { desc = "[b] Go to next buffer" })
 map("n", "<leader>bd", "<cmd> bdelete<CR>", { desc = "[b]uffer [d]elete" })
