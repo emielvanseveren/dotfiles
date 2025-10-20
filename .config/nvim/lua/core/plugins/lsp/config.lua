@@ -33,7 +33,7 @@ return function()
   for server_name, server_settings in pairs(servers) do
     vim.lsp.enable(server_name, true)
     vim.lsp.config(server_name, {
-      --capabilities = capabilities,
+      capabilities = capabilities,
       settings = server_settings
     })
   end
