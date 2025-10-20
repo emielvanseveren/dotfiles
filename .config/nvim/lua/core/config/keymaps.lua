@@ -61,14 +61,6 @@ map("i", "<C-l>", "<Right>", { desc = "[NAV] Go to the right." })
 map("i", "<C-j>", "<Down>", { desc = "[NAV] Go down." })
 map("i", "<C-k>", "<Up>", { desc = "[NAV] Go up." })
 
--- -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-
 -- Move normally by line.
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/
@@ -78,11 +70,11 @@ map("n", "j", 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', { expr = true })
 map("n", "k", 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', { expr = true })
 
 -- Buffer keymaps
-map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "[B]uffer [N]ext" })
-map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "[B]uffer [P]revious" })
+map("n", "<leader>bn", "<cmd> bnext <CR>", { desc = "[b]uffer [n]ext" })
+map("n", "<leader>bp", "<cmd> bprevious <CR>", { desc = "[b]uffer [p]revious" })
 map("n", "[b", "<cmd> bprevious <CR>", { desc = "[b] Go to previous buffer" })
 map("n", "]b", "<cmd> bnext <CR>", { desc = "[b] Go to next buffer" })
-map("n", "<leader>bc", "<cmd> bclose <CR>", { desc = "[B]uffer [C]lose" })
+map("n", "<leader>bd", "<cmd> bdelete<CR>", { desc = "[b]uffer [d]elete" })
 
 -- Diagnostic keymaps
 map("n", "<leader>dj", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Go to [d]iagnostic next [j]" })
