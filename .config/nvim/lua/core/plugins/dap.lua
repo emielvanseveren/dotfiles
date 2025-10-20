@@ -1,11 +1,11 @@
 local lazy_dir = vim.fn.stdpath("data") .. "/lazy"
-print(lazy_dir)
 
 return {
   -- ========================================
   -- # DAP
   -- ========================================
   "mfussenegger/nvim-dap",
+  lazy = true,
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",
