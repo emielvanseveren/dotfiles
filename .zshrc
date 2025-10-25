@@ -45,6 +45,8 @@ export MANPAGER=less                                      # Set bat as default m
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
 export PATH=$PATH:/usr/local/go/bin                       # go bin
+export PATH=$PATH:/opt/meson                             # Custom build meson
+export PATH=$PATH:$(find /usr/lib/postgresql -type d -name "bin") # Adds postgresql bin folder to path (used for Rust pgtemp)
 export DELTA_FEATURES="+side-by-side"                     # Set default `(git-)delta` features
 
 unsetopt cdablevars
@@ -58,12 +60,14 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive mat
 ###         ALIASES          ###
 ################################
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias reload='source ~/.zshrc'                          # reload zsh config with 'reload'
+alias reloadzsh='source ~/.zshrc'                          # reload zsh config with 'reload'
+alias reloadtmux="tmux source ~/.tmux.conf"                # Reload tmux (while inside tmux)
 alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatically open vault when logging in. instead of 2 steps >:(
 alias tf='tofu'                                         # Alias for open-source terraform (tofu)
 alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
 alias vim="nvim"
+alias gstenv="python3 ~/code/work/gstreamer/gst-env.py"
 alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
 alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
@@ -71,6 +75,7 @@ alias gitwho='git config --show-origin --get user.email'
 alias testgpg="echo \"test\" | gpg --clearsign"
 alias killgpg="gpgconf --kill gpg-agent"
 alias cdr="cd $(git rev-parse --show-toplevel)"
+alias wscan="iwlist scan"
 
 # human readable sizes
 alias du="du -h"
