@@ -39,15 +39,20 @@ source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh                     # IMPORTANT: should st
 export VISUAL=nvim                                        # Use nvim as default editor (Some programs rely on $VISUAL instead of $EDITOR)
 export EDITOR="$VISUAL"                                   # Use nvim as default editor
 export UPDATE_ZSH_DAYS=7                                  # auto-update every 7 days.
-export DOCKER_BUILDKIT=1                                  # Enable rewrite docker build (faster but currently still behind feature flag)
 export GPG_TTY=$(tty)                                     # Make gpg-key available
-export MANPAGER=less                                      # Set bat as default manpage pager
+export MANPAGER=less
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
 export PATH=$PATH:/usr/local/go/bin                       # go bin
 export PATH=$PATH:/opt/meson                             # Custom build meson
-export PATH=$PATH:$(find /usr/lib/postgresql -type d -name "bin") # Adds postgresql bin folder to path (used for Rust pgtemp)
+export PATH="$HOME/usr/bin:$PATH"
 export DELTA_FEATURES="+side-by-side"                     # Set default `(git-)delta` features
+
+# Required for manual gstreamer build
+export PKG_CONFIG_PATH=$HOME/usr/lib/x86_64-linux-gnu/pkgconfig/
+export LD_LIBRARY_PATH=$HOME/usr/lib/x86_64-linux-gnu/
+# Required for static manually compiled gstreamer plugins
+export GST_PLUGIN_PATH="$HOME/code/work/gst-plugin-rs/target/release:$GST_PLUGIN_PATH"
 
 unsetopt cdablevars
 unsetopt complete_aliases                                 # Don't expand aliases _before_ completion has finished (src: https://stackoverflow.com/questions/14307086/tab-completion-for-aliased-sub-commands-in-zsh-alias-gco-git-checkout)
@@ -64,18 +69,17 @@ alias reloadzsh='source ~/.zshrc'                          # reload zsh config w
 alias reloadtmux="tmux source ~/.tmux.conf"                # Reload tmux (while inside tmux)
 alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatically open vault when logging in. instead of 2 steps >:(
 alias tf='tofu'                                         # Alias for open-source terraform (tofu)
-alias grep='rg'                                         # Use ripgrep as default grep
 alias sd="sudo shutdown now"
 alias vim="nvim"
 alias gstenv="python3 ~/code/work/gstreamer/gst-env.py"
 alias zshprof="time ZSH_DEBUGRC=1 zsh -i -c exit"
 alias record='wf-recorder -p "preset=slower" -p="tune=film" -g "$(slurp)" -F fps=15 -c gif -f /tmp/"$(date +%s)".gif'  # Record gif
-alias gitgone='git fetch --all --prune && git branch -avv | grep ": gone" | awk '{print $1}' | xargs git branch -D 2>/dev/null' # remove local branches when remote version of that branch existed and was explicitly removed.
+alias gitgone="git fetch --all --prune && git branch -avv | grep ': gone' | awk '{print \$1}' | xargs git branch -D 2>/dev/null" # remove local branches when remote version of that branch existed and was explicitly removed.
 alias gitwho='git config --show-origin --get user.email'
 alias testgpg="echo \"test\" | gpg --clearsign"
 alias killgpg="gpgconf --kill gpg-agent"
-alias cdr="cd $(git rev-parse --show-toplevel)"
-alias wscan="iwlist scan"
+alias cdr='cd $(git rev-parse --show-toplevel)'
+alias wscan="nmcli device wifi list --rescan yes"
 
 # human readable sizes
 alias du="du -h"
@@ -100,7 +104,7 @@ alias pipr="python3 -m pip install -r requirements.txt" # Install python require
 # git
 alias gd="git diff"
 alias gds="git diff --staged"
-alias gs="git status --short:m 'kjj:w'"
+alias gs="git status --short"
 alias glg="git log --oneline --decorate --graph"
 
 alias takaro="cd ~/code/takaro && tmux new -s takaro"   # Open tmux session in takaro folder
@@ -137,11 +141,8 @@ autoload find_large_files
 autoload ngrok
 autoload toggle_delta_side_by_side
 
-autoload -Uz compinit
-compinit
-
 eval "$(direnv hook zsh)"      # hook direnv into zsh
-eval $(keychain &> /dev/null)  # make sure ssh-agent is running on every terminal session
+eval $(keychain --eval --quiet github github_personal)  # make sure ssh-agent is running on every terminal session
 
 ###############################
 ###       Completion stuff   ###
@@ -156,8 +157,11 @@ if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel
 # arch
 if [ -f '/usr/share/fzf/key-bindings.zsh' ]; then . '/usr/share/fzf/key-bindings.zsh'; fi
 if [ -f '/usr/share/fzf/completion.zsh' ]; then . '/usr/share/fzf/completion.zsh'; fi
-# ubuntu
-if [ -f '/home/emiel/.fzf.zsh' ]; then .  '/home/emiel/.fzf.zsh'; fi
+# ubuntu (apt)
+if [ -f '/usr/share/doc/fzf/examples/key-bindings.zsh' ]; then . '/usr/share/doc/fzf/examples/key-bindings.zsh'; fi
+if [ -f '/usr/share/doc/fzf/examples/completion.zsh' ]; then . '/usr/share/doc/fzf/examples/completion.zsh'; fi
+# ubuntu (manual install)
+if [ -f '/home/emiel/.fzf.zsh' ]; then . '/home/emiel/.fzf.zsh'; fi
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
