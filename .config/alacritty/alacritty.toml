@@ -26,19 +26,19 @@ render_timer = false
 size = 16
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "0xProto Nerd Font Mono"
 style = "Regular"
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "0xProto Nerd Font Mono"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrainsMono Nerd Font"
+family = "0xProto Nerd Font Mono"
 style = "Bold italic"
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "0xProto Nerd Font Mono"
 style = "Italic"
 
 [[keyboard.bindings]]
