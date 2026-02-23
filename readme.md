@@ -2,14 +2,15 @@
 
 ### dependencies:
 
-- direnv
+- alacritty (cargo install alacritty)
+- zsh (via apt)
+- oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)
+- direnv (apt)
 - man
-- bat
 - kubectx and kubens 
 - MonaSpace font
 - dunst
 - ripgrep
-- fd
 - dunst
 - firefox  (In `about:config` (firefox browser) enable `toolkit.legacyUserProfileCustomizations.stylesheets` to allow custom stylesheets)
 - swww
@@ -21,18 +22,32 @@
 - texlive-meta
 - wl-clipboard (system clipboard handler, required to copy between system and nvim)
 - git-delta (git pager)
-- hyprland, hypridle, hyprlock
 - nwg-displays
+- rofi
 - tmux
+- pulseaudio
 - neovim
+- brightnessctl (add user to video group)
 - curl
 - wget
 - keychain
 - tpm (git clone in ~/.tmux/plugins/tmp + prefix+I to install plugins)
+- vlc
+- pavucontrol
+- docker (install via docker website)
+- grim, slurp (screenshots)
 
-### optional
-- VLC
-- docker
+#### Desktop specific
+
+- hyprland
+- hypridle
+- hyprlock
+
+#### Laptop specific
+The reason I use sway on my work laptop is because we require to use Ubuntu. Ubuntu is not supported by Hyprland
+- sway
+- swayidle
+- swaylock
 
 ### Fonts (jetbrains)
 [Download the specific font](https://github.com/ryanoasis/nerd-fonts/releases) and move the font files to `~/.local/share/fonts/`.
