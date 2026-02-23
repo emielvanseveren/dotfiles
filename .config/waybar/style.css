@@ -1,100 +1,79 @@
-@define-color background rgb (20,20,20);
-@define-color text rgb (200,200,200);
-@define-color textActive rgb (255,255,255);
+@define-color background rgb(20, 20, 20);
+@define-color text rgb(200, 200, 200);
 
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "MonaSpace Neon";
-    min-height: 20px;
-    padding: 3px;
+  border: none;
+  border-radius: 0;
+  font-family: "MonaSpace Neon";
+  min-height: 20px;
+  padding: 3px;
 }
 
 window#waybar {
-    background: transparent;
+  background: transparent;
 }
 
 window#waybar.hidden {
-    opacity: 0.2;
+  opacity: 0.2;
 }
 
 #workspaces {
-    margin-right: 8px;
-    margin-left: 8px;
-    border-radius: 10px;
-    transition: none;
-    background: @background;
+  margin-right: 8px;
+  margin-left: 8px;
+  border-radius: 10px;
+  background: @background;
 }
 
 #workspaces button {
-    color: #7c818c;
-    background: transparent;
-    padding: 5px;
-    font-size: 15px;
+  color: #7c818c;
+  background: transparent;
+  padding: 5px;
+  font-size: 15px;
 }
 
-#workspaces button.persistent {
-    color: #7c818c;
-}
-
-#workspaces button.active {
+#workspaces button.active,
+#workspaces button.focused {
   color: #ffffff;
 }
 
 #workspaces button:hover {
-    color: @textActive;
-}
-
-#workspaces button.focused {
-    color: @textActive;
+  color: #ffffff;
 }
 
 #clock {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    transition: none;
-    color: @text;
-    background: @background;
-}
-
-#cpu {
-  color: @text;
-  background: @background;
   padding-left: 16px;
-  padding-right: 8px;
-}
-
-#memory {
-  color: @text;
-  background: @background;
   padding-right: 16px;
-  padding-left: 16px;
+  border-radius: 10px;
+  color: @text;
+  background: @background;
+}
+
+#network {
+  border-radius: 10px 0 0 10px;
 }
 
 #battery {
-  background: @background;
+  border-radius: 0 10px 10px 0;
+}
+
+#network,
+#pulseaudio,
+#pulseaudio.microphone,
+#backlight,
+#custom-power-profile,
+#cpu,
+#memory,
+#battery {
   color: @text;
-  border-radius: 10px 0 0 10px;
-  padding-right: 16px;
-  padding-left: 16px;
+  background: @background;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 #battery.critical {
   background: red;
 }
+
 #battery.warning {
   background: orange;
 }
-
-#tray {
-    padding-left: 16px;
-    padding-right: 16px;
-    border-radius: 10px;
-    margin-left: 8px;
-    margin-right: 8px;
-    transition: none;
-    color: @text;
-    background: @background;
-}
-

@@ -1,46 +1,73 @@
 {
-  "layer":  "top",
+  "layer": "top",
   "margin": "5px 10px 0px 10px",
-  "modules-left": [ "sway/workspaces", "hyprland/workspaces"],
+  "modules-left": ["sway/workspaces", "hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": [ "battery","cpu", "memory" ],
+  "modules-right": ["network", "pulseaudio", "pulseaudio#microphone", "backlight", "custom/power-profile", "cpu", "memory", "battery"],
   "height": "30px",
-
-  //***************************
-  //*  Modules configuration  *
-  //***************************
 
   "cpu": {
     "interval": 1,
-    "format": "󰻠 {usage}%",
-    "on-click": "",
+    "format": "󰻠  {usage}%",
     "tooltip": false
   },
+
   "memory": {
     "interval": 1,
-    "format": "󰍛 {used:0.1f}/{total:0.1f}GiB",
-    "on-click": "",
+    "format": "󰍛  {used:0.1f}/{total:0.1f}GiB",
     "tooltip": false
   },
 
   "battery": {
-    "format": "{icon} {capacity}%",
-    "format-icons": ["", "", "", "", ""],
+    "format": "{icon}  {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁼", "󰁾", "󰁹"],
     "interval": 60,
     "states": {
-        "warning": 30,
-        "critical": 15
-    },
-     },
+      "warning": 30,
+      "critical": 15
+    }
+  },
 
   "clock": {
     "interval": 1,
     "format": "{:%H:%M:%S}",
-    "format-alt": "{:%A, %B %d | %H:%M:%S}",
+    "format-alt": "{:%A, %B %d | %H:%M:%S}"
   },
 
-  "tray": {
-    "icon-size": 20,
-    "spacing": 0
+  "network": {
+    "interface": "wl*",
+    "format-wifi": "󰤨  {essid}",
+    "format-disconnected": "󰤭",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)"
   },
+
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "󰖁  muted",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "tooltip": false
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": "󰍬  {volume}%",
+    "format-source-muted": "󰍭  muted",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "tooltip": false
+  },
+
+  "backlight": {
+    "format": "󰃟  {percent}%",
+    "tooltip": false
+  },
+
+  "custom/power-profile": {
+    "exec": "case $(powerprofilesctl get) in performance) echo '󰓅  performance';; balanced) echo '󰾅  balanced';; power-saver) echo '󰾆  power-saver';; esac",
+    "interval": 5,
+    "on-click": "~/.local/bin/powerprofile-cycle",
+    "tooltip": false
+  }
 }
