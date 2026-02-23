@@ -5,3 +5,7 @@
 
 [github]
   user = emielvanseveren
+
+[commit]
+  gpgsign = true # Configure gpg to sign all commits
+  verbose = true

@@ -36,14 +36,11 @@
 [credential]
   helper = cache
 
-[commit]
-  gpgsign = true # Configure gpg to sign all commits
-
 [column]
   ui = auto
 
 [push]
-  default = tracking
+  default = upstream
   autoSetupRemote = true
   followTags = true
 
@@ -54,9 +51,6 @@
 
 [help]
   autocorrect = prompt
-
-[commit]
-  verbose = true
 
 [rerere]
   enabled = true
@@ -81,13 +75,11 @@
 
 [merge]
   conflictstyle = zdiff3
- 
-[mergetool "nvimdiff4"]
-  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
-
-[merge]
   tool = nvimdiff4
   prompt = false
+
+[mergetool "nvimdiff4"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [gpg]
   program = /usr/bin/gpg
@@ -97,3 +89,5 @@
 
 [color]
 	ui = auto
+[url "git@github.com:"]
+	insteadOf = https://github.com/
