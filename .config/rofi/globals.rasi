@@ -1,8 +1,7 @@
 * {
-  background:   #000000;
+  background:    #000000;
   backgroundalt: #202020;
-  foreground:   #ffffff;
+  foreground:    #ffffff;
   foregroundalt: #666666;
-  accent:   #ffffff;
-  test: #ff0000;
-  }
+  accent:        #ffffff;
+}
