@@ -1,7 +1,7 @@
 local M = {}
-local conf = require("telescope.config").values
 
 function M.telescope_harpoon(harpoon_files)
+  local conf = require("telescope.config").values
   local file_paths = {}
   for _, item in ipairs(harpoon_files.items) do
     table.insert(file_paths, item.value)
@@ -61,7 +61,7 @@ end
 function M.get_root()
   ---@type string?
   local path = vim.api.nvim_buf_get_name(0)
-  path = path ~= "" and vim.loop.fs_realpath(path) or nil
+  path = path ~= "" and vim.uv.fs_realpath(path) or nil
 
   if path ~= nil then
     local dir = vim.fn.fnamemodify(path, ":h")
@@ -79,7 +79,7 @@ function M.get_root()
     if vim.v.shell_error == 0 and git_root ~= "" then
       return git_root
     else
-      return vim.loop.cwd()
+      return vim.uv.cwd()
     end
   end
 
@@ -92,7 +92,7 @@ function M.get_root()
         return vim.uri_to_fname(ws.uri)
       end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
       for _, p in ipairs(paths) do
-        local r = vim.loop.fs_realpath(p)
+        local r = vim.uv.fs_realpath(p)
         if path:find(r, 1, true) then
           roots[#roots + 1] = r
         end
@@ -105,10 +105,10 @@ function M.get_root()
   ---@type string?
   local root = roots[1]
   if not root then
-    path = path and vim.fs.dirname(path) or vim.loop.cwd()
+    path = path and vim.fs.dirname(path) or vim.uv.cwd()
     ---@type string?
     root = vim.fs.find(M.root_patterns, { path = path, upward = true })[1]
-    root = root and vim.fs.dirname(root) or vim.loop.cwd()
+    root = root and vim.fs.dirname(root) or vim.uv.cwd()
   end
   ---@cast root string
   return root

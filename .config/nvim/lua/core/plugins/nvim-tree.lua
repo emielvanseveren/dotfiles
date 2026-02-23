@@ -1,6 +1,6 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = { "kyazdani42/nvim-web-devicons" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
     { "<leader><leader>t", "<cmd>NvimTreeToggle<CR>", desc = "[t]oggle file explorer treeview." },
   },

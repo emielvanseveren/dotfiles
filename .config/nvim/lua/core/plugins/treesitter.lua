@@ -16,9 +16,7 @@ return {
     opts = {
       highlight = { enable = true, disable = { "latex" } },
       indent = { enable = true },
-      context_commentstring = { enable = true, enable_autocmd = false },
       ensure_installed = "all",
-      sync_install = false,
       auto_install = true,
       incremental_selection = {
         enable = true,
@@ -30,8 +28,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
+    main = "nvim-treesitter",
   },
 }

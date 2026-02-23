@@ -1,6 +1,3 @@
-local builtin_telescope = require("telescope.builtin")
-local Util = require("core.utils")
-
 return {
   "nvim-telescope/telescope.nvim",
   version = false, -- telescope did only one release, so use HEAD for now
@@ -17,10 +14,10 @@ return {
   cmd = "Telescope",
   keys = {
     -- search
-    { "<leader>fg", Util.live_grep_from_project_git_root,  desc = "Files [G]rep" },
-    { "<leader>ff", Util.find_files_from_project_git_root, desc = "[f]ind [f]iles (repo)" },
-    { "<leader>lb", builtin_telescope.buffers,             desc = "[l]ist [b]uffers",        { sort_mru = true, ignore_current_buffer = true } },
-    { "<leader>ld", builtin_telescope.diagnostics,         desc = "[l]ist all [d]iagnostics" },
+    { "<leader>fg", function() require("core.utils").live_grep_from_project_git_root() end,  desc = "Files [G]rep" },
+    { "<leader>ff", function() require("core.utils").find_files_from_project_git_root() end, desc = "[f]ind [f]iles (repo)" },
+    { "<leader>lb", function() require("telescope.builtin").buffers() end,                   desc = "[l]ist [b]uffers",        { sort_mru = true, ignore_current_buffer = true } },
+    { "<leader>ld", function() require("telescope.builtin").diagnostics() end,               desc = "[l]ist all [d]iagnostics" },
   },
   opts = {
     defaults = {

@@ -1,5 +1,3 @@
-local Util = require("core.utils")
-
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
@@ -24,7 +22,7 @@ return {
       "<leader><leader>h",
       function()
         local harpoon = require("harpoon")
-        Util.telescope_harpoon(harpoon:list())
+        require("core.utils").telescope_harpoon(harpoon:list())
       end,
       desc = "[l]ist [h]arpoon files"
     },

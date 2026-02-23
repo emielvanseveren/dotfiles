@@ -3,7 +3,6 @@ local g = vim.g
 
 opt.autowrite = true       -- auto write after commands like :next and :previous
 opt.shell = "/usr/bin/zsh" -- Sets default shell to zsh
-opt.compatible = false     -- don't try to be like vi.
 opt.completeopt = "menuone,noinsert,noselect"
 opt.cmdheight = 1          -- Height of command line
 opt.pumheight = 10         -- Maximum popup menu height
@@ -66,7 +65,7 @@ opt.fillchars = {
 }
 
 -- Colorscheme
-vim.cmd([[colorscheme rose-pine-dawn]])
+vim.cmd([[colorscheme kanagawa-dragon]])
 
 -- ===============================================================
 -- # Built-in debugger
@@ -78,9 +77,6 @@ g.editorconfig = true            -- Enable editorconfig
 g.tex_flavor = "latex"
 g.markdown_recommended_style = 0 -- Fix markdown indentation settings
 g.deprecation_warnings = true
-g.loaded_netrw = 1               -- Disable netrw
-g.loaded_netrwPlugin = 1
-
 g.loaded_perl_provider = 0      -- Disable perl provider
 g.loaded_ruby_provider = 0      -- Disable ruby provider
 g.loaded_node_provider = 0      -- Disable node provider
