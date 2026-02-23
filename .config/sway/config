@@ -1,54 +1,35 @@
-
-# Mod key is set to <alt>.
 set $mod Mod1
 
-# Fontsize of title.
-font pango: JetBrainsMono Bold Nerd Font Mono Regular 20
-
-# This will hide the border when workspace only has one window.
+# Borders
+default_border pixel 1
 hide_edge_borders smart
 
-
-# Move focus on activation.
-focus_on_window_activation focus
-
-# Align titles in center.
-title_align center
-
-# Default border style for new windows.
-default_border none
-
-# Move focus depending when cursor enters new window. Do NOT active this. It is annoying.
-## It also sometimes triggers when you are moving windows. Resulting in unexpected movement of other windows.
+focus_on_window_activation smart
 focus_follows_mouse no
-
-# Use <Mouse+$mod> to drag floating windows to their wanted position.
 floating_modifier $mod
-
-# Toggle between last 2 workspaces on display.
 workspace_auto_back_and_forth yes
-
-# Show certain window types as a popup. This way it does not get focussed.
-# This way fullscreen windows do not get out of fullscreen.
-for_window [window_role="pop-up"]       floating enable
-for_window [window_role="bubble"]       floating enable
-for_window [window_role="task_dialog"]  floating enable
-for_window [window_role="Preferences"]  floating enable
-for_window [window_type="dialog"]       floating enable
-for_window [window_type="menu"]         floating enable
-for_window [title="Preferences$"]       floating enable
-for_window [title="Event Tester"]       floating enable
-for_window [class="Youtube-dl-gui"]     floating enable
-
-# enable smart popup during fullscreen
 popup_during_fullscreen smart
+
+# Floating rules
+for_window [title="Preferences$"] floating enable
+for_window [title="Event Tester"] floating enable
+for_window [app_id="firefox"] inhibit_idle fullscreen # Prevent idle lock/screen off while watching fullscreen videos
+
+# Input
+input type:touchpad {
+    tap enabled
+    dwt enabled
+}
+
+input type:keyboard {
+    repeat_delay 300
+    repeat_rate 40
+}
 
 ###############################################################################
 ## Variables                                                                 ##
 ###############################################################################
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
 set $ws1 "1:code"
 set $ws2 "2:browser"
 set $ws3 "3:slack"
@@ -59,19 +40,21 @@ set $ws7 "7:files"
 set $ws8 "8:discord"
 set $ws9 "9:spotify"
 
-# Automatically move these application to specific workspaces, cause that is were they belong >:(
-# you can see the class string by running xprop in a terminal and point to window.
-for_window [app_id="[Ff]irefox"] move window to workspace $ws2
-for_window [class="[Ss]lack"] move window to workspace $ws3
-for_window [class="obsidian"] move window to workspace $ws4
-for_window [class="discord"] move window to workspace $ws8
-for_window [class="Spotify"] move window to workspace $ws9
+# Assign applications to workspaces
+# Use `swaymsg -t get_tree` to find app_id (Wayland) or class (XWayland)
+assign [app_id="firefox"] $ws2
+assign [app_id="firefox_firefox"] $ws2
+assign [app_id="[Ss]lack"] $ws3
+assign [class="[Ss]lack"] $ws3
+assign [app_id="obsidian"] $ws4
+assign [class="obsidian"] $ws4
+assign [app_id="discord"] $ws8
+assign [class="discord"] $ws8
+assign [class="[Ss]potify"] $ws9
 
 ###############################################################################
-## Theme (black-ish)                                                         ##
+## Theme                                                                     ##
 ###############################################################################
-
-default_border pixel 1
 
 # class                 border    bg       text      indicator  child_border
 client.focused          #FF00FF   #000000  #ffffff   #0000ff    #ffffff
@@ -79,81 +62,66 @@ client.focused_inactive #44475A   #000000  #ffffff   #44475A    #44475A
 client.unfocused        #282A36   #000000  #ffffff   #282A36    #202020
 client.urgent           #44475A   #000000  #ffffff   #FF5555    #FF5555
 client.placeholder      #282A36   #000000  #ffffff   #282A36    #282A36
-
 client.background       #F8F8F2
 
 ###############################################################################
 ## Keybindings                                                               ##
 ###############################################################################
 
-# Start a terminal (alacritty terminal emulator)
 bindsym $mod+Return exec /home/emiel/.cargo/bin/alacritty
-# Kill focused window
 bindsym $mod+q kill
-# Execute Rofi
-bindsym $mod+d exec --no-startup-id "rofi -show drun"
-# Focus the parent container
+bindsym $mod+d exec "rofi -show drun"
 bindsym $mod+a focus parent
-# Focus the child container (new application that you open).
 bindsym $mod+shift+d focus child
 
-# Split in horizontal orientation.
 bindsym $mod+s split h
-# Split in vertical orientation.
 bindsym $mod+v split v
-# Enter fullscreen mode for the focused container.
 bindsym $mod+f fullscreen toggle
+bindsym $mod+space floating toggle
 
-# Toggle mute, volume up, volume down, and mic mute.
-bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Audio
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume --limit 1.0 @DEFAULT_AUDIO_SINK@ 5%+
+bindsym --locked XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-# Move the currenlty focused window to the scratchpad.
+# Brightness
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Scratchpad
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-# Toggle tiling / floating.
-bindsym $mod+space floating toggle
-# Change focus between tiling / floating windows.
-# bindsym $mod+space focus mode_toggle
-
-# Change focus (like vim)
+# Focus (vim-like)
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# Move focused window to other visible workspace (like vim)
+# Move window (vim-like)
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
-# Move focused workspace to other monitor
+# Move workspace to other monitor
 bindsym $mod+Ctrl+h move workspace to output left
 bindsym $mod+Ctrl+l move workspace to output right
 bindsym $mod+Ctrl+j move workspace to output down
 bindsym $mod+Ctrl+k move workspace to output up
 
-# Change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+n layout stacking
-#bindsym $mod+w layout tabbed
-#bindsym $mod+e layout toggle split
+# Workspaces
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
 
-# Switch to workspace (automatically open applications if they are not running yet)
-bindsym $mod+1 workspace $ws1;
-bindsym $mod+2 workspace $ws2;
-bindsym $mod+3 workspace $ws3;
-bindsym $mod+4 workspace $ws4;
-bindsym $mod+5 workspace $ws5;
-bindsym $mod+6 workspace $ws6;
-bindsym $mod+7 workspace $ws7;
-bindsym $mod+8 workspace $ws8;
-bindsym $mod+9 workspace $ws9;
-
-# Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -164,93 +132,82 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
+# Screenshot
+bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 
-# Reload sway to load new config 
-bindsym $mod+Shift+r exec "swaymsg reload"
+# Reload and exit
+bindsym $mod+Shift+r reload
 
-# Exit sway (logs you out of your X session)
-bindsym $mod+Shift+e exec "sway exit"
-
-# Set lock screen
-set $Locker swaylock && sleep 1
+# Lock screen
+set $Locker swaylock -f -c 141414
+bindsym $mod+Escape exec $Locker
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id $Locker, mode "default"
-    bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
-    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
-    bindsym r exec --no-startup-id systemctl reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-
-    # back to normal: Enter or Escape
+    bindsym l exec $Locker, mode "default"
+    bindsym e exec swaymsg exit, mode "default"
+    bindsym s exec $Locker && systemctl suspend, mode "default"
+    bindsym h exec $Locker && systemctl hibernate, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff -i, mode "default"
     bindsym Escape mode "default"
 }
-# Pressing this will show the options
 bindsym $mod+shift+BackSpace mode "$mode_system"
 
-# resize window
+# Resize mode
 bindsym $mod+r mode "resize"
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-        bindsym l resize grow width 80 px or 80 ppt
-        bindsym h resize shrink width 80 px or 80 ppt
-        bindsym j resize grow height 80 px or 80 ppt
-        bindsym k resize shrink height 80 px or 80 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    bindsym l resize grow width 80 px
+    bindsym h resize shrink width 80 px
+    bindsym j resize grow height 80 px
+    bindsym k resize shrink height 80 px
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
-# move floating windows with keys
+# Move floating windows
 bindsym $mod+m mode "move" focus floating
 mode "move" {
     bindsym $mod+Tab focus right
-
     bindsym Left  move left
     bindsym Down  move down
     bindsym Up    move up
     bindsym Right move right
-
     bindsym h     move left
     bindsym j     move down
     bindsym k     move up
     bindsym l     move right
-
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
     bindsym $mod+m mode "default"
 }
 
+###############################################################################
+## Appearance                                                                ##
+###############################################################################
+
 bar {
-     swaybar_command waybar
+    swaybar_command waybar
 }
 
-# Only enable outer gaps when there is exactly one container
-# smart_gaps inverse_outer
-
 gaps inner 3
-# When there is only 1 window
-gaps top 0
 
-###############################################################################
-## Startup Application                                                       ##
-###############################################################################
-
-# Take a screenshot with flameshot by pressing <Mod+Shift+s>
-bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
-
-# background image
 output * bg $HOME/.config/sway/wallpapers/background_otiv.png fill
 
+###############################################################################
+## Startup                                                                   ##
+###############################################################################
 
-# fix for gtk applications taking long time to start 
+# Idle: lock after 5 min, screen off after 10 min, lock before sleep
+exec swayidle -w \
+    timeout 300 '$Locker' \
+    timeout 600 'swaymsg "output * power off"' \
+        resume 'swaymsg "output * power on"' \
+    before-sleep '$Locker'
+
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-# boot on start
-exec --no-startup-id /home/emiel/.cargo/bin/alacritty
-exec --no-startup-id /snap/bin/slack
-exec --no-startup-id /usr/bin/firefox
+exec /home/emiel/.cargo/bin/alacritty
+exec /usr/bin/slack
+exec /usr/bin/firefox
