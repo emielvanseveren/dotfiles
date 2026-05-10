@@ -20,6 +20,16 @@ return {
   },
 
   {
+    'chomosuke/typst-preview.nvim',
+    ft = "typst",
+    version = '1.*',
+    opts = {
+      open_cmd = "firefox %s -P typst-preview --class typst-preview",
+      port = "9001"
+    },
+  },
+
+  {
     "iamcco/markdown-preview.nvim",
     ft = "markdown",
     lazy = true,

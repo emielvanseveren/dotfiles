@@ -18,6 +18,7 @@ return function()
     jsonls = lsp_server_configs.json,
     terraformls = { filetypes = { "terraform", "tf" } },
     bashls = {},
+    tinymist = { filetypes = { "typst" } }
   }
 
 
