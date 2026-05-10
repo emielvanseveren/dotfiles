@@ -5,3 +5,7 @@
 
 [github]
   user = otiv-emiel-vanseveren
+
+[commit]
+  gpgsign = false
+  verbose = true
