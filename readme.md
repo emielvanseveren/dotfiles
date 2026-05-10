@@ -36,6 +36,7 @@
 - pavucontrol
 - docker (install via docker website)
 - grim, slurp (screenshots)
+- xdg-desktop-portal-wlr (for screensharing)
 
 #### Desktop specific
 
