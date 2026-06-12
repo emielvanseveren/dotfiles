@@ -20,8 +20,10 @@
 
   "battery": {
     "format": "{icon}  {capacity}%",
+    "format-charging": "󰂄  {capacity}%",
+    "format-plugged": "󰚥  {capacity}%",
     "format-icons": ["󰂎", "󰁺", "󰁼", "󰁾", "󰁹"],
-    "interval": 60,
+    "interval": 2,
     "states": {
       "warning": 30,
       "critical": 15
