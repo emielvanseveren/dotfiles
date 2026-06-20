@@ -9,3 +9,9 @@
 [commit]
   gpgsign = false
   verbose = true
+
+[sendemail]
+  smtpServer = smtp.gmail.com
+  smtpServerPort = 587
+  smtpEncryption = tls
+  smtpUser = emiel@otiv.ai
