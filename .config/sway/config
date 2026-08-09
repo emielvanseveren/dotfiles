@@ -139,7 +139,7 @@ bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 bindsym $mod+Shift+r reload
 
 # Lock screen
-set $Locker swaylock -f -c 141414
+set $Locker swaylock -f
 bindsym $mod+Escape exec $Locker
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -200,7 +200,9 @@ output * bg $HOME/.config/sway/wallpapers/background_otiv.png fill
 ###############################################################################
 
 # Idle: lock after 5 min, screen off after 10 min, lock before sleep
-exec swayidle -w \
+# exec_always (not exec) so a config reload picks up changes to $Locker.
+# pkill first, otherwise reload leaves a second swayidle running.
+exec_always pkill -x swayidle; swayidle -w \
     timeout 300 '$Locker' \
     timeout 600 'swaymsg "output * power off"' \
         resume 'swaymsg "output * power on"' \
