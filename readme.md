@@ -31,6 +31,7 @@
 - curl
 - wget
 - keychain
+- bind-tools (dig command)
 - tpm (git clone in ~/.tmux/plugins/tmp + prefix+I to install plugins)
 - vlc
 - pavucontrol
