@@ -51,8 +51,12 @@ The reason I use sway on my work laptop is because we require to use Ubuntu. Ubu
 - swayidle
 - swaylock
 
-### Fonts (jetbrains)
-[Download the specific font](https://github.com/ryanoasis/nerd-fonts/releases) and move the font files to `~/.local/share/fonts/`.
+### Fonts
+[Download the specific font](https://github.com/ryanoasis/nerd-fonts/releases) and move the font files to `~/.local/share/fonts/`, then run `fc-cache -f`.
+
+- 0xProto Nerd Font (used by alacritty — see `~/.config/alacritty/alacritty.toml`)
+- JetBrainsMono Nerd Font
+- MonaSpace
 
 ### Systemd
 
