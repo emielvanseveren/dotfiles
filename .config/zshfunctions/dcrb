@@ -7,6 +7,6 @@ function dcrb {
 		compose_file=$1
 	fi
 	docker compose -f "$compose_file" down --remove-orphans && \
-  docker compose -f "$compose_file" up -d --build --force-recreate  && \
+  docker compose -f "$compose_file" up -d --build --no-deps --force-recreate  && \
   docker compose -f "$compose_file" logs --follow
 }
