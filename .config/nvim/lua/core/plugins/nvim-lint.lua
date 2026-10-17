@@ -1,14 +1,15 @@
 return {
   {
     "mfussenegger/nvim-lint",
-    lazy = true,
+    event = { "BufReadPost", "BufWritePost", "InsertLeave" },
     opts = {
       -- Event to trigger linters
       events = { "BufWritePost", "BufReadPost", "InsertLeave" },
       linters_by_ft = {
-        javascript = { { "eslintd", "eslint" } },
-        typescript = { { "eslintd", "eslint" } },
-        typescriptreact = { { "eslintd", "eslint" } },
+        javascript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescript = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
       },
     },
 
@@ -16,7 +17,7 @@ return {
       local M = {}
 
       local lint = require("lint")
-      for name, linter in pairs(opts.linters) do
+      for name, linter in pairs(opts.linters or {}) do
         if type(linter) == "table" and type(lint.linters[name]) == "table" then
           lint.linters[name] = vim.tbl_deep_extend("force", lint.linters[name], linter)
         else

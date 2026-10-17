@@ -66,9 +66,4 @@ return {
     ft = "lua",
   },
 
-  {
-    "slint-ui/vim-slint",
-    ft = "slint"
-  },
-
 }

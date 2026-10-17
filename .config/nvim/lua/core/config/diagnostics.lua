@@ -7,7 +7,9 @@ local group = augroup("diagnostics", { clear = true })
 
 vim.diagnostic.config({
   virtual_text = true,
-  update_in_insert = true,
+  -- false, because the ModeChanged autocmds below hide diagnostics in insert
+  -- mode entirely. Updating them there would just be wasted work.
+  update_in_insert = false,
   underline = true,
   severity_sort = true,
   float = {

@@ -9,6 +9,7 @@ return {
   dependencies = {
     {
       "rcarriga/nvim-dap-ui",
+      dependencies = { "nvim-neotest/nvim-nio" }, -- hard requirement of dap-ui
       config = function(_, opts)
         local dap = require("dap")
         local dapui = require("dapui")
@@ -35,29 +36,32 @@ return {
     require("nvim-dap-virtual-text").setup({
       enabled_commands = false,
       highlight_changed_variables = true,
-      highlight_new_as_changeod = true,
+      highlight_new_as_changed = true,
       commented = false, -- prefix virtual text with comment string
       show_stop_reason = true,
     })
-  end,
-  opts = function()
+
     local dap = require("dap")
 
     --------------------------------------------------------------------
     -- Debug adapter configuration
     --------------------------------------------------------------------
 
-    -- link adapters to debugger
-    dap.adapters.lldb = {
-      type = "executable",
-      command = "/usr/bin/lldb-vscode",
-      name = "lldb",
+    -- codelldb comes from mason. It replaces lldb-vscode, which LLVM renamed to
+    -- lldb-dap in 18, and it pretty-prints Rust Vec/enum/Option out of the box.
+    dap.adapters.codelldb = {
+      type = "server",
+      port = "${port}",
+      executable = {
+        command = vim.fn.stdpath("data") .. "/mason/bin/codelldb",
+        args = { "--port", "${port}" },
+      },
     }
 
     dap.configurations.rust = {
       {
         name = "Launch",
-        type = "lldb",
+        type = "codelldb",
         request = "launch",
         program = function()
           return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
@@ -67,8 +71,6 @@ return {
         stopOnEntry = false,
       },
     }
-
-    -- in case no launch.json is found
   end,
   keys = {
     {

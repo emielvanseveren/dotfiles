@@ -9,6 +9,7 @@ opt.pumheight = 10         -- Maximum popup menu height
 opt.updatetime = 250       -- milliseconds nothing is typed the swap file will be written to disk
 opt.termguicolors = true   -- Enable termguicolors
 opt.background = "dark"    -- Try to use dark colors
+opt.winborder = "rounded"  -- Default border for floats (hover, signature help, diagnostics)
 opt.clipboard =
 "unnamedplus"              -- Always copy everything to the system clipboard
 opt.number = true          -- show line numbers
