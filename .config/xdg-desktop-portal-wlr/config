@@ -1,0 +1,7 @@
+# Pick the screen to share with rofi instead of slurp
+[screencast]
+chooser_type=dmenu
+chooser_cmd=rofi -dmenu -p share
+# Pause notifications while sharing
+exec_before=dunstctl set-paused true
+exec_after=dunstctl set-paused false
