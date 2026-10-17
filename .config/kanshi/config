@@ -1,0 +1,23 @@
+# First profile matching the connected screens wins.
+# Each profile signals waybar to refresh the mirror button.
+
+profile desk {
+	output "LG Electronics LG ULTRAFINE 605NTYTN0602" position 0,0 transform 270
+	output "LG Electronics LG ULTRAFINE 605NTKFN0757" position 2160,1680
+	output eDP-1 position 2160,3840
+	exec pkill -RTMIN+8 waybar
+}
+
+# Laptop plus any one screen (conference room HDMI), extended to the right
+profile dual {
+	output eDP-1 position 0,0
+	output * position 1920,0 transform normal
+	exec pkill -RTMIN+8 waybar
+}
+
+# Close a leftover mirror window once the TV is unplugged
+profile single {
+	output eDP-1 position 0,0
+	exec pkill -x wl-mirror
+	exec pkill -RTMIN+8 waybar
+}

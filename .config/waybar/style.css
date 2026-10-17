@@ -4,7 +4,7 @@
 * {
   border: none;
   border-radius: 0;
-  font-family: "MonaSpace Neon";
+  font-family: "0xProto Nerd Font";
   min-height: 20px;
   padding: 3px;
 }
@@ -61,6 +61,7 @@ window#waybar.hidden {
 #pulseaudio.microphone,
 #backlight,
 #custom-power-profile,
+#custom-mirror,
 #cpu,
 #memory,
 #battery {

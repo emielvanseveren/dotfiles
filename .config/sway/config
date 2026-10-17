@@ -214,6 +214,9 @@ exec_always "$HOME/.config/sway/scripts/idle.sh" "$Locker"
 # Fix screenshare with wayland apps (requires xdg-desktop-portal-wlr)
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
+# Output profiles per connected screen set
+exec kanshi
+
 exec /home/emiel/.cargo/bin/alacritty
 exec /usr/bin/slack
 exec /usr/bin/firefox

@@ -1,0 +1,6 @@
+#!/bin/sh
+pkill -x wl-mirror && exit
+wl-mirror --fullscreen-output HDMI-A-1 eDP-1 &
+pkill -RTMIN+8 waybar
+wait
+pkill -RTMIN+8 waybar
