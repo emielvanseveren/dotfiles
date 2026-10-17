@@ -132,6 +132,10 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 
+# Touchpad gestures (three fingers to move between workspaces)
+bindgesture swipe:3:left workspace prev
+bindgesture swipe:3:right workspace next
+
 # Screenshot
 bindsym $mod+Shift+s exec 'grim -g "$(slurp -d)" - | wl-copy'
 
@@ -141,6 +145,9 @@ bindsym $mod+Shift+r reload
 # Lock screen
 set $Locker swaylock -f
 bindsym $mod+Escape exec $Locker
+
+# Keep awake toggle: no idle lock/screen-off while the focused window exists (a video, a long build)
+bindsym $mod+i exec "$HOME/.config/sway/scripts/keep-awake.sh"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -199,15 +206,12 @@ output * bg $HOME/.config/sway/wallpapers/background_otiv.png fill
 ## Startup                                                                   ##
 ###############################################################################
 
-# Idle: lock after 5 min, screen off after 10 min, lock before sleep
-# exec_always (not exec) so a config reload picks up changes to $Locker.
-# pkill first, otherwise reload leaves a second swayidle running.
-exec_always pkill -x swayidle; swayidle -w \
-    timeout 300 '$Locker' \
-    timeout 600 'swaymsg "output * power off"' \
-        resume 'swaymsg "output * power on"' \
-    before-sleep '$Locker'
+# Idle: lock after 5 min, screen off after 10 min, lock before sleep.
+# Must stay in a script: sway's parser splits on ';', so an inline
+# `pkill ...; swayidle ...` silently drops the swayidle half.
+exec_always "$HOME/.config/sway/scripts/idle.sh" "$Locker"
 
+# Fix screenshare with wayland apps (requires xdg-desktop-portal-wlr)
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 exec /home/emiel/.cargo/bin/alacritty
