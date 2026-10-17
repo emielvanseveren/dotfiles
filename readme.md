@@ -3,6 +3,7 @@
 ### dependencies:
 
 - alacritty (cargo install alacritty)
+- foot (apt, secondary terminal; tmux.conf declares terminal features for both)
 - zsh (via apt)
 - oh-my-zsh (https://github.com/ohmyzsh/ohmyzsh)
 - direnv (apt)
@@ -11,6 +12,10 @@
 - MonaSpace font
 - dunst
 - ripgrep
+- fzf (>= 0.61 for the styled look; Ubuntu ships 0.44, put the release binary in ~/.local/bin)
+- fd-find (Ubuntu names it fdfind: `ln -s /usr/bin/fdfind ~/.local/bin/fd`)
+- bat (Ubuntu names it batcat: `ln -s /usr/bin/batcat ~/.local/bin/bat`)
+- tree
 - dunst
 - firefox  (In `about:config` (firefox browser) enable `toolkit.legacyUserProfileCustomizations.stylesheets` to allow custom stylesheets)
 - swww
@@ -28,6 +33,7 @@
 - pulseaudio
 - neovim
 - brightnessctl (add user to video group)
+- playerctl (media keys in sway)
 - curl
 - wget
 - keychain
@@ -50,6 +56,8 @@ The reason I use sway on my work laptop is because we require to use Ubuntu. Ubu
 - sway
 - swayidle
 - swaylock
+- kanshi
+- wl-mirror
 
 ### Fonts
 [Download the specific font](https://github.com/ryanoasis/nerd-fonts/releases) and move the font files to `~/.local/share/fonts/`, then run `fc-cache -f`.
