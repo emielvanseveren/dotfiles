@@ -24,9 +24,9 @@ PATH DEFAULT=${PATH}:@{HOME}/.local/bin
 TZ=Europe/Brussels
 
 # Rust stuff
-CARGO_INCREMENTAL=1
-RUSTFLAGS DEFAULT="-C target-cpu=native"
-RUST_BACKTRACE=1
+# CARGO_INCREMENTAL=1
+# RUSTFLAGS DEFAULT="-C target-cpu=native"
+# RUST_BACKTRACE=1
 
 # Make less better
 # X = leave content on screen
