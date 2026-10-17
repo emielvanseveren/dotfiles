@@ -60,8 +60,9 @@ window#waybar.hidden {
 #pulseaudio,
 #pulseaudio.microphone,
 #backlight,
-#custom-power-profile,
+#power-profiles-daemon,
 #custom-mirror,
+#privacy,
 #cpu,
 #memory,
 #battery {

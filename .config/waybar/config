@@ -3,7 +3,7 @@
   "margin": "5px 10px 0px 10px",
   "modules-left": ["sway/workspaces", "hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["network", "pulseaudio", "pulseaudio#microphone", "backlight", "custom/power-profile", "custom/mirror", "cpu", "memory", "battery"],
+  "modules-right": ["network", "pulseaudio", "pulseaudio#microphone", "backlight", "power-profiles-daemon", "custom/mirror", "privacy", "cpu", "memory", "battery"],
   "height": "30px",
 
   "cpu": {
@@ -66,10 +66,13 @@
     "tooltip": false
   },
 
-  "custom/power-profile": {
-    "exec": "case $(powerprofilesctl get) in performance) echo '󰓅  performance';; balanced) echo '󰾅  balanced';; power-saver) echo '󰾆  power-saver';; esac",
-    "interval": 5,
-    "on-click": "~/.local/bin/powerprofile-cycle",
+  "power-profiles-daemon": {
+    "format": "{icon}  {profile}",
+    "format-icons": {
+      "performance": "󰓅",
+      "balanced": "󰾅",
+      "power-saver": "󰾆"
+    },
     "tooltip": false
   },
 
@@ -80,5 +83,9 @@
     "signal": 8,
     "on-click": "~/.local/bin/mirror-toggle",
     "tooltip": false
+  },
+
+  "privacy": {
+    "icon-size": 16
   }
 }
