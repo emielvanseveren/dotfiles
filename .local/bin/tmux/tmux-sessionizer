@@ -5,7 +5,7 @@ dirs=$(find ~/code ~/.config -mindepth 1 -maxdepth 1 -type d)
 
 # Inside tmux
 if [[ -n $TMUX ]]; then
-    path=$(echo "$dirs" | fzf-tmux -w 80 -h 30)
+    path=$(echo "$dirs" | fzf --tmux center,80%,70% --scheme=path)   # explicit --tmux: run-shell has no tty and no FZF_DEFAULT_OPTS
 else
     path=$(echo "$dirs" | fzf --height=30 --scheme=path)
 fi

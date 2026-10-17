@@ -10,5 +10,5 @@ tmux_switch_to_session() {
 	fi
 }
 
-choice=$(sort -rfu <<<"$tmux_sessions" | fzf-tmux -w 80 -h 30 | tr -d '\n')
+choice=$(sort -rfu <<<"$tmux_sessions" | fzf --tmux center,80%,70% | tr -d '\n')   # explicit --tmux: run-shell has no tty and no FZF_DEFAULT_OPTS
 tmux_switch_to_session "$choice"
