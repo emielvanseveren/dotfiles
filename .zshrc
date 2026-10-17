@@ -1,12 +1,11 @@
-export NVM_LAZY_LOAD=true # Enable Lazy load nvm
-export NVM_COMPLETION=false  # Autocomplete nvm commands
-
 # ZSH | oh-myzsh settings
 ZSH_THEME="theunraveler"                                # ZSH theme - See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 CASE_SENSITIVE="false"                                  # Case sensitive completion
 HYPHEN_INSENSITIVE="true"                               # while completing '_' and '-' will be interchangeable
 COMPLETION_WAITING_DOTS="true"                          # Red dots whilst waiting for completion.
 DISABLE_UNTRACKED_FILES_DIRTY="true"                    # disable marking untracked files (great for large repos)
+zstyle ':omz:update' mode auto                          # update oh-my-zsh without asking
+zstyle ':omz:update' frequency 7                        # every 7 days (must be set before oh-my-zsh is sourced)
 
 # Start hyprland on default tty
 TTY1=$(tty)
@@ -18,18 +17,17 @@ fi
 ###################
 ###   PLUGINS   ###
 ###################
-source ~/.zplug/init.zsh                                # initialize plugins
-zplug "lukechilds/zsh-nvm"                              # lazy loaded managed nvm because that thing is soooo slow it is insane
+# oh-my-zsh plugins; loaded when oh-my-zsh is sourced below
+zstyle ':omz:plugins:nvm' lazy yes                      # load nvm on first nvm/node/npm/npx/yarn/pnpm call, nvm.sh itself is slow
+plugins=(nvm)
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-zplug load                                                # Should generate the plugins=(...) part. Add --verbose to see the output.
+##################################################
+###    Add functions to special functions path ###
+##################################################
+# Before oh-my-zsh, so compinit sees both dirs. Generated completions live in
+# the second one: gitignored, rebuilt by regen_completions.
+fpath=(~/.config/zshfunctions ~/.config/zsh/completions $fpath)
+autoload -Uz ~/.config/zshfunctions/*(.:t)                # autoload every function file in there by name
 
 ################################
 ###         EXPORTS          ###
@@ -38,14 +36,11 @@ export OH_MY_ZSH_FOLDER="${HOME}/.oh-my-zsh"              # path to your oh-my-z
 source $OH_MY_ZSH_FOLDER/oh-my-zsh.sh                     # IMPORTANT: should stay above the sets
 export VISUAL=nvim                                        # Use nvim as default editor (Some programs rely on $VISUAL instead of $EDITOR)
 export EDITOR="$VISUAL"                                   # Use nvim as default editor
-export UPDATE_ZSH_DAYS=7                                  # auto-update every 7 days.
 export GPG_TTY=$(tty)                                     # Make gpg-key available
 export MANPAGER=less
 export GTEST_COLOR=1                                      # Enables colors while running gtests.
 export NO_AT_BRIDGE=1                                     # Silence the stupid "AT bridge not available" dbus messages.
-export PATH=$PATH:/usr/local/go/bin                       # go bin
-export PATH=$PATH:/opt/meson                             # Custom build meson
-export PATH="$HOME/usr/bin:$PATH"
+
 export DELTA_FEATURES="+side-by-side"                     # Set default `(git-)delta` features
 
 # Required for manual gstreamer build
@@ -59,14 +54,21 @@ unsetopt complete_aliases                                 # Don't expand aliases
 setopt PROMPT_SUBST                                       # The prompt string is first subjected to parameter expansion, command substitution and arithmetic expansion.
 setopt PATH_DIRS                                          # Perform path search even on command names with slashes
 setopt AUTO_LIST                                          # Automatically list choices on ambiguous completion.
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive matching
+
+# History. oh-my-zsh defaults to HISTSIZE 50000 but SAVEHIST 10000, so most
+# of it never reached disk.
+HISTSIZE=100000                                           # lines kept in memory
+SAVEHIST=100000                                           # lines written to $HISTFILE
+setopt HIST_IGNORE_ALL_DUPS                               # a repeated command replaces its older copies
+setopt HIST_REDUCE_BLANKS                                 # strip extra blanks before saving
+setopt HIST_FCNTL_LOCK                                    # fcntl locking on $HISTFILE; safer with SHARE_HISTORY across many tmux panes
 
 ################################
 ###         ALIASES          ###
 ################################
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias reloadzsh='source ~/.zshrc'                          # reload zsh config with 'reload'
-alias reloadtmux="tmux source ~/.tmux.conf"                # Reload tmux (while inside tmux)
+alias reloadtmux="tmux source ~/.config/tmux/tmux.conf"    # Reload tmux (while inside tmux)
 alias bwlogin='export BW_SESSION="$(bw unlock --raw)"'  # Bitwarden: automatically open vault when logging in. instead of 2 steps >:(
 alias tf='tofu'                                         # Alias for open-source terraform (tofu)
 alias sd="sudo shutdown now"
@@ -80,14 +82,25 @@ alias testgpg="echo \"test\" | gpg --clearsign"
 alias killgpg="gpgconf --kill gpg-agent"
 alias cdr='cd $(git rev-parse --show-toplevel)'
 alias wscan="nmcli device wifi list --rescan yes"
+alias python="python3"
+alias gowork="cd /home/emiel/code/work"
+alias gopers="cd /home/emiel/code/personal"
+
+# Named directories (zsh built-in). A name registered with `hash -d` works as
+# ~name anywhere a path is expected: `cd ~work`, `ls ~work/one/src`. Tab
+# completion works after the slash, and the prompt shows ~work/one instead of
+# /home/emiel/code/work/one.
+hash -d work=~/code/work
+hash -d pers=~/code/personal
+
+# cdpath: directories `cd` searches when the target isn't under the current
+# dir, so `cd locos` or `cd three` works from anywhere (with AUTO_CD, plain
+# `locos` too). Tab completion includes them. A local dir of the same name wins.
+cdpath=(~/code/work ~/code/personal)
 
 # human readable sizes
 alias du="du -h"
 alias df="df -h"
-
-alias k="kubectl"                                       # Alias for kubectl
-alias kx="kubectx"                                      # Tool to swtich betwen contexts (clusters) on kubectl faster
-alias kb="kubens"                                       # Tool to switch between kubernetes namespaces 
 
 # tmux
 alias tns="tmux new -s"
@@ -115,31 +128,17 @@ alias lzd="lazydocker"                                  # Alias for lazydocker
 ################################
 ###    Add paths to $PATH    ###
 ################################
-PATH=$PATH:~/.zsh_history_fix
-PATH=$PATH:~/.cargo/bin
-PATH=$PATH:~/.local/bin                                 # Mainly because pip installs binaries here
-PATH="$PATH:/opt/nvim-linux64/bin"                      # Neovim install from binary is put in this location
-
-##################################################
-###    Add functions to special functions path ###
-##################################################
-FPATH=$FPATH:~/.config/zshfunctions
-
-# functions need to be initialized before they can be run
-autoload dcrb
-autoload dcr
-autoload dcrc
-autoload dive
-autoload jwtd
-autoload randomstring
-autoload source_helm
-autoload source_kubectl
-autoload wtr
-autoload wlog
-autoload reboot_win
-autoload find_large_files
-autoload ngrok
-autoload toggle_delta_side_by_side
+typeset -U path PATH                                    # keep PATH entries unique (also dedupes .zshenv/gcloud additions); needs both names, -U on path alone ignores PATH= assignments
+# prepended: take precedence over system binaries (last line ends up first)
+export PATH="$HOME/usr/bin:$PATH"                       # manually built tools
+export PATH="$HOME/.local/bin:$PATH"                    # pip and other per-user installs
+export PATH="$HOME/.opencode/bin:$PATH"                 # opencode
+# appended
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:/usr/local/go/bin                     # go bin
+export PATH=$PATH:/opt/meson                            # Custom build meson
+export PATH=$PATH:/usr/lib/postgresql/16/bin
+export PATH=$PATH:/opt/nvim-linux64/bin                 # Neovim install from binary is put in this location
 
 eval "$(direnv hook zsh)"      # hook direnv into zsh
 eval $(keychain --eval --quiet github github_personal)  # make sure ssh-agent is running on every terminal session
@@ -152,16 +151,19 @@ eval $(keychain --eval --quiet github github_personal)  # make sure ssh-agent is
 if [ -f '/home/emiel/google-cloud-sdk/path.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/path.zsh.inc'; fi
 if [ -f '/home/emiel/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/emiel/google-cloud-sdk/completion.zsh.inc'; fi
 
-# completion for fzf
+################################
+###           fzf            ###
+################################
+source <(fzf --zsh)                                       # ^R history, ^T insert path, Alt+C cd, **<Tab> completion
 
-# arch
-if [ -f '/usr/share/fzf/key-bindings.zsh' ]; then . '/usr/share/fzf/key-bindings.zsh'; fi
-if [ -f '/usr/share/fzf/completion.zsh' ]; then . '/usr/share/fzf/completion.zsh'; fi
-# ubuntu (apt)
-if [ -f '/usr/share/doc/fzf/examples/key-bindings.zsh' ]; then . '/usr/share/doc/fzf/examples/key-bindings.zsh'; fi
-if [ -f '/usr/share/doc/fzf/examples/completion.zsh' ]; then . '/usr/share/doc/fzf/examples/completion.zsh'; fi
-# ubuntu (manual install)
-if [ -f '/home/emiel/.fzf.zsh' ]; then . '/home/emiel/.fzf.zsh'; fi
+# fd honours .gitignore/.ignore; --no-require-git applies them outside git checkouts too
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --no-require-git --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --no-require-git --exclude .git'
+
+export FZF_DEFAULT_OPTS='--style=full:rounded --layout=reverse --tmux=center,80%,70%'   # framed sections; popup when inside tmux
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers {}'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 
 bindkey -v  # vi mode
 bindkey '^R' fzf-history-widget
@@ -169,3 +171,7 @@ bindkey '^R' fzf-history-widget
 # add keybindings as in tmux
 bindkey -s '^f' '~/.local/bin/tmux/tmux-sessionizer\n'
 bindkey -s '^s' '~/.local/bin/tmux/tmux-switch-session\n'
+
+# Mark each prompt with OSC 133 so tmux copy mode can jump between prompts ([ and ])
+_tmux_prompt_mark() { printf '\033]133;A\033\\'; }
+autoload -Uz add-zsh-hook && add-zsh-hook precmd _tmux_prompt_mark
