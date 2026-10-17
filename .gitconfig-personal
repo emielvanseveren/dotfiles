@@ -1,11 +1,14 @@
 [user]
   email = 35073890+emielvanseveren@users.noreply.github.com
   username = emielvanseveren
-  signinkey = AC61D294BF0629B4
+  signingkey = /home/emiel/.ssh/github_personal.pub
+
+[core]
+  sshCommand = ssh -i ~/.ssh/github_personal -o IdentitiesOnly=yes # personal GitHub key; without this ssh offers the work key first
 
 [github]
   user = emielvanseveren
 
 [commit]
-  gpgsign = false # Configure gpg to sign all commits
+  gpgsign = true
   verbose = true

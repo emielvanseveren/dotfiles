@@ -1,13 +1,16 @@
 [user]
   email = emiel@otiv.ai
   username = otiv-emiel-vanseveren
-  signinkey = D18ACEE69BB5918E!
+  signingkey = /home/emiel/.ssh/github.pub
+
+[core]
+  sshCommand = ssh -i ~/.ssh/github -o IdentitiesOnly=yes
 
 [github]
   user = otiv-emiel-vanseveren
 
 [commit]
-  gpgsign = false
+  gpgsign = true
   verbose = true
 
 [sendemail]
