@@ -217,6 +217,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # Output profiles per connected screen set
 exec kanshi
 
+# Big warning bar at 5% battery
+exec "$HOME/.config/sway/scripts/battery-warn.sh"
+
 exec /home/emiel/.cargo/bin/alacritty
 exec /usr/bin/slack
 exec /usr/bin/firefox
