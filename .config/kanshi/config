@@ -2,7 +2,7 @@
 # Each profile signals waybar to refresh the mirror button.
 
 profile desk {
-	output "LG Electronics LG ULTRAFINE 605NTYTN0602" position 0,0 transform 270
+	output "LG Electronics LG ULTRAFINE 605NTYTN0602" position 0,0 transform 90
 	output "LG Electronics LG ULTRAFINE 605NTKFN0757" position 2160,1680
 	output eDP-1 position 2160,3840
 	exec pkill -RTMIN+8 waybar
