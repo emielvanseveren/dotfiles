@@ -83,3 +83,4 @@ g.loaded_ruby_provider = 0      -- Disable ruby provider
 g.loaded_node_provider = 0      -- Disable node provider
 
 vim.lsp.inlay_hint.enable(true) -- Enable inlay hints by default
+vim.lsp.inline_completion.enable() -- Copilot suggestions as ghost text

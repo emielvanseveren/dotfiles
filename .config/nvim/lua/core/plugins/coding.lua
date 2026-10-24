@@ -38,30 +38,6 @@ return {
   },
 
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    build = ":Copilot auth",
-    opts = {
-      suggestion = {
-        enabled = true,
-        auto_trigger = true,
-        hide_during_completion = true,
-        keymap = {
-          accept = "<C-Y>"
-        }
-      },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        yaml = true,
-        gitcommit = true,
-        help = true,
-      }
-    }
-  },
-
-  {
     "folke/lazydev.nvim",
     ft = "lua",
   },

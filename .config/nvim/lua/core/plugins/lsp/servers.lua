@@ -22,6 +22,15 @@ return {
   ts_ls = { settings = cfg.typescript },
   yamlls = { settings = cfg.yaml },
 
+  -- Native build from the mason package, the npm entry point needs node on PATH
+  copilot = {
+    cmd = {
+      vim.fn.stdpath("data")
+      .. "/mason/packages/copilot-language-server/node_modules/@github/copilot-language-server"
+      .. "/node_modules/@github/copilot-language-server-linux-x64/copilot-language-server",
+      "--stdio",
+    },
+  },
   html = { filetypes = { "html", "handlebars" } },
   tinymist = { filetypes = { "typst" } },
   tofu_ls = { filetypes = { "terraform", "terraform-vars" } },
