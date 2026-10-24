@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Regenerate zsh completions for tools whose package ships none. Anything already
+# in /usr/share/zsh/vendor-completions (gh, docker, fd, delta, ...) is left alone,
+# as is anything source-style rather than #compdef (fzf, gcloud: see .zshrc).
+# Run after upgrading a tool; oh-my-zsh picks the new files up on the next shell.
+function regen_completions {
+	local dir=~/.config/zsh/completions
+	mkdir -p $dir
+
+	command -v rg     > /dev/null && rg --generate complete-zsh   > $dir/_rg
+	command -v rustup > /dev/null && rustup completions zsh       > $dir/_rustup
+	command -v rustup > /dev/null && rustup completions zsh cargo > $dir/_cargo
+
+	print "regenerated in $dir, start a new shell"
+}
