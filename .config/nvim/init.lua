@@ -8,6 +8,9 @@ vim.g.maplocalleader = ","
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- New message/cmdline UI, no "Press ENTER" prompts (experimental)
+require("vim._core.ui2").enable()
+
 -- bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
